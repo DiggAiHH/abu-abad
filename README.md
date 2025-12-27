@@ -194,9 +194,21 @@ docker-compose logs -f
 
 - JWT-based authentication
 - Password hashing with bcryptjs
-- CORS configuration
+- Configurable CORS (not wildcard in production)
 - Environment variable management
 - Secure video call room generation
+- Authentication middleware available (backend/middleware/auth.js)
+
+**Important Security Notes:**
+- The current implementation uses in-memory storage for demonstration
+- Before production deployment:
+  - Enable authentication middleware on all protected routes
+  - Use HTTPS/SSL certificates
+  - Implement rate limiting
+  - Add request validation
+  - Set up proper logging and monitoring
+  - Use a real database with proper access controls
+  - Review and update CORS configuration for production domains
 
 ## Future Enhancements
 

@@ -7,6 +7,10 @@ const appointments = [];
 const timeSlots = [];
 
 // Get all appointments
+// NOTE: In production, this endpoint should be protected with authenticateToken middleware
+// and filter results based on the authenticated user's ID and role.
+// Query parameters are used for filtering, which is acceptable for non-sensitive operations
+// when combined with proper authentication.
 router.get('/', (req, res) => {
   const { doctorId, patientId, date } = req.query;
   let filtered = appointments;
