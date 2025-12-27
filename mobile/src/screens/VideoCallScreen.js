@@ -6,7 +6,7 @@ import { videoService } from '../services';
 const { width, height } = Dimensions.get('window');
 
 export default function VideoCallScreen({ route, navigation }) {
-  const { appointmentId } = route.params || {};
+  const { appointmentId, doctorId, patientId } = route.params || {};
   const [roomId, setRoomId] = useState(null);
   const [isCallActive, setIsCallActive] = useState(false);
 
@@ -16,8 +16,12 @@ export default function VideoCallScreen({ route, navigation }) {
 
   const initializeCall = async () => {
     try {
-      // Create video room
-      const response = await videoService.createRoom(appointmentId, 'doctorId', 'patientId');
+      // Create video room with actual IDs from route params
+      const response = await videoService.createRoom(
+        appointmentId, 
+        doctorId || 'pending', 
+        patientId || 'pending'
+      );
       setRoomId(response.roomId);
     } catch (error) {
       console.error('Error creating video room:', error);

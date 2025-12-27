@@ -51,8 +51,12 @@ export default function AppointmentsScreen({ navigation }) {
       </Card.Content>
       <Card.Actions>
         <Button onPress={() => {
-          // Navigate to video call
-          navigation.navigate('VideoCall', { appointmentId: item.id });
+          // Navigate to video call with appointment details
+          navigation.navigate('VideoCall', { 
+            appointmentId: item.id,
+            doctorId: item.doctorId,
+            patientId: item.patientId
+          });
         }}>
           Join Call
         </Button>
