@@ -5,6 +5,16 @@ echo "Abu Abad Backend API Test Script"
 echo "==================================="
 echo ""
 
+# Check for jq
+if ! command -v jq &> /dev/null; then
+  echo "Error: 'jq' is required but not installed."
+  echo "Install it with:"
+  echo "  - Ubuntu/Debian: sudo apt-get install jq"
+  echo "  - macOS: brew install jq"
+  echo "  - Or visit: https://stedolan.github.io/jq/download/"
+  exit 1
+fi
+
 BASE_URL="http://localhost:5000"
 
 # Colors for output

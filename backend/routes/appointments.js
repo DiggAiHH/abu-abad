@@ -37,12 +37,19 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   const { doctorId, patientId, date, startTime, endTime, type, notes } = req.body;
   
-  // Check if slot is available
+  // Check if slot is available - comprehensive conflict detection
   const conflict = appointments.find(a => 
     a.doctorId === doctorId && 
     a.date === date && 
-    ((startTime >= a.startTime && startTime < a.endTime) ||
-     (endTime > a.startTime && endTime <= a.endTime))
+    a.status !== 'cancelled' &&
+    (
+      // New appointment starts during existing appointment
+      (startTime >= a.startTime && startTime < a.endTime) ||
+      // New appointment ends during existing appointment
+      (endTime > a.startTime && endTime <= a.endTime) ||
+      // New appointment completely contains existing appointment
+      (startTime <= a.startTime && endTime >= a.endTime)
+    )
   );
 
   if (conflict) {
