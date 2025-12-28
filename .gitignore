@@ -1,8 +1,20 @@
 # Dependencies
 node_modules/
+.pnp
+.pnp.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Testing
+coverage/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
 
 # Build outputs
 build/
@@ -16,20 +28,30 @@ dist/
 .env.test.local
 .env.production.local
 
+# Logs
+logs
+*.log
+
 # OS files
 .DS_Store
 Thumbs.db
 
 # IDE
-.vscode/
 .idea/
+.vscode/
 *.swp
 *.swo
 *~
 
-# Logs
-logs/
-*.log
+# Database
+*.db
+*.sqlite
+postgres-data/
+
+# SSL Certificates
+*.pem
+*.key
+*.crt
 
 # Temporary files
 tmp/
@@ -43,5 +65,5 @@ mobile/.expo/
 mobile/.expo-shared/
 mobile/dist/
 
-# Test coverage
-coverage/
+# Uploads
+uploads/

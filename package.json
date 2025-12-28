@@ -1,0 +1,45 @@
+{
+  "name": "abu-abad",
+  "version": "1.0.0",
+  "description": "DSGVO-konforme Therapeuten-Patienten-Plattform mit Video-Calls, Terminbuchung und Stripe-Zahlungen",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "build": "npm run build --workspaces",
+    "db:migrate": "npm run migrate --workspace=backend",
+    "db:seed": "npm run seed --workspace=backend",
+    "test": "npm run test --workspaces",
+    "lint": "npm run lint --workspaces"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiggAiHH/abu-abad.git"
+  },
+  "keywords": [
+    "telemedicine",
+    "healthcare",
+    "therapy",
+    "video-consultation",
+    "DSGVO",
+    "psychotherapy"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/DiggAiHH/abu-abad/issues"
+  },
+  "homepage": "https://github.com/DiggAiHH/abu-abad#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.3",
+    "@types/pg": "^8.16.0",
+    "concurrently": "^8.2.2"
+  }
+}
