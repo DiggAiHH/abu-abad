@@ -3,6 +3,7 @@ const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { validateUserRegistration, validateEmail } = require('../utils/validation');
 
 // In-memory storage (replace with database in production)
 const users = [];
@@ -11,6 +12,15 @@ const users = [];
 router.post('/register', async (req, res) => {
   try {
     const { email, password, name, role } = req.body;
+
+    // Validate input
+    const validation = validateUserRegistration(req.body);
+    if (!validation.isValid) {
+      return res.status(400).json({ 
+        message: 'Validation failed', 
+        errors: validation.errors 
+      });
+    }
 
     // Check if user exists
     const existingUser = users.find(u => u.email === email);

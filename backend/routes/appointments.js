@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
+const { validateAppointment } = require('../utils/validation');
 
 // In-memory storage
 const appointments = [];
@@ -40,6 +41,15 @@ router.get('/:id', (req, res) => {
 // Create appointment
 router.post('/', (req, res) => {
   const { doctorId, patientId, date, startTime, endTime, type, notes } = req.body;
+  
+  // Validate input
+  const validation = validateAppointment(req.body);
+  if (!validation.isValid) {
+    return res.status(400).json({ 
+      message: 'Validation failed', 
+      errors: validation.errors 
+    });
+  }
   
   // Check if slot is available - comprehensive conflict detection
   const conflict = appointments.find(a => 

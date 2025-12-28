@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
+const { validatePatient } = require('../utils/validation');
 
 // In-memory storage
 const patients = [];
@@ -22,6 +23,15 @@ router.get('/:id', (req, res) => {
 // Create patient
 router.post('/', (req, res) => {
   const { name, email, phone, dateOfBirth, medicalHistory } = req.body;
+  
+  // Validate input
+  const validation = validatePatient(req.body);
+  if (!validation.isValid) {
+    return res.status(400).json({ 
+      message: 'Validation failed', 
+      errors: validation.errors 
+    });
+  }
   
   const patient = {
     id: uuidv4(),
