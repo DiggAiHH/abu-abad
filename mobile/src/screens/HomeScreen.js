@@ -26,7 +26,8 @@ export default function HomeScreen({ navigation }) {
       const response = await appointmentService.getAllAppointments({ date: today });
       setTodayAppointments(response.appointments || []);
     } catch (error) {
-      console.error('Error loading appointments:', error);
+      // Silently fail to avoid disrupting the UI on load
+      setTodayAppointments([]);
     }
   };
 

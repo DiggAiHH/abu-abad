@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
-import { Card, Title, Paragraph, FAB, Searchbar } from 'react-native-paper';
+import { Card, Title, Paragraph, FAB, Searchbar, Snackbar } from 'react-native-paper';
 import { patientService } from '../services';
 
 export default function PatientsScreen() {
   const [patients, setPatients] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredPatients, setFilteredPatients] = useState([]);
+  const [error, setError] = useState('');
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
 
   useEffect(() => {
     loadPatients();
@@ -29,7 +31,8 @@ export default function PatientsScreen() {
       const response = await patientService.getAllPatients();
       setPatients(response.patients || []);
     } catch (error) {
-      console.error('Error loading patients:', error);
+      setError('Failed to load patients. Please try again.');
+      setSnackbarVisible(true);
     }
   };
 
@@ -64,6 +67,18 @@ export default function PatientsScreen() {
         icon="plus"
         onPress={() => {}}
       />
+
+      <Snackbar
+        visible={snackbarVisible}
+        onDismiss={() => setSnackbarVisible(false)}
+        duration={3000}
+        action={{
+          label: 'Retry',
+          onPress: loadPatients,
+        }}
+      >
+        {error}
+      </Snackbar>
     </View>
   );
 }

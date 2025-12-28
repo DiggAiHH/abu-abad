@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
-import { Button, Title, Surface } from 'react-native-paper';
+import { View, StyleSheet, Dimensions, Alert } from 'react-native';
+import { Button, Title, Surface, Snackbar } from 'react-native-paper';
 import { videoService } from '../services';
 
 const { width, height } = Dimensions.get('window');
@@ -9,6 +9,8 @@ export default function VideoCallScreen({ route, navigation }) {
   const { appointmentId, doctorId, patientId } = route.params || {};
   const [roomId, setRoomId] = useState(null);
   const [isCallActive, setIsCallActive] = useState(false);
+  const [error, setError] = useState('');
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
 
   useEffect(() => {
     initializeCall();
@@ -24,11 +26,17 @@ export default function VideoCallScreen({ route, navigation }) {
       );
       setRoomId(response.roomId);
     } catch (error) {
-      console.error('Error creating video room:', error);
+      setError('Failed to create video room. Please try again.');
+      setSnackbarVisible(true);
     }
   };
 
   const startCall = () => {
+    if (!roomId) {
+      setError('Video room not ready. Please wait.');
+      setSnackbarVisible(true);
+      return;
+    }
     setIsCallActive(true);
     // Initialize WebRTC connection here
     // This would require native WebRTC implementation
@@ -41,7 +49,10 @@ export default function VideoCallScreen({ route, navigation }) {
         setIsCallActive(false);
         navigation.goBack();
       } catch (error) {
-        console.error('Error ending call:', error);
+        setError('Failed to end call properly.');
+        setSnackbarVisible(true);
+        // Still navigate back even if API call fails
+        setTimeout(() => navigation.goBack(), 1500);
       }
     }
   };
@@ -65,6 +76,7 @@ export default function VideoCallScreen({ route, navigation }) {
             icon="phone"
             onPress={startCall}
             style={styles.startButton}
+            disabled={!roomId}
           >
             Start Call
           </Button>
@@ -97,6 +109,18 @@ export default function VideoCallScreen({ route, navigation }) {
           </>
         )}
       </View>
+
+      <Snackbar
+        visible={snackbarVisible}
+        onDismiss={() => setSnackbarVisible(false)}
+        duration={3000}
+        action={{
+          label: 'OK',
+          onPress: () => setSnackbarVisible(false),
+        }}
+      >
+        {error}
+      </Snackbar>
     </View>
   );
 }

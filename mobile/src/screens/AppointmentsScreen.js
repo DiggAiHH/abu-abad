@@ -16,7 +16,8 @@ export default function AppointmentsScreen({ navigation }) {
       const response = await appointmentService.getAllAppointments();
       setAppointments(response.appointments || []);
     } catch (error) {
-      console.error('Error loading appointments:', error);
+      // Silently fail to avoid disrupting the UI
+      setAppointments([]);
     }
   };
 

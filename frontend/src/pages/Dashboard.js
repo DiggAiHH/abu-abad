@@ -53,7 +53,12 @@ export default function Dashboard() {
         ).length || 0,
       });
     } catch (error) {
-      console.error('Error loading stats:', error);
+      // Silently fail to avoid disrupting the dashboard load
+      setStats({
+        todayAppointments: 0,
+        totalPatients: 0,
+        upcomingCalls: 0,
+      });
     }
   };
 
