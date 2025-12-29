@@ -83,6 +83,8 @@ export default function VideoCall() {
       }
 
       // Initialize PeerJS mit Error Handling
+      // GDPR-COMPLIANCE: Self-hosted STUN/TURN Server (kein Google-Tracking)
+      // SECURITY: Verhindert IP-Leakage an Drittanbieter (Art. 25 DSGVO)
       const peerConfig = {
         host: import.meta.env.VITE_PEER_SERVER_HOST || 'localhost',
         port: Number(import.meta.env.VITE_PEER_SERVER_PORT) || 3001,
@@ -90,8 +92,14 @@ export default function VideoCall() {
         secure: import.meta.env.VITE_PEER_SERVER_SECURE === 'true',
         config: {
           iceServers: [
-            { urls: 'stun:stun.l.google.com:19302' },
-            { urls: 'stun:stun1.l.google.com:19302' },
+            // GDPR-COMPLIANT: Self-hosted STUN server (keine IP-Übermittlung an Google)
+            { urls: `stun:${import.meta.env.VITE_STUN_SERVER || 'localhost'}:3478` },
+            // Optional: TURN server für NAT-Traversal (bei Bedarf aktivieren)
+            // { 
+            //   urls: `turn:${import.meta.env.VITE_TURN_SERVER || 'localhost'}:3478`,
+            //   username: import.meta.env.VITE_TURN_USERNAME || '',
+            //   credential: import.meta.env.VITE_TURN_CREDENTIAL || ''
+            // },
           ],
         },
       };

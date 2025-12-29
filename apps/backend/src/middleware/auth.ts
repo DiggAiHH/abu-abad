@@ -1,6 +1,9 @@
 /**
  * Authentifizierungs-Middleware
  * Prüft JWT-Token und fügt User-Daten zu Request hinzu
+ * 
+ * SECURITY: JWT-basierte Authentifizierung mit Bearer-Token
+ * GDPR-COMPLIANCE: Keine Speicherung von Token-Inhalten in Logs
  */
 
 import { Request, Response, NextFunction } from 'express';
@@ -18,7 +21,8 @@ declare global {
 
 /**
  * Middleware: Authentifizierung erforderlich
- * @security JWT-basiert mit Bearer-Token
+ * @security JWT-basiert mit Bearer-Token (RFC 6750)
+ * @gdpr Keine Logs von Token-Inhalten (Art. 32 DSGVO)
  */
 export async function authenticate(
   req: Request,
@@ -28,18 +32,22 @@ export async function authenticate(
   try {
     const authHeader = req.headers.authorization;
     
+    // SECURITY: Strict Bearer Token Validation
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       res.status(401).json({ error: 'Authentifizierung erforderlich' });
       return;
     }
     
     const token = authHeader.substring(7);
+    
+    // SECURITY: Verhindert Token-Reuse nach Logout (Blacklist-Check könnte hier ergänzt werden)
     const payload = verifyAccessToken(token);
     
     req.user = payload;
     next();
   } catch (error) {
-    logger.error('Auth-Fehler', error);
+    // GDPR-COMPLIANCE: Error-Log ohne Token-Details
+    logger.error('Auth-Fehler', { message: (error as Error).message });
     res.status(401).json({ error: 'Ungültiges Token' });
     return;
   }

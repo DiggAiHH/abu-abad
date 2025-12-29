@@ -3,7 +3,7 @@
  * Endpoints: Register, Login, Refresh Token, Logout
  */
 
-import { Router, Request, Response } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
 import { query } from '../database/init.js';
 import { 
@@ -24,7 +24,7 @@ const router = Router();
  * POST /api/auth/register
  * Registriert einen neuen Benutzer (Therapeut oder Patient)
  */
-router.post('/register', async (req: Request, res: Response) => {
+router.post('/register', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const validatedData = registerSchema.parse(req.body);
     
@@ -88,7 +88,7 @@ router.post('/register', async (req: Request, res: Response) => {
       }
     });
   } catch (error) {
-    throw error;
+    next(error);
   }
 });
 
@@ -96,7 +96,7 @@ router.post('/register', async (req: Request, res: Response) => {
  * POST /api/auth/login
  * Authentifiziert einen Benutzer
  */
-router.post('/login', async (req: Request, res: Response) => {
+router.post('/login', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const validatedData = loginSchema.parse(req.body);
 
@@ -167,7 +167,7 @@ router.post('/login', async (req: Request, res: Response) => {
       }
     });
   } catch (error) {
-    throw error;
+    next(error);
   }
 });
 
@@ -175,7 +175,7 @@ router.post('/login', async (req: Request, res: Response) => {
  * POST /api/auth/refresh
  * Erneuert Access Token mit Refresh Token
  */
-router.post('/refresh', async (req: Request, res: Response) => {
+router.post('/refresh', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { refreshToken } = req.body;
 
@@ -224,7 +224,7 @@ router.post('/refresh', async (req: Request, res: Response) => {
  * POST /api/auth/logout
  * Widerruft Refresh Token (Logout)
  */
-router.post('/logout', authenticate, async (req: Request, res: Response) => {
+router.post('/logout', authenticate, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { refreshToken } = req.body;
 
@@ -236,7 +236,7 @@ router.post('/logout', authenticate, async (req: Request, res: Response) => {
 
     res.json({ message: 'Abmeldung erfolgreich' });
   } catch (error) {
-    throw error;
+    next(error);
   }
 });
 
@@ -244,7 +244,7 @@ router.post('/logout', authenticate, async (req: Request, res: Response) => {
  * GET /api/auth/me
  * Gibt aktuelle Benutzer-Daten zurück
  */
-router.get('/me', authenticate, async (req: Request, res: Response) => {
+router.get('/me', authenticate, async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await query(
       `SELECT 

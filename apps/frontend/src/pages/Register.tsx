@@ -88,6 +88,7 @@ export default function Register() {
                 onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                 required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                data-testid="register-firstname"
               />
             </div>
 
@@ -214,6 +215,7 @@ export default function Register() {
             type="submit"
             disabled={loading}
             className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 font-medium"
+            data-testid="register-submit"
           >
             {loading ? 'Wird registriert...' : 'Registrieren'}
           </button>

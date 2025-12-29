@@ -3,12 +3,15 @@ import toast from 'react-hot-toast';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
+// SECURITY: Timeout verhindert Hanging Requests (DoS-Prävention)
+// GDPR-COMPLIANCE: Keine Third-Party Analytics oder Tracking
 export const api = axios.create({
   baseURL: `${API_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
   },
   withCredentials: true,
+  timeout: 10000, // SECURITY: 10s Timeout für alle Requests
 });
 
 // Request Interceptor: Add JWT Token
