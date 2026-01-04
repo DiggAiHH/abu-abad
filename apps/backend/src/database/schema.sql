@@ -4,7 +4,14 @@
 
 -- UUID Extension aktivieren
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-CREATE EXTENSION IF NOT EXISTS "pg_stat_statements";
+-- OPTIONAL: pg_stat_statements erfordert i.d.R. shared_preload_libraries.
+-- Damit Deployments/Tests nicht fehlschlagen, wird ein möglicher Fehler abgefangen.
+DO $$
+BEGIN
+  CREATE EXTENSION IF NOT EXISTS "pg_stat_statements";
+EXCEPTION WHEN OTHERS THEN
+  -- Ignorieren, wenn Extension nicht verfügbar/aktivierbar ist.
+END$$;
 
 -- =============================================================================
 -- BENUTZER-TABELLE (users)
@@ -213,17 +220,28 @@ END;
 $$ language 'plpgsql';
 
 -- Trigger anwenden
-CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users
-  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_users_updated_at') THEN
+    CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users
+      FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+  END IF;
 
-CREATE TRIGGER update_appointments_updated_at BEFORE UPDATE ON appointments
-  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+  IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_appointments_updated_at') THEN
+    CREATE TRIGGER update_appointments_updated_at BEFORE UPDATE ON appointments
+      FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+  END IF;
 
-CREATE TRIGGER update_payments_updated_at BEFORE UPDATE ON payments
-  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+  IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_payments_updated_at') THEN
+    CREATE TRIGGER update_payments_updated_at BEFORE UPDATE ON payments
+      FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+  END IF;
 
-CREATE TRIGGER update_messages_updated_at BEFORE UPDATE ON messages
-  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+  IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_messages_updated_at') THEN
+    CREATE TRIGGER update_messages_updated_at BEFORE UPDATE ON messages
+      FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+  END IF;
+END$$;
 
 -- =============================================================================
 -- VIEWS für DSGVO-Compliance

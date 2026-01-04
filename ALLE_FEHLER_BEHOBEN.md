@@ -55,10 +55,10 @@ await slotCard.locator('button:has-text("Buchen")').click();
 ### 4. [tests/e2e/video-call.spec.ts](tests/e2e/video-call.spec.ts)
 ```typescript
 // VORHER: Nicht existierende Methode
-await context.overridePermissions('http://localhost:5173', []);
+await context.overridePermissions('http://localhost:5175', []);
 
 // NACHHER: Nur grantPermissions()
-await context.grantPermissions([], { origin: 'http://localhost:5173' });
+await context.grantPermissions([], { origin: 'http://localhost:5175' });
 ```
 
 ### 5. [tests/e2e/auth.spec.ts](tests/e2e/auth.spec.ts#L2)

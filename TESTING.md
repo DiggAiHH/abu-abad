@@ -270,7 +270,7 @@ sudo apt install stripe  # Linux
 stripe login
 
 # Webhooks forwarden
-stripe listen --forward-to localhost:3000/api/webhooks/stripe
+stripe listen --forward-to localhost:4000/api/webhooks/stripe
 ```
 
 ### Problem: Video-Call-Tests schlagen fehl

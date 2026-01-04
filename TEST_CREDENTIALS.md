@@ -24,9 +24,9 @@ Rolle:     Therapeut
 
 ## 🚀 Application URLs
 
-- **Frontend:** http://localhost:5173
-- **Backend-API:** http://localhost:3000/api
-- **PeerJS Server:** http://localhost:3001 (WebRTC Video-Calls)
+- **Frontend:** http://localhost:5175
+- **Backend-API:** http://localhost:4000/api
+- **PeerJS Server:** http://localhost:9001 (WebRTC Video-Calls)
 
 ---
 
@@ -98,7 +98,7 @@ GET /video-call/{appointmentId}
 ## 🔧 Troubleshooting
 
 ### Problem: "Keine Verbindung zum Server"
-**Ursache:** Backend nicht erreichbar (Port 3000)
+**Ursache:** Backend nicht erreichbar (Port 4000)
 
 **Lösung:**
 ```bash
@@ -111,7 +111,7 @@ npm run dev
 
 **Lösung:** `.env` prüfen:
 ```env
-ALLOWED_ORIGINS=http://localhost:5173
+ALLOWED_ORIGINS=http://localhost:5175
 ```
 
 ### Problem: "Database connection failed"
@@ -147,8 +147,8 @@ CREATE TABLE users (
 
 ## 🎯 Next Steps
 
-1. **Login testen:** http://localhost:5173/login
-2. **Registrierung testen:** http://localhost:5173/register
+1. **Login testen:** http://localhost:5175/login
+2. **Registrierung testen:** http://localhost:5175/register
 3. **Dashboard öffnen:** Nach Login automatisch
 4. **Video-Call:** Therapeut erstellt Termin → Patient bucht → Video-Call starten
 

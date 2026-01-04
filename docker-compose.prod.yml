@@ -1,0 +1,312 @@
+# ══════════════════════════════════════════════════════════════
+# DOCKER PRODUCTION SETUP
+# Abu-Abbad Teletherapie Platform - Complete Stack
+# ══════════════════════════════════════════════════════════════
+# SERVICES: Frontend (Nginx) + Backend (Node.js) + PostgreSQL + Redis + coturn
+# DEPLOYMENT: docker-compose up -d (Production-ready)
+# ══════════════════════════════════════════════════════════════
+
+version: '3.8'
+
+services:
+  # ════════════════════════════════════════════════════════════
+  # POSTGRESQL DATABASE (Gesundheitsdaten - DSGVO Art. 32)
+  # ════════════════════════════════════════════════════════════
+  postgres:
+    image: postgres:15-alpine
+    container_name: abu-abad-postgres
+    restart: always
+    
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME:-therapist_db}
+      POSTGRES_USER: ${DATABASE_USER:-therapist_user}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-CHANGE_ME_IN_PRODUCTION}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=de_DE.UTF-8"
+      
+    volumes:
+      # Persistent Data (CRITICAL: Backup-Strategy erforderlich!)
+      - postgres_data:/var/lib/postgresql/data
+      
+      # Schema Initialization
+      - ./apps/backend/src/database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      
+    ports:
+      - "5432:5432"
+      
+    networks:
+      - abu-abad-network
+      
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USER:-therapist_user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      
+    # SECURITY: Read-only root filesystem (außer /var/lib/postgresql/data)
+    security_opt:
+      - no-new-privileges:true
+      
+    # PERFORMANCE: Memory Limits
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+  # ════════════════════════════════════════════════════════════
+  # REDIS CACHE (Session Store - KEINE Gesundheitsdaten!)
+  # ════════════════════════════════════════════════════════════
+  redis:
+    image: redis:7-alpine
+    container_name: abu-abad-redis
+    restart: always
+    
+    command: >
+      redis-server
+      --appendonly no
+      --save ""
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+      
+    ports:
+      - "6379:6379"
+      
+    networks:
+      - abu-abad-network
+      
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      
+    # GDPR-COMPLIANCE: Keine Persistenz (nur Cache)
+    volumes:
+      - redis_data:/data
+      
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+
+  # ════════════════════════════════════════════════════════════
+  # BACKEND API (Node.js + Express)
+  # ════════════════════════════════════════════════════════════
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: Dockerfile
+      args:
+        NODE_ENV: production
+        
+    container_name: abu-abad-backend
+    restart: always
+    
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      
+      # Database Connection
+      DATABASE_URL: postgresql://${DATABASE_USER:-therapist_user}:${DATABASE_PASSWORD:-CHANGE_ME}@postgres:5432/${DATABASE_NAME:-therapist_db}
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      
+      # Redis Connection
+      REDIS_URL: redis://redis:6379
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      
+      # JWT Secrets (MUST BE CHANGED IN PRODUCTION!)
+      JWT_SECRET: ${JWT_SECRET:-GENERATE_WITH_OPENSSL_RAND_BASE64_32}
+      JWT_EXPIRES_IN: 15m
+      REFRESH_TOKEN_SECRET: ${REFRESH_TOKEN_SECRET:-GENERATE_WITH_OPENSSL_RAND_BASE64_32}
+      REFRESH_TOKEN_EXPIRES_IN: 7d
+      
+      # Encryption (AES-256)
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:-GENERATE_WITH_OPENSSL_RAND_BASE64_32}
+      
+      # Stripe (Production Keys!)
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-sk_live_PLACEHOLDER}
+      STRIPE_PUBLISHABLE_KEY: ${STRIPE_PUBLISHABLE_KEY:-pk_live_PLACEHOLDER}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-whsec_PLACEHOLDER}
+      
+      # CORS
+      ALLOWED_ORIGINS: https://your-domain.de,https://www.your-domain.de
+      FRONTEND_URL: https://your-domain.de
+      
+      # PeerJS
+      PEER_PORT: 9001
+      PEER_PATH: /peerjs
+      
+    ports:
+      - "4000:4000"
+      - "9001:9001"
+      
+    networks:
+      - abu-abad-network
+      
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+        
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:4000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+      
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+  # ════════════════════════════════════════════════════════════
+  # FRONTEND (Nginx + Static Files)
+  # ════════════════════════════════════════════════════════════
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: https://api.your-domain.de
+        VITE_PEER_SERVER_HOST: api.your-domain.de
+        VITE_PEER_SERVER_PORT: 443
+        VITE_PEER_SERVER_SECURE: "true"
+        VITE_STUN_SERVER: stun.your-domain.de
+        VITE_TURN_SERVER: turn.your-domain.de
+        
+    container_name: abu-abad-frontend
+    restart: always
+    
+    ports:
+      - "80:80"
+      - "443:443"
+      
+    networks:
+      - abu-abad-network
+      
+    depends_on:
+      - backend
+      
+    volumes:
+      # SSL/TLS Certificates (Let's Encrypt)
+      - ./certs:/etc/nginx/certs:ro
+      
+      # Custom Nginx Config (optional)
+      - ./apps/frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+
+  # ════════════════════════════════════════════════════════════
+  # COTURN (STUN/TURN Server for WebRTC - DSGVO-Compliant)
+  # ════════════════════════════════════════════════════════════
+  coturn:
+    image: coturn/coturn:4.6-alpine
+    container_name: abu-abad-coturn
+    restart: always
+    
+    command: >
+      -n
+      --listening-ip=0.0.0.0
+      --external-ip=${EXTERNAL_IP:-$(curl -s ifconfig.me)}
+      --realm=your-domain.de
+      --server-name=your-domain.de
+      --lt-cred-mech
+      --user=turnuser:${TURN_PASSWORD:-CHANGE_ME}
+      --min-port=49152
+      --max-port=65535
+      --no-cli
+      --no-tls
+      --no-dtls
+      --verbose
+      
+    ports:
+      - "3478:3478/tcp"
+      - "3478:3478/udp"
+      - "49152-65535:49152-65535/udp"
+      
+    networks:
+      - abu-abad-network
+      
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+
+# ══════════════════════════════════════════════════════════════
+# NETWORKS
+# ══════════════════════════════════════════════════════════════
+networks:
+  abu-abad-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.25.0.0/16
+
+# ══════════════════════════════════════════════════════════════
+# VOLUMES (Persistent Data)
+# ══════════════════════════════════════════════════════════════
+volumes:
+  postgres_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/abu-abad/postgres-data
+      
+  redis_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /opt/abu-abad/redis-data
+
+# ══════════════════════════════════════════════════════════════
+# DEPLOYMENT INSTRUCTIONS
+# ══════════════════════════════════════════════════════════════
+# 
+# 1. Environment Variables setzen:
+#    cp .env.example .env
+#    nano .env  # Alle Secrets ändern!
+# 
+# 2. SSL/TLS Zertifikate generieren:
+#    sudo certbot certonly --standalone -d your-domain.de
+#    sudo cp /etc/letsencrypt/live/your-domain.de/* ./certs/
+# 
+# 3. Docker-Compose starten:
+#    docker-compose up -d
+# 
+# 4. Logs überwachen:
+#    docker-compose logs -f
+# 
+# 5. Health-Check:
+#    curl https://your-domain.de/api/health
+# 
+# 6. Backup-Strategy:
+#    # PostgreSQL Backup (täglich via Cron):
+#    docker exec abu-abad-postgres pg_dump -U therapist_user therapist_db > backup.sql
+# 
+# ══════════════════════════════════════════════════════════════

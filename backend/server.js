@@ -35,6 +35,17 @@ const patientsRoutes = require('./routes/patients');
 const doctorsRoutes = require('./routes/doctors');
 const appointmentsRoutes = require('./routes/appointments');
 const videoRoutes = require('./routes/video');
+const symptomDiaryRoutes = require('./routes/symptom-diary');
+const therapyNotesRoutes = require('./routes/therapy-notes');
+const diagnosesRoutes = require('./routes/diagnoses');
+const screeningsRoutes = require('./routes/screenings');
+const crisisPlanRoutes = require('./routes/crisis-plan');
+const medicationsRoutes = require('./routes/medications');
+const exercisesRoutes = require('./routes/exercises');
+const remindersRoutes = require('./routes/reminders');
+const reportsRoutes = require('./routes/reports');
+const waitingRoomRoutes = require('./routes/waiting-room');
+const billingRoutes = require('./routes/billing');
 
 // Use routes
 app.use('/api/auth', authRoutes);
@@ -42,6 +53,17 @@ app.use('/api/patients', patientsRoutes);
 app.use('/api/doctors', doctorsRoutes);
 app.use('/api/appointments', appointmentsRoutes);
 app.use('/api/video', videoRoutes);
+app.use('/api/symptom-diary', symptomDiaryRoutes);
+app.use('/api/therapy-notes', therapyNotesRoutes);
+app.use('/api/diagnoses', diagnosesRoutes);
+app.use('/api/screenings', screeningsRoutes);
+app.use('/api/crisis-plan', crisisPlanRoutes);
+app.use('/api/medications', medicationsRoutes);
+app.use('/api/exercises', exercisesRoutes);
+app.use('/api/reminders', remindersRoutes);
+app.use('/api/reports', reportsRoutes);
+app.use('/api/waiting-room', waitingRoomRoutes);
+app.use('/api/billing', billingRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {

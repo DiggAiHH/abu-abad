@@ -39,10 +39,10 @@ cp .env.example .env
 DATABASE_URL=postgresql://postgres:password@localhost:5432/therapist_platform
 JWT_SECRET=dev-secret-change-in-production
 ENCRYPTION_KEY=dev-encryption-key-32-chars-min
-PORT=3000
+PORT=4000
 NODE_ENV=development
-FRONTEND_URL=http://localhost:5173
-CORS_ORIGIN=http://localhost:5173
+FRONTEND_URL=http://localhost:5175
+ALLOWED_ORIGINS=http://localhost:5175
 ```
 
 **Frontend .env:**
@@ -50,9 +50,9 @@ CORS_ORIGIN=http://localhost:5173
 cp apps/frontend/.env.example apps/frontend/.env
 
 # Minimal:
-VITE_API_URL=http://localhost:3000
+VITE_API_URL=http://localhost:4000
 VITE_PEER_SERVER_HOST=localhost
-VITE_PEER_SERVER_PORT=3001
+VITE_PEER_SERVER_PORT=9001
 VITE_PEER_SERVER_SECURE=false
 ```
 
@@ -65,21 +65,21 @@ npm run dev
 
 **Fertig!** 🎉
 
-- Frontend: http://localhost:5173
-- Backend: http://localhost:3000
+- Frontend: http://localhost:5175
+- Backend: http://localhost:4000
 
 ---
 
 ## 🧪 Testen
 
 1. **Registriere einen Therapeuten:**
-   - http://localhost:5173/register
+   - http://localhost:5175/register
    - Rolle: Therapeut
    - E-Mail: therapeut@test.de
    - Passwort: Test1234!
 
 2. **Registriere einen Patienten:**
-   - http://localhost:5173/register
+   - http://localhost:5175/register
    - Rolle: Patient
    - E-Mail: patient@test.de
    - Passwort: Test1234!
@@ -127,10 +127,10 @@ ALTER USER postgres PASSWORD 'password';
 ### Port already in use
 ```bash
 # Port 3000 freigeben
-lsof -ti:3000 | xargs kill -9
+lsof -ti:4000 | xargs kill -9
 
 # Port 5173 freigeben
-lsof -ti:5173 | xargs kill -9
+lsof -ti:5175 | xargs kill -9
 ```
 
 ### WebRTC funktioniert nicht

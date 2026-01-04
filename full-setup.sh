@@ -55,13 +55,14 @@ DATABASE_HOST=localhost
 DATABASE_PORT=5432
 DATABASE_NAME=therapist_platform
 DATABASE_USER=therapist_user
-DATABASE_PASSWORD=dev_password_CHANGE_IN_PRODUCTION
-DATABASE_URL=postgresql://therapist_user:dev_password_CHANGE_IN_PRODUCTION@localhost:5432/therapist_platform
+DATABASE_PASSWORD=secure_password
+DATABASE_URL=postgresql://therapist_user:secure_password@localhost:5432/therapist_platform
 
 # JWT Secrets (WICHTIG: In Production ändern!)
 JWT_SECRET=$(openssl rand -base64 32)
 JWT_ACCESS_TOKEN_EXPIRES_IN=15m
-JWT_REFRESH_TOKEN_EXPIRES_IN=7d
+REFRESH_TOKEN_SECRET=$(openssl rand -base64 32)
+REFRESH_TOKEN_EXPIRES_IN=7d
 
 # Encryption (AES-256)
 ENCRYPTION_KEY=$(openssl rand -base64 32)
@@ -72,24 +73,26 @@ STRIPE_PUBLISHABLE_KEY=pk_test_PLACEHOLDER
 STRIPE_WEBHOOK_SECRET=whsec_PLACEHOLDER
 
 # Server
-PORT=3000
+PORT=4000
 NODE_ENV=development
-CORS_ORIGIN=http://localhost:5173
-FRONTEND_URL=http://localhost:5173
+ALLOWED_ORIGINS=http://localhost:5175
+FRONTEND_URL=http://localhost:5175
 
 # Rate Limiting
 RATE_LIMIT_WINDOW_MS=900000
 RATE_LIMIT_MAX_REQUESTS=100
 
 # PeerJS
-PEER_PORT=3001
+PEER_PORT=9001
 PEER_PATH=/peerjs
 EOF
     
     # Generiere echte Secrets
     JWT_SECRET=$(openssl rand -base64 32)
+    REFRESH_TOKEN_SECRET=$(openssl rand -base64 32)
     ENCRYPTION_KEY=$(openssl rand -base64 32)
     sed -i "s|JWT_SECRET=.*|JWT_SECRET=$JWT_SECRET|" .env
+    sed -i "s|REFRESH_TOKEN_SECRET=.*|REFRESH_TOKEN_SECRET=$REFRESH_TOKEN_SECRET|" .env
     sed -i "s|ENCRYPTION_KEY=.*|ENCRYPTION_KEY=$ENCRYPTION_KEY|" .env
     
     echo "✅ .env erstellt mit echten Secrets"
@@ -107,8 +110,8 @@ echo "   1. npm run dev          # Starte Backend + Frontend"
 echo "   2. ./run-tests.sh       # Führe Tests aus"
 echo ""
 echo "📊 URLs:"
-echo "   Frontend:  http://localhost:5173"
-echo "   Backend:   http://localhost:3000"
-echo "   PeerJS:    http://localhost:3001"
+echo "   Frontend:  http://localhost:5175"
+echo "   Backend:   http://localhost:4000"
+echo "   PeerJS:    http://localhost:9001"
 echo "   PgAdmin:   http://localhost:5050 (optional)"
 echo ""

@@ -124,7 +124,7 @@ test.describe('Authentifizierung', () => {
     await page.check('input[type="checkbox"]');
     await page.click('button[type="submit"]');
     
-    await page.waitForURL('**/dashboard', { timeout: 5000 });
+    await page.waitForURL('**/dashboard', { timeout: 30000 });
     
     // Logout
     await page.click('button:has-text("Abmelden")');

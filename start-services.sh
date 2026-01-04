@@ -51,8 +51,9 @@ health_check() {
 # Cleanup alte Prozesse
 echo -e "${YELLOW}🧹 Cleanup: Alte Prozesse werden beendet...${NC}"
 pkill -f "tsx watch" || true
-kill_port 3000
-kill_port 5173
+kill_port 4000
+kill_port 5175
+kill_port 9001
 sleep 2
 
 # Schritt 1: Backend starten
@@ -67,7 +68,7 @@ echo "$BACKEND_PID" > /tmp/backend.pid
 echo -e "${GREEN}✅ Backend gestartet (PID: $BACKEND_PID)${NC}"
 
 # Health Check Backend
-if ! health_check "http://localhost:3000/health" "Backend"; then
+if ! health_check "http://localhost:4000/api/health" "Backend"; then
     echo -e "${RED}❌ Backend Start fehlgeschlagen. Log:${NC}"
     tail -20 /tmp/backend.log
     exit 1
@@ -86,7 +87,7 @@ echo "$FRONTEND_PID" > /tmp/frontend.pid
 echo -e "${GREEN}✅ Frontend gestartet (PID: $FRONTEND_PID)${NC}"
 
 # Health Check Frontend
-if ! health_check "http://localhost:5173/" "Frontend"; then
+if ! health_check "http://localhost:5175/" "Frontend"; then
     echo -e "${RED}❌ Frontend Start fehlgeschlagen. Log:${NC}"
     tail -20 /tmp/frontend.log
     exit 1
@@ -99,8 +100,9 @@ echo -e "${GREEN}║          🎉 START ERFOLGREICH 🎉         ║${NC}"
 echo -e "${GREEN}╚══════════════════════════════════════════╝${NC}"
 echo ""
 echo -e "${BLUE}📍 URLs:${NC}"
-echo -e "   Frontend:  ${GREEN}http://localhost:5173${NC}"
-echo -e "   Backend:   ${GREEN}http://localhost:3000${NC}"
+echo -e "   Frontend:  ${GREEN}http://localhost:5175${NC}"
+echo -e "   Backend:   ${GREEN}http://localhost:4000${NC}"
+echo -e "   PeerJS:    ${GREEN}http://localhost:9001${NC}"
 echo ""
 echo -e "${BLUE}🔐 Test-Zugangsdaten:${NC}"
 echo -e "   Patient:   ${YELLOW}patient@test.de${NC} / ${YELLOW}Test123!${NC}"
@@ -115,6 +117,6 @@ echo -e "   Backend:  ${YELLOW}tail -f /tmp/backend.log${NC}"
 echo -e "   Frontend: ${YELLOW}tail -f /tmp/frontend.log${NC}"
 echo ""
 echo -e "${BLUE}🛑 Services stoppen:${NC}"
-echo -e "   ${YELLOW}./stop.sh${NC}"
+echo -e "   ${YELLOW}./stop-services.sh${NC}"
 echo ""
 echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"

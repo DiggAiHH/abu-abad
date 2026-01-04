@@ -1,12 +1,18 @@
 import { Request, Response, NextFunction } from 'express';
 import rateLimit from 'express-rate-limit';
+import { logger } from '../utils/logger.js';
+
+const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test';
+if (isDev) {
+  logger.info('⚠️ Security: Rate Limiting disabled for Development/Testing');
+}
 
 /**
  * Rate Limiting (OWASP: DoS Prevention)
  */
 export const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 Minuten
-  max: 5, // Max 5 Versuche
+  max: isDev ? 100000 : 5, // High limit for Dev
   message: 'Zu viele Login-Versuche. Bitte versuchen Sie es später erneut.',
   standardHeaders: true,
   legacyHeaders: false,
@@ -14,7 +20,7 @@ export const loginLimiter = rateLimit({
 
 export const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100, // Max 100 Requests pro 15 Min
+  max: isDev ? 100000 : 100, // High limit for Dev
   message: 'Zu viele Anfragen. Bitte versuchen Sie es später erneut.',
   standardHeaders: true,
   legacyHeaders: false,
@@ -24,7 +30,7 @@ export const apiLimiter = rateLimit({
  * CORS Headers (nur erlaubte Origins)
  */
 export function corsHeaders(req: Request, res: Response, next: NextFunction): void {
-  const allowedOrigins = process.env.CORS_ORIGIN?.split(',') || ['http://localhost:5173'];
+  const allowedOrigins = (process.env.ALLOWED_ORIGINS ?? process.env.CORS_ORIGIN)?.split(',') || ['http://localhost:5175'];
   const origin = req.headers.origin;
   
   if (origin && allowedOrigins.includes(origin)) {
@@ -67,7 +73,7 @@ export function errorHandler(
   res: Response,
   _next: NextFunction
 ): void {
-  console.error('Error:', error);
+  logger.error('Error:', error);
   
   // In Production: keine Stack Traces
   const isDevelopment = process.env.NODE_ENV === 'development';

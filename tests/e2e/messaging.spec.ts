@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { registerUser, loginUser, TEST_USERS, generateRandomEmail } from '../helpers';
 
+const API_BASE_URL = process.env.PLAYWRIGHT_API_BASE_URL || 'http://localhost:4000';
+
 /**
  * Messaging System Tests: Verschlüsselte Kommunikation, Real-time, IDOR
  * 
@@ -19,11 +21,11 @@ test.describe('Messaging: Grundfunktionalität', () => {
     
     // Patient registrieren
     const patientPage = await context.newPage();
-    await patientPage.goto('http://localhost:5173/register');
+    await patientPage.goto('/register');
     await registerUser(patientPage, { ...TEST_USERS.patient, email: patientEmail });
     
     // Therapeut öffnet Messaging-Tab
-    await therapistPage.goto('http://localhost:5173/dashboard');
+    await therapistPage.goto('/dashboard');
     await therapistPage.click('text=/Nachrichten|Messages/i');
     
     // Therapeut sendet Nachricht
@@ -32,7 +34,7 @@ test.describe('Messaging: Grundfunktionalität', () => {
     await therapistPage.click('button:has-text("Senden"), button[type="submit"]');
     
     // Patient empfängt Nachricht
-    await patientPage.goto('http://localhost:5173/dashboard');
+    await patientPage.goto('/dashboard');
     await patientPage.click('text=/Nachrichten|Messages/i');
     
     // Nachricht sollte sichtbar sein
@@ -51,7 +53,7 @@ test.describe('Messaging: Security & Validation', () => {
     await registerUser(page, { ...TEST_USERS.therapist, email: therapistEmail });
     
     const patientPage = await context.newPage();
-    await patientPage.goto('http://localhost:5173/register');
+    await patientPage.goto('/register');
     await registerUser(patientPage, { ...TEST_USERS.patient, email: patientEmail });
     
     // XSS-Payloads
@@ -62,7 +64,7 @@ test.describe('Messaging: Security & Validation', () => {
       '<svg onload=alert("XSS")>'
     ];
     
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Nachrichten|Messages/i');
     
     for (const xssPayload of xssPayloads) {
@@ -88,7 +90,7 @@ test.describe('Messaging: Security & Validation', () => {
     const therapistEmail = generateRandomEmail();
     await registerUser(page, { ...TEST_USERS.therapist, email: therapistEmail });
     
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Nachrichten|Messages/i');
     
     // 15.000 Zeichen lange Nachricht
@@ -105,7 +107,7 @@ test.describe('Messaging: Security & Validation', () => {
     const therapistEmail = generateRandomEmail();
     await registerUser(page, { ...TEST_USERS.therapist, email: therapistEmail });
     
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Nachrichten|Messages/i');
     
     // Versuche leere Nachricht zu senden
@@ -121,7 +123,7 @@ test.describe('Messaging: Security & Validation', () => {
     const therapistEmail = generateRandomEmail();
     await registerUser(page, { ...TEST_USERS.therapist, email: therapistEmail });
     
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Nachrichten|Messages/i');
     
     // SQL Injection Payloads in Suchfeld
@@ -157,29 +159,29 @@ test.describe('Messaging: IDOR & Authorization', () => {
     
     // Patient 2 registrieren
     const patient2Page = await context.newPage();
-    await patient2Page.goto('http://localhost:5173/register');
+    await patient2Page.goto('/register');
     await registerUser(patient2Page, { ...TEST_USERS.patient, email: patient2Email });
     
     // Therapeut registrieren
     const therapistPage = await context.newPage();
-    await therapistPage.goto('http://localhost:5173/register');
+    await therapistPage.goto('/register');
     await registerUser(therapistPage, { ...TEST_USERS.therapist, email: therapistEmail });
     
     // Therapeut sendet Nachricht an Patient 1
-    await therapistPage.goto('http://localhost:5173/dashboard');
+    await therapistPage.goto('/dashboard');
     await therapistPage.click('text=/Nachrichten|Messages/i');
     await therapistPage.fill('[placeholder*="Nachricht"]', 'Geheime Nachricht für Patient 1');
     await therapistPage.click('button:has-text("Senden"), button[type="submit"]');
     await therapistPage.waitForTimeout(1000);
     
     // Patient 2 sollte Nachricht NICHT sehen
-    await patient2Page.goto('http://localhost:5173/dashboard');
+    await patient2Page.goto('/dashboard');
     await patient2Page.click('text=/Nachrichten|Messages/i');
     
     await expect(patient2Page.locator('text=Geheime Nachricht für Patient 1')).not.toBeVisible();
     
     // Patient 1 sollte Nachricht sehen
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Nachrichten|Messages/i');
     
     await expect(page.locator('text=Geheime Nachricht für Patient 1')).toBeVisible({ timeout: 10000 });
@@ -197,13 +199,13 @@ test.describe('Messaging: IDOR & Authorization', () => {
     const patient1Token = await page.evaluate(() => localStorage.getItem('token'));
     
     // Patient 2 registrieren (neuer Context für saubere Session)
-    await page.goto('http://localhost:5173/logout');
-    await page.goto('http://localhost:5173/register');
+    await page.goto('/logout');
+    await page.goto('/register');
     await registerUser(page, { ...TEST_USERS.patient, email: patient2Email });
     const patient2Token = await page.evaluate(() => localStorage.getItem('token'));
     
     // Patient 2 versucht auf Konversation von Patient 1 zuzugreifen
-    const response = await request.get('http://localhost:3000/api/messages/conversation/1', {
+    const response = await request.get(`${API_BASE_URL}/api/messages/conversation/1`, {
       headers: {
         'Authorization': `Bearer ${patient2Token}`
       }
@@ -222,14 +224,14 @@ test.describe('Messaging: Real-time Updates (Socket.io)', () => {
     
     // Therapeut registrieren
     await registerUser(page, { ...TEST_USERS.therapist, email: therapistEmail });
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Nachrichten|Messages/i');
     
     // Patient registrieren
     const patientPage = await context.newPage();
-    await patientPage.goto('http://localhost:5173/register');
+    await patientPage.goto('/register');
     await registerUser(patientPage, { ...TEST_USERS.patient, email: patientEmail });
-    await patientPage.goto('http://localhost:5173/dashboard');
+    await patientPage.goto('/dashboard');
     await patientPage.click('text=/Nachrichten|Messages/i');
     
     // Therapeut sendet Nachricht
@@ -249,11 +251,11 @@ test.describe('Messaging: Real-time Updates (Socket.io)', () => {
     const patientEmail = generateRandomEmail();
     
     await registerUser(page, { ...TEST_USERS.therapist, email: therapistEmail });
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Nachrichten|Messages/i');
     
     const patientPage = await context.newPage();
-    await patientPage.goto('http://localhost:5173/register');
+    await patientPage.goto('/register');
     await registerUser(patientPage, { ...TEST_USERS.patient, email: patientEmail });
     
     // Therapeut sendet Nachricht
@@ -268,7 +270,7 @@ test.describe('Messaging: Real-time Updates (Socket.io)', () => {
     }
     
     // Patient öffnet Nachricht
-    await patientPage.goto('http://localhost:5173/dashboard');
+    await patientPage.goto('/dashboard');
     await patientPage.click('text=/Nachrichten|Messages/i');
     await patientPage.click('text=Nachricht mit Read-Status');
     await patientPage.waitForTimeout(2000);
@@ -290,7 +292,7 @@ test.describe('Messaging: Rate Limiting', () => {
     const therapistEmail = generateRandomEmail();
     await registerUser(page, { ...TEST_USERS.therapist, email: therapistEmail });
     
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Nachrichten|Messages/i');
     
     // Versuche 20 Nachrichten in kurzer Zeit zu senden
@@ -312,7 +314,7 @@ test.describe('Messaging: Verschlüsselung', () => {
     await registerUser(page, { ...TEST_USERS.therapist, email: therapistEmail });
     const token = await page.evaluate(() => localStorage.getItem('token'));
     
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Nachrichten|Messages/i');
     
     const secretMessage = 'Vertrauliche Diagnose: XYZ';
@@ -321,7 +323,7 @@ test.describe('Messaging: Verschlüsselung', () => {
     await page.waitForTimeout(2000);
     
     // Versuche Nachricht via API abzurufen
-    const response = await request.get('http://localhost:3000/api/messages', {
+    const response = await request.get(`${API_BASE_URL}/api/messages`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -344,7 +346,7 @@ test.describe('Messaging: UI/UX', () => {
     const therapistEmail = generateRandomEmail();
     await registerUser(page, { ...TEST_USERS.therapist, email: therapistEmail });
     
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Nachrichten|Messages/i');
     
     // Sehr lange Nachricht ohne Leerzeichen
@@ -371,7 +373,7 @@ test.describe('Messaging: UI/UX', () => {
     const therapistEmail = generateRandomEmail();
     await registerUser(page, { ...TEST_USERS.therapist, email: therapistEmail });
     
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Nachrichten|Messages/i');
     
     const emojiMessage = '😀🎉👍 مرحبا 你好 🏥';

@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { registerUser, loginUser, TEST_USERS, generateRandomEmail, createAppointment } from '../helpers';
 
+const API_BASE_URL = process.env.PLAYWRIGHT_API_BASE_URL || 'http://localhost:4000';
+
 /**
  * Payment Tests: Stripe Integration, Webhook Verification, Error Handling
  * 
@@ -93,7 +95,7 @@ test.describe('Payments: Webhook Verification', () => {
   
   test('EDGE CASE: Webhook ohne Stripe-Signatur sollte abgelehnt werden', async ({ request }) => {
     // Versuche Webhook ohne Stripe-Signature-Header zu senden
-    const response = await request.post('http://localhost:3000/api/webhooks/stripe', {
+    const response = await request.post(`${API_BASE_URL}/api/webhooks/stripe`, {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -116,7 +118,7 @@ test.describe('Payments: Webhook Verification', () => {
   });
 
   test('EDGE CASE: Webhook mit falscher Signatur sollte abgelehnt werden', async ({ request }) => {
-    const response = await request.post('http://localhost:3000/api/webhooks/stripe', {
+    const response = await request.post(`${API_BASE_URL}/api/webhooks/stripe`, {
       headers: {
         'Content-Type': 'application/json',
         'stripe-signature': 'fake_signature_12345'
@@ -210,7 +212,7 @@ test.describe('Payments: Payment Failure Handling', () => {
 
   test('EDGE CASE: Expired Checkout Session sollte behandelt werden', async ({ request }) => {
     // Simuliere expired Stripe Session
-    const response = await request.post('http://localhost:3000/api/payments/verify', {
+    const response = await request.post(`${API_BASE_URL}/api/payments/verify`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer fake_token'
@@ -290,7 +292,7 @@ test.describe('Payments: Fraud Prevention', () => {
     
     // Öffne zwei Tabs mit demselben Account
     const page2 = await context.newPage();
-    await page2.goto('http://localhost:5173/login');
+    await page2.goto('/login');
     await loginUser(page2, { email: patientEmail, password: TEST_USERS.patient.password });
     
     // Beide versuchen denselben Slot zu buchen

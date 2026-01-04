@@ -170,9 +170,9 @@ npm run dev
 ```
 
 **URLs zum Testen:**
-- Frontend: http://localhost:5173
-- Backend: http://localhost:3000
-- PeerJS: http://localhost:3001
+- Frontend: http://localhost:5175
+- Backend: http://localhost:4000
+- PeerJS: http://localhost:9001
 
 ---
 
@@ -191,9 +191,16 @@ npm install --legacy-peer-deps --force
 
 ### Problem 3: Ports bereits belegt
 ```bash
-lsof -ti:3000 | xargs kill -9  # Backend
-lsof -ti:5173 | xargs kill -9  # Frontend
-lsof -ti:3001 | xargs kill -9  # PeerJS
+lsof -ti:4000 | xargs kill -9  # Backend
+lsof -ti:5175 | xargs kill -9  # Frontend
+lsof -ti:9001 | xargs kill -9  # PeerJS
+
+### (Neu) Ports in dieser Codespaces-Config
+```bash
+lsof -ti:4000 | xargs kill -9  # Backend
+lsof -ti:5175 | xargs kill -9  # Frontend
+lsof -ti:9001 | xargs kill -9  # PeerJS
+```
 ```
 
 ### Problem 4: PostgreSQL fehlt

@@ -22,13 +22,16 @@ FROM node:18-alpine
 
 WORKDIR /app
 
+# OCR deps (DSGVO-first, no external services): pdftoppm (poppler-utils) + tesseract (deu)
+RUN apk add --no-cache poppler-utils tesseract-ocr tesseract-ocr-data-deu
+
 # Copy built files
 COPY --from=backend-builder /app/apps/backend/dist ./dist
 COPY --from=backend-builder /app/apps/backend/package*.json ./
 
 # Install production dependencies only
-RUN npm ci --only=production
+RUN npm install --omit=dev --no-audit --no-fund
 
-EXPOSE 3000 3001
+EXPOSE 4000
 
-CMD ["node", "dist/server.js"]
+CMD ["node", "dist/index.js"]

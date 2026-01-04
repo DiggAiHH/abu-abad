@@ -292,7 +292,7 @@ docker-compose up -d --build
 
 ### OWASP ZAP Baseline Scan
 ```bash
-docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:3000
+docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:5175
 ```
 **Result:** ✅ No High/Medium Risks
 

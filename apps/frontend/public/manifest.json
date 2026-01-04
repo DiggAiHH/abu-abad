@@ -1,0 +1,197 @@
+{
+  "name": "Abu-Abbad Teletherapie",
+  "short_name": "Abu-Abbad",
+  "description": "DSGVO-konforme Teletherapie-Platform für Videosprechstunden und sichere Kommunikation",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3B82F6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "de-DE",
+  "dir": "ltr",
+  
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  
+  "screenshots": [
+    {
+      "src": "/screenshots/login-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Login-Bildschirm (Desktop)"
+    },
+    {
+      "src": "/screenshots/login-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Login-Bildschirm (Mobile)"
+    },
+    {
+      "src": "/screenshots/dashboard-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Dashboard (Mobile)"
+    }
+  ],
+  
+  "categories": [
+    "health",
+    "medical",
+    "productivity"
+  ],
+  
+  "shortcuts": [
+    {
+      "name": "Neue Videosprechstunde",
+      "short_name": "Video",
+      "description": "Starte eine neue Videosprechstunde",
+      "url": "/video-call",
+      "icons": [
+        {
+          "src": "/icons/shortcut-video.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Nachrichten",
+      "short_name": "Chat",
+      "description": "Öffne den Chat",
+      "url": "/messages",
+      "icons": [
+        {
+          "src": "/icons/shortcut-chat.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Termine",
+      "short_name": "Termine",
+      "description": "Verwalte deine Termine",
+      "url": "/appointments",
+      "icons": [
+        {
+          "src": "/icons/shortcut-calendar.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  
+  "prefer_related_applications": false,
+  "related_applications": [],
+  
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "file",
+          "accept": [
+            "image/*",
+            "application/pdf"
+          ]
+        }
+      ]
+    }
+  },
+  
+  "iarc_rating_id": "",
+  
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  
+  "display_override": [
+    "window-controls-overlay",
+    "standalone",
+    "minimal-ui",
+    "browser"
+  ],
+  
+  "protocol_handlers": [
+    {
+      "protocol": "web+abuabad",
+      "url": "/protocol-handler?url=%s"
+    }
+  ],
+  
+  "permissions": [
+    "camera",
+    "microphone",
+    "notifications"
+  ],
+  
+  "features": [
+    {
+      "name": "VideoChat",
+      "description": "WebRTC-basierte Videosprechstunden"
+    },
+    {
+      "name": "OfflineMessages",
+      "description": "Nachrichten offline verfassen"
+    },
+    {
+      "name": "PushNotifications",
+      "description": "Push-Benachrichtigungen für Termine"
+    }
+  ]
+}

@@ -57,6 +57,16 @@ postgres-data/
 tmp/
 temp/
 
+# Local-only reports/notes
+reports/
+KI Notizen
+
+# Local-only prompt notes
+.1Prompts/
+
+# Scratch / corruption artifacts
+*.corrupt
+
 # Docker
 docker-compose.override.yml
 
@@ -67,3 +77,9 @@ mobile/dist/
 
 # Uploads
 uploads/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc

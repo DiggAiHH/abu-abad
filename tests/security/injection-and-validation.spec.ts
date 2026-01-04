@@ -1,6 +1,8 @@
 import { test, expect, APIRequestContext } from '@playwright/test';
 import { registerUser, TEST_USERS, generateRandomEmail } from '../helpers';
 
+const API_BASE_URL = process.env.PLAYWRIGHT_API_BASE_URL || 'http://localhost:4000';
+
 /**
  * Security Tests: OWASP Top 10, XSS, SQL Injection, Rate Limiting
  * 
@@ -203,7 +205,7 @@ test.describe('Security: CSRF & CORS', () => {
   
   test('EDGE CASE: Cross-Origin Requests sollten blockiert werden', async ({ request }) => {
     // Versuche API von falscher Origin aufzurufen
-    const response = await request.post('http://localhost:3000/api/auth/register', {
+    const response = await request.post(`${API_BASE_URL}/api/auth/register`, {
       headers: {
         'Origin': 'http://malicious-site.com',
         'Content-Type': 'application/json'
@@ -231,7 +233,7 @@ test.describe('Security: HTTPS & Security Headers', () => {
     await registerUser(page, { ...TEST_USERS.patient, email });
     
     // Überprüfe Response-Headers (nur möglich bei API-Calls)
-    const response = await page.goto('http://localhost:3000/api/auth/me', {
+    const response = await page.goto(`${API_BASE_URL}/api/auth/me`, {
       waitUntil: 'domcontentloaded'
     });
     
@@ -241,7 +243,10 @@ test.describe('Security: HTTPS & Security Headers', () => {
       // Wichtige Security Headers
       expect(headers['x-content-type-options']).toBe('nosniff');
       expect(headers['x-frame-options']).toBeDefined();
-      expect(headers['strict-transport-security']).toBeDefined(); // HSTS
+      // HSTS ist nur unter HTTPS sinnvoll/erwartbar.
+      if ((response.url() || '').startsWith('https://')) {
+        expect(headers['strict-transport-security']).toBeDefined();
+      }
     }
   });
 });

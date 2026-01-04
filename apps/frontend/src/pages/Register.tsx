@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import toast from 'react-hot-toast';
+import { logger } from '../utils/logger';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -50,10 +51,10 @@ export default function Register() {
       toast.success('Registrierung erfolgreich!');
       navigate('/dashboard');
     } catch (error: any) {
-      console.error('Registration error:', error);
+      logger.error('Register: error', error);
       
       if (error?.response?.status === 409) {
-        toast.error('Diese E-Mail-Adresse ist bereits registriert');
+        toast.error('Diese E-Mail-Adresse existiert bereits');
       } else if (error?.response?.status === 400) {
         const errorMessage = error.response?.data?.error || 'Ungültige Eingabedaten';
         toast.error(errorMessage);
@@ -84,10 +85,14 @@ export default function Register() {
               </label>
               <input
                 type="text"
+                name="given-name"
+                autoComplete="given-name"
                 value={formData.firstName}
                 onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="Vorname"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600"
+                data-testid="register-firstname"
               />
             </div>
 
@@ -97,10 +102,13 @@ export default function Register() {
               </label>
               <input
                 type="text"
+                name="family-name"
+                autoComplete="family-name"
                 value={formData.lastName}
                 onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="Nachname"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600"
               />
             </div>
           </div>
@@ -111,10 +119,12 @@ export default function Register() {
             </label>
             <input
               type="email"
+              name="email"
+              autoComplete="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600"
             />
           </div>
 
@@ -124,9 +134,11 @@ export default function Register() {
             </label>
             <input
               type="tel"
+              name="tel"
+              autoComplete="tel"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600"
             />
           </div>
 
@@ -137,11 +149,13 @@ export default function Register() {
               </label>
               <input
                 type="password"
+                name="new-password"
+                autoComplete="new-password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 required
                 minLength={8}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600"
                 placeholder="Min. 8 Zeichen"
               />
             </div>
@@ -152,10 +166,13 @@ export default function Register() {
               </label>
               <input
                 type="password"
+                name="new-password-confirm"
+                autoComplete="new-password"
                 value={formData.confirmPassword}
                 onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="Passwort bestätigen"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600"
               />
             </div>
           </div>
@@ -171,10 +188,10 @@ export default function Register() {
                   value="patient"
                   checked={formData.role === 'patient'}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value as 'patient' })}
-                  className="w-4 h-4 mr-3 text-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="w-4 h-4 mr-3 text-primary-600 focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
                   aria-label="Patient"
                 />
-                <span className="text-base font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                <span className="text-base font-medium text-gray-900 group-hover:text-primary-600 transition-colors">
                   Patient
                 </span>
               </label>
@@ -184,10 +201,10 @@ export default function Register() {
                   value="therapist"
                   checked={formData.role === 'therapist'}
                   onChange={(e) => setFormData({ ...formData, role: e.target.value as 'therapist' })}
-                  className="w-4 h-4 mr-3 text-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  className="w-4 h-4 mr-3 text-primary-600 focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
                   aria-label="Therapeut"
                 />
-                <span className="text-base font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                <span className="text-base font-medium text-gray-900 group-hover:text-primary-600 transition-colors">
                   Therapeut
                 </span>
               </label>
@@ -204,7 +221,7 @@ export default function Register() {
                 className="mt-1 mr-3"
               />
               <span className="text-sm text-gray-700">
-                Ich akzeptiere die <a href="#" className="text-blue-600 hover:underline">Datenschutzerklärung</a> (DSGVO) 
+                Ich akzeptiere die <a href="#" className="text-primary-600 hover:underline">Datenschutzerklärung</a> (DSGVO) 
                 und stimme der Verarbeitung meiner Daten zu medizinischen Zwecken zu. *
               </span>
             </label>
@@ -213,7 +230,8 @@ export default function Register() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 font-medium"
+            className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 font-medium"
+            data-testid="register-submit"
           >
             {loading ? 'Wird registriert...' : 'Registrieren'}
           </button>

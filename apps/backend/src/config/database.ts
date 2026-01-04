@@ -6,6 +6,7 @@
 
 import { Pool } from 'pg';
 import env from './env.js';
+import { logger } from '../utils/logger.js';
 
 // DSGVO-konform: PostgreSQL mit SSL, prepared statements (SQL Injection Prevention)
 export const pool = new Pool({
@@ -18,11 +19,11 @@ export const pool = new Pool({
 
 // Test DB Connection
 pool.on('connect', () => {
-  console.log('✅ Database connected');
+  logger.info('✅ Database connected');
 });
 
 pool.on('error', (err: Error) => {
-  console.error('❌ Unexpected database error:', err);
+  logger.error('❌ Unexpected database error:', err);
   process.exit(-1);
 });
 

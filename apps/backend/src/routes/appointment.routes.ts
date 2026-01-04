@@ -6,7 +6,7 @@
 
 import { Router, Request, Response } from 'express';
 import { query } from '../database/init.js';
-import { authenticate, requireTherapist, requirePatient } from '../middleware/auth';
+import { authenticate, requireTherapist, requirePatient } from '../middleware/auth.js';
 import { 
   createAppointmentSchema, 
   bookAppointmentSchema,

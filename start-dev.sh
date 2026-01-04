@@ -144,14 +144,14 @@ fi
 
 # Check if ports are available
 echo -e "${CYAN}→ Checking port availability...${NC}"
-if lsof -Pi :3000 -sTCP:LISTEN -t >/dev/null 2>&1; then
-    echo -e "${YELLOW}  ⚠️  Port 3000 (Backend) already in use. Killing process...${NC}"
-    lsof -ti:3000 | xargs kill -9 2>/dev/null || true
+if lsof -Pi :4000 -sTCP:LISTEN -t >/dev/null 2>&1; then
+    echo -e "${YELLOW}  ⚠️  Port 4000 (Backend) already in use. Killing process...${NC}"
+    lsof -ti:4000 | xargs kill -9 2>/dev/null || true
     sleep 1
 fi
-if lsof -Pi :5173 -sTCP:LISTEN -t >/dev/null 2>&1; then
-    echo -e "${YELLOW}  ⚠️  Port 5173 (Frontend) already in use. Killing process...${NC}"
-    lsof -ti:5173 | xargs kill -9 2>/dev/null || true
+if lsof -Pi :5175 -sTCP:LISTEN -t >/dev/null 2>&1; then
+    echo -e "${YELLOW}  ⚠️  Port 5175 (Frontend) already in use. Killing process...${NC}"
+    lsof -ti:5175 | xargs kill -9 2>/dev/null || true
     sleep 1
 fi
 echo -e "${GREEN}  ✅ Ports available${NC}"
@@ -193,7 +193,7 @@ echo ""
 # Create logs directory
 mkdir -p logs
 
-echo -e "${CYAN}→ Starting Backend Server (Port 3000)...${NC}"
+echo -e "${CYAN}→ Starting Backend Server (Port 4000)...${NC}"
 cd apps/backend
 nohup npm run dev > ../../logs/backend.log 2>&1 &
 BACKEND_PID=$!
@@ -202,7 +202,7 @@ cd ../..
 echo -e "${GREEN}  ✅ Backend starting (PID: $BACKEND_PID)${NC}"
 echo -e "${CYAN}     Log: logs/backend.log${NC}"
 
-echo -e "${CYAN}→ Starting Frontend Server (Port 5173)...${NC}"
+echo -e "${CYAN}→ Starting Frontend Server (Port 5175)...${NC}"
 cd apps/frontend
 nohup npm run dev > ../../logs/frontend.log 2>&1 &
 FRONTEND_PID=$!
@@ -228,8 +228,8 @@ echo ""
 # Backend Health Check
 echo -e "${CYAN}→ Checking Backend health...${NC}"
 for i in {1..5}; do
-    if curl -s http://localhost:3000/health > /dev/null 2>&1; then
-        HEALTH_RESPONSE=$(curl -s http://localhost:3000/health)
+    if curl -s http://localhost:4000/api/health > /dev/null 2>&1; then
+        HEALTH_RESPONSE=$(curl -s http://localhost:4000/api/health)
         echo -e "${GREEN}  ✅ Backend is healthy!${NC}"
         echo -e "${CYAN}     Response: $HEALTH_RESPONSE${NC}"
         break
@@ -247,7 +247,7 @@ done
 # Frontend Health Check
 echo -e "${CYAN}→ Checking Frontend health...${NC}"
 for i in {1..5}; do
-    if curl -s http://localhost:5173 > /dev/null 2>&1; then
+    if curl -s http://localhost:5175 > /dev/null 2>&1; then
         echo -e "${GREEN}  ✅ Frontend is healthy!${NC}"
         break
     else
@@ -275,14 +275,14 @@ echo ""
 
 echo -e "${BLUE}📊 Service Status:${NC}"
 echo -e "${GREEN}  ✅ PostgreSQL:   Running (Port 5432)${NC}"
-echo -e "${GREEN}  ✅ Backend:      http://localhost:3000 (PID: $BACKEND_PID)${NC}"
-echo -e "${GREEN}  ✅ Frontend:     http://localhost:5173 (PID: $FRONTEND_PID)${NC}"
+echo -e "${GREEN}  ✅ Backend:      http://localhost:4000 (PID: $BACKEND_PID)${NC}"
+echo -e "${GREEN}  ✅ Frontend:     http://localhost:5175 (PID: $FRONTEND_PID)${NC}"
 echo ""
 
 echo -e "${BLUE}🌐 Access URLs:${NC}"
-echo -e "${CYAN}  → Frontend:      http://localhost:5173${NC}"
-echo -e "${CYAN}  → Backend API:   http://localhost:3000${NC}"
-echo -e "${CYAN}  → Health Check:  http://localhost:3000/health${NC}"
+echo -e "${CYAN}  → Frontend:      http://localhost:5175${NC}"
+echo -e "${CYAN}  → Backend API:   http://localhost:4000${NC}"
+echo -e "${CYAN}  → Health Check:  http://localhost:4000/api/health${NC}"
 echo ""
 
 echo -e "${BLUE}📝 API Endpoints (Test with curl or Postman):${NC}"
@@ -296,10 +296,10 @@ echo ""
 echo -e "${BLUE}🧪 Quick Test Commands:${NC}"
 echo ""
 echo -e "${YELLOW}# Test 1: Backend Health Check${NC}"
-echo -e "${CYAN}curl http://localhost:3000/health${NC}"
+echo -e "${CYAN}curl http://localhost:4000/api/health${NC}"
 echo ""
 echo -e "${YELLOW}# Test 2: Register a Therapist${NC}"
-echo -e "${CYAN}curl -X POST http://localhost:3000/api/auth/register \\${NC}"
+echo -e "${CYAN}curl -X POST http://localhost:4000/api/auth/register \\${NC}"
 echo -e "${CYAN}  -H \"Content-Type: application/json\" \\${NC}"
 echo -e "${CYAN}  -d '{${NC}"
 echo -e "${CYAN}    \"email\": \"therapeut@example.com\",${NC}"
@@ -311,8 +311,8 @@ echo -e "${CYAN}    \"gdprConsent\": true${NC}"
 echo -e "${CYAN}  }'${NC}"
 echo ""
 echo -e "${YELLOW}# Test 3: Open Frontend in Browser${NC}"
-echo -e "${CYAN}open http://localhost:5173  # macOS${NC}"
-echo -e "${CYAN}xdg-open http://localhost:5173  # Linux${NC}"
+echo -e "${CYAN}open http://localhost:5175  # macOS${NC}"
+echo -e "${CYAN}xdg-open http://localhost:5175  # Linux${NC}"
 echo ""
 
 echo -e "${BLUE}📋 Log Files (for debugging):${NC}"

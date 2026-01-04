@@ -5,6 +5,76 @@
 
 type LogLevel = 'info' | 'warn' | 'error' | 'debug';
 
+const DEFAULT_REDACT_KEYS = [
+  'password',
+  'pass',
+  'pwd',
+  'token',
+  'accessToken',
+  'refreshToken',
+  'authorization',
+  'cookie',
+  'set-cookie',
+  'email',
+  'ip',
+  'ip_address',
+  'phone',
+  'firstName',
+  'lastName',
+  'name',
+  'street',
+  'postal',
+  'city',
+  'address',
+  'user_agent',
+  'userAgent',
+  // OCR/PDF imports can contain sensitive health data (DSGVO Art. 9)
+  'pdfText',
+  'extractedText',
+  'ocrText',
+  'documentText'
+];
+
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+export function redactPII(meta: unknown, extraKeys: string[] = []): unknown {
+  const redactKeySet = new Set(
+    [...DEFAULT_REDACT_KEYS, ...extraKeys].map((k) => k.toLowerCase())
+  );
+
+  const visit = (value: unknown, keyHint?: string): unknown => {
+    if (value == null) return value;
+
+    if (Array.isArray(value)) {
+      return value.map((v) => visit(v));
+    }
+
+    if (isPlainObject(value)) {
+      const out: Record<string, unknown> = {};
+      for (const [k, v] of Object.entries(value)) {
+        const lower = k.toLowerCase();
+        if (redactKeySet.has(lower) || lower.includes('token') || lower.includes('password')) {
+          out[k] = '[redacted]';
+        } else {
+          out[k] = visit(v, k);
+        }
+      }
+      return out;
+    }
+
+    if (typeof value === 'string') {
+      if (keyHint && redactKeySet.has(keyHint.toLowerCase())) return '[redacted]';
+      return value;
+    }
+
+    return value;
+  };
+
+  return visit(meta);
+}
+
 class Logger {
   private logLevel: LogLevel;
 
@@ -22,7 +92,7 @@ class Logger {
       timestamp: new Date().toISOString(),
       level,
       message,
-      ...(meta && { meta }),
+      ...(meta && { meta: redactPII(meta) }),
       env: process.env.NODE_ENV || 'development'
     };
 
@@ -49,22 +119,16 @@ class Logger {
 
   error(message: string, error?: any) {
     if (this.shouldLog('error')) {
-      const meta = error instanceof Error ? {
-        message: error.message,
-        stack: error.stack,
-        name: error.name
-      } : error;
-        // Fehler zusätzlich an externen Service senden (z.B. Sentry)
-        if (process.env.NODE_ENV === 'production' && typeof fetch === 'function') {
-          try {
-            fetch('/api/log', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ level: 'error', message, meta }),
-            });
-          } catch (e) { /* ignore */ }
-        }
-        console.error(this.formatMessage('error', message, meta));
+      const meta = error instanceof Error
+        ? {
+            name: error.name,
+            message: error.message,
+            // Production: kein Stack in Logs (kann sensitive enthalten)
+            ...(process.env.NODE_ENV !== 'production' && { stack: error.stack }),
+          }
+        : error;
+
+      console.error(this.formatMessage('error', message, meta));
     }
   }
 

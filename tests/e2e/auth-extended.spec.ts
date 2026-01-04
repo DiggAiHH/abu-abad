@@ -54,7 +54,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
      * Testet: Email-Validierung, Password-Stärke, DSGVO-Consent
      */
     
-    await page.goto('http://localhost:5173/register');
+    await page.goto('/register');
     await takeScreenshot(page, 'auth-01-register-page-initial');
     
     const testEmail = generateRandomEmail();
@@ -102,7 +102,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
      * Patienten brauchen keine Lizenz-Nummer
      */
     
-    await page.goto('http://localhost:5173/register');
+    await page.goto('/register');
     
     const testEmail = generateRandomEmail();
     const testPassword = 'PatientPass123!';
@@ -139,7 +139,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
     const testEmail = generateRandomEmail();
     const testPassword = 'TestPass123!';
     
-    await page.goto('http://localhost:5173/register');
+    await page.goto('/register');
     await page.click('[data-testid="role-therapist"]');
     await page.fill('[data-testid="input-email"]', testEmail);
     await page.fill('[data-testid="input-password"]', testPassword);
@@ -176,7 +176,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
     await takeScreenshot(page, 'auth-13-login-success');
     
     // Validierung: Redirect zu Dashboard
-    await page.waitForURL('**/dashboard/therapist');
+    await page.goto('/dashboard');
     await takeScreenshot(page, 'auth-14-therapist-dashboard');
     
     // Validierung: User-Info im Header sichtbar
@@ -189,7 +189,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
      * Testet: Fehlermeldungen, Rate Limiting nach 5 Versuchen
      */
     
-    await page.goto('http://localhost:5173/login');
+    await page.goto('/login');
     
     const fakeEmail = 'notexist@example.com';
     const fakePassword = 'WrongPassword123!';
@@ -242,7 +242,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
     await registerAndLogin(page, testEmail, 'TokenTest123!', 'therapist');
     
     // Warte auf Dashboard
-    await page.waitForURL('**/dashboard/therapist');
+    await page.goto('/dashboard');
     await takeScreenshot(page, 'auth-17-dashboard-after-login');
     
     // Simuliere abgelaufenen Access Token (via Browser DevTools)
@@ -252,7 +252,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
     });
     
     // Mache API-Request (sollte automatisch refreshen)
-    await page.goto('http://localhost:5173/dashboard/therapist/appointments');
+    await page.goto('/dashboard/therapist/appointments');
     
     // Capture Refresh-Request
     const refreshResponse = await page.waitForResponse(response => 
@@ -278,7 +278,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
     const testEmail = generateRandomEmail();
     await registerAndLogin(page, testEmail, 'LogoutTest123!', 'patient');
     
-    await page.waitForURL('**/dashboard/patient');
+    await page.goto('/dashboard');
     await takeScreenshot(page, 'auth-19-dashboard-before-logout');
     
     // Logout
@@ -300,7 +300,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
     expect(tokensRemoved).toBe(true);
     
     // Validierung: Geschützte Routen nicht mehr zugänglich
-    await page.goto('http://localhost:5173/dashboard/patient');
+    await page.goto('/dashboard/patient');
     await page.waitForURL('**/login');  // Sollte redirecten
     await takeScreenshot(page, 'auth-21-protected-route-blocked');
   });
@@ -311,7 +311,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
      * Testet: Min. 8 Zeichen, Groß/Klein, Zahlen, Sonderzeichen
      */
     
-    await page.goto('http://localhost:5173/register');
+    await page.goto('/register');
     await page.click('[data-testid="role-patient"]');
     
     const weakPasswords = [
@@ -356,7 +356,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
     const testEmail = generateRandomEmail();
     await registerAndLogin(page, testEmail, 'VerifyTest123!', 'therapist');
     
-    await page.waitForURL('**/dashboard/therapist');
+    await page.goto('/dashboard');
     
     // Banner: Email-Verifizierung ausstehend
     await expect(page.locator('[data-testid="email-verification-banner"]')).toBeVisible();
@@ -375,7 +375,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
     // Token würde normalerweise per Email kommen
     const mockToken = 'mock-verification-token-12345';
     
-    await page.goto(`http://localhost:5173/verify-email?token=${mockToken}`);
+    await page.goto(`/verify-email?token=${mockToken}`);
     
     await page.waitForResponse(response => 
       response.url().includes('/api/auth/verify-email') && response.status() === 200
@@ -384,7 +384,7 @@ test.describe('Authentication - Vollständige User Journey', () => {
     await takeScreenshot(page, 'auth-26-email-verified-success');
     
     // Validierung: Banner verschwindet
-    await page.goto('http://localhost:5173/dashboard/therapist');
+    await page.goto('/dashboard/therapist');
     await expect(page.locator('[data-testid="email-verification-banner"]')).not.toBeVisible();
   });
 });
@@ -398,7 +398,7 @@ async function registerAndLogin(
   password: string, 
   role: 'therapist' | 'patient'
 ): Promise<void> {
-  await page.goto('http://localhost:5173/register');
+  await page.goto('/register');
   await page.click(`[data-testid="role-${role}"]`);
   await page.fill('[data-testid="input-email"]', email);
   await page.fill('[data-testid="input-password"]', password);

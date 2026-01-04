@@ -23,6 +23,7 @@ const envSchema = z.object({
   
   // Encryption (CRITICAL: Key muss AES-256 kompatibel sein)
   ENCRYPTION_KEY: z.string().min(32, 'ENCRYPTION_KEY muss mindestens 32 Zeichen lang sein'),
+  ENCRYPTION_KEY_VERSION: z.string().min(1).default('default-key-v1'),
   
   // Stripe (CRITICAL: keine Test-Keys in Produktion)
   STRIPE_SECRET_KEY: z.string()

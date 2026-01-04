@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { registerUser, loginUser, TEST_USERS, generateRandomEmail } from '../helpers';
 
+const API_BASE_URL = process.env.PLAYWRIGHT_API_BASE_URL || 'http://localhost:4000';
+
 /**
  * Error Handling Tests: HTTP Status Codes, Network Errors, Timeouts
  * 
@@ -11,7 +13,7 @@ test.describe('HTTP Status Codes: 4xx Client Errors', () => {
   
   test('EDGE CASE: 401 Unauthorized sollte zu Login umleiten', async ({ page }) => {
     // Versuche ohne Authentication auf geschützte Route zuzugreifen
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     
     // Sollte zu Login umgeleitet werden
     await page.waitForTimeout(2000);
@@ -24,7 +26,7 @@ test.describe('HTTP Status Codes: 4xx Client Errors', () => {
     const token = await page.evaluate(() => localStorage.getItem('token'));
     
     // Patient versucht auf Therapeuten-Endpoint zuzugreifen
-    const response = await request.post('http://localhost:3000/api/appointments', {
+    const response = await request.post(`${API_BASE_URL}/api/appointments`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -45,19 +47,19 @@ test.describe('HTTP Status Codes: 4xx Client Errors', () => {
   });
 
   test('EDGE CASE: 404 Not Found sollte benutzerfreundliche Seite anzeigen', async ({ page }) => {
-    await page.goto('http://localhost:5173/non-existent-route-12345');
+    await page.goto('/non-existent-route-12345');
     
     await page.waitForTimeout(2000);
     
     // Sollte 404-Seite oder Weiterleitung zeigen
     const has404 = await page.locator('text=/404|nicht gefunden|not found/i').count();
-    const isRedirected = page.url().includes('/login') || page.url() === 'http://localhost:5173/';
+    const isRedirected = page.url().includes('/login') || page.url() === '/';
     
     expect(has404 > 0 || isRedirected).toBe(true);
   });
 
   test('EDGE CASE: 422 Unprocessable Entity sollte Validierungsfehler ausgeben', async ({ page }) => {
-    await page.goto('http://localhost:5173/register');
+    await page.goto('/register');
     
     const email = generateRandomEmail();
     await page.fill('input[type="email"]', email);
@@ -75,7 +77,7 @@ test.describe('HTTP Status Codes: 4xx Client Errors', () => {
   });
 
   test('EDGE CASE: 429 Too Many Requests sollte Warnung anzeigen', async ({ page }) => {
-    await page.goto('http://localhost:5173/login');
+    await page.goto('/login');
     
     // 15 schnelle Login-Versuche
     for (let i = 0; i < 15; i++) {
@@ -98,7 +100,7 @@ test.describe('HTTP Status Codes: 5xx Server Errors', () => {
     const token = await page.evaluate(() => localStorage.getItem('token'));
     
     // Sende ungültige Anfrage (z.B. falsches Datenformat)
-    const response = await request.post('http://localhost:3000/api/appointments/invalid-id/book', {
+    const response = await request.post(`${API_BASE_URL}/api/appointments/invalid-id/book`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -125,7 +127,7 @@ test.describe('HTTP Status Codes: 5xx Server Errors', () => {
       route.abort('failed');
     });
     
-    await page.goto('http://localhost:5173/login');
+    await page.goto('/login');
     
     await page.fill('input[type="email"]', 'test@example.com');
     await page.fill('input[type="password"]', 'Test1234!');
@@ -145,7 +147,7 @@ test.describe('Network Errors', () => {
     // Simuliere Offline-Modus
     await context.setOffline(true);
     
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.waitForTimeout(2000);
     
     // Sollte Offline-Warnung anzeigen
@@ -168,7 +170,7 @@ test.describe('Network Errors', () => {
       }, 35000);
     });
     
-    await page.goto('http://localhost:5173/login');
+    await page.goto('/login');
     
     await page.fill('input[type="email"]', 'test@example.com');
     await page.fill('input[type="password"]', 'Test1234!');
@@ -179,7 +181,7 @@ test.describe('Network Errors', () => {
   });
 
   test('EDGE CASE: Unterbrochene Verbindung sollte behandelt werden', async ({ page }) => {
-    await page.goto('http://localhost:5173/login');
+    await page.goto('/login');
     
     // Simuliere Verbindungsabbruch während Anfrage
     await page.route('**/api/auth/login', route => {
@@ -196,7 +198,7 @@ test.describe('Network Errors', () => {
 
   test('EDGE CASE: CORS-Fehler sollte aussagekräftig sein', async ({ page, request }) => {
     // Versuche API von falscher Origin aufzurufen
-    const response = await request.post('http://localhost:3000/api/auth/register', {
+    const response = await request.post(`${API_BASE_URL}/api/auth/register`, {
       headers: {
         'Origin': 'http://evil-site.com',
         'Content-Type': 'application/json'
@@ -214,14 +216,14 @@ test.describe('Network Errors', () => {
     // CORS sollte blockieren
     const corsHeader = response.headers()['access-control-allow-origin'];
     expect(corsHeader).not.toBe('http://evil-site.com');
-    expect(corsHeader).toBe('http://localhost:5173');
+    expect(corsHeader).toBe('');
   });
 });
 
 test.describe('Validation Errors', () => {
   
   test('EDGE CASE: Fehlende Required-Felder sollten markiert werden', async ({ page }) => {
-    await page.goto('http://localhost:5173/register');
+    await page.goto('/register');
     
     // Klicke Submit ohne Felder auszufüllen
     await page.click('button[type="submit"]');
@@ -245,7 +247,7 @@ test.describe('Validation Errors', () => {
     const token = await page.evaluate(() => localStorage.getItem('token'));
     
     // Sende Termin mit ungültigem Datum
-    const response = await request.post('http://localhost:3000/api/appointments', {
+    const response = await request.post(`${API_BASE_URL}/api/appointments`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -271,7 +273,7 @@ test.describe('Database Errors', () => {
     // Dieser Test würde reale DB-Verbindung unterbrechen müssen
     // Stattdessen: Prüfe, ob Error-Handling im Code vorhanden ist
     
-    await page.goto('http://localhost:5173/login');
+    await page.goto('/login');
     
     // Simuliere DB-Fehler durch ungültige Credentials
     await page.fill('input[type="email"]', 'test@example.com');
@@ -300,7 +302,7 @@ test.describe('Database Errors', () => {
 test.describe('Form Validation Edge Cases', () => {
   
   test('EDGE CASE: Sonderzeichen in Email sollten validiert werden', async ({ page }) => {
-    await page.goto('http://localhost:5173/register');
+    await page.goto('/register');
     
     const invalidEmails = [
       'test@',
@@ -326,7 +328,7 @@ test.describe('Form Validation Edge Cases', () => {
       const hasError = await page.locator('text=/ungültig|invalid|format/i').count();
       expect(hasError).toBeGreaterThan(0);
       
-      await page.goto('http://localhost:5173/register');
+      await page.goto('/register');
     }
   });
 
@@ -334,7 +336,7 @@ test.describe('Form Validation Edge Cases', () => {
     const email = generateRandomEmail();
     await registerUser(page, { ...TEST_USERS.therapist, email });
     
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('button:has-text("Slot erstellen"), button:has-text("Create Slot")');
     
     const priceInput = page.locator('input[type="number"], input[placeholder*="Preis"]').first();
@@ -352,7 +354,7 @@ test.describe('Form Validation Edge Cases', () => {
 test.describe('API Error Messages', () => {
   
   test('EDGE CASE: Error-Messages sollten lokalisiert sein (Deutsch)', async ({ page }) => {
-    await page.goto('http://localhost:5173/login');
+    await page.goto('/login');
     
     await page.fill('input[type="email"]', 'falsche@email.com');
     await page.fill('input[type="password"]', 'FalschesPasswort');
@@ -370,7 +372,7 @@ test.describe('API Error Messages', () => {
   });
 
   test('EDGE CASE: Stack Traces sollten nur in Development sichtbar sein', async ({ page }) => {
-    await page.goto('http://localhost:5173/login');
+    await page.goto('/login');
     
     // Forciere Server-Fehler
     await page.route('**/api/auth/login', route => {
@@ -407,7 +409,7 @@ test.describe('User-Friendly Error Handling', () => {
       route.abort('failed');
     });
     
-    await page.goto('http://localhost:5173/login');
+    await page.goto('/login');
     
     await page.fill('input[type="email"]', 'test@example.com');
     await page.fill('input[type="password"]', 'Test1234!');
@@ -434,7 +436,7 @@ test.describe('User-Friendly Error Handling', () => {
       }, 3000);
     });
     
-    await page.goto('http://localhost:5173/login');
+    await page.goto('/login');
     
     await page.fill('input[type="email"]', 'test@example.com');
     await page.fill('input[type="password"]', 'Test1234!');

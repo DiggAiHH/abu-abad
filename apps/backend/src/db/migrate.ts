@@ -2,7 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import pool from '../config/database';
+import pool from '../config/database.js';
+import { logger } from '../utils/logger.js';
 
 // Load .env from project root (not backend folder)
 const __filename = fileURLToPath(import.meta.url);
@@ -22,7 +23,7 @@ function validateEnvironment(): void {
     throw new Error(`❌ Missing required environment variables: ${missing.join(', ')}`);
   }
   
-  console.log('✓ Environment variables validated');
+  logger.info('✓ Environment variables validated');
 }
 
 /**
@@ -32,7 +33,7 @@ function validateEnvironment(): void {
 async function testConnection(): Promise<void> {
   try {
     const result = await pool.query('SELECT NOW() as time');
-    console.log(`✓ Database connection established (${result.rows[0].time})`);
+    logger.info(`✓ Database connection established (${result.rows[0].time})`);
   } catch (error) {
     throw new Error(`❌ Database connection failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
@@ -46,7 +47,7 @@ async function migrate() {
   const client = await pool.connect();
   
   try {
-    console.log('\n🚀 Starting database migration...\n');
+    logger.info('\n🚀 Starting database migration...\n');
     
     // Step 1: Validate environment
     validateEnvironment();
@@ -61,16 +62,16 @@ async function migrate() {
     }
     
     const schema = fs.readFileSync(schemaPath, 'utf-8');
-    console.log(`✓ Schema loaded (${schema.length} bytes)`);
+    logger.info(`✓ Schema loaded (${schema.length} bytes)`);
     
     // Step 4: Execute within transaction
-    console.log('\n📊 Executing schema...');
+    logger.info('\n📊 Executing schema...');
     await client.query('BEGIN');
     
     try {
       await client.query(schema);
       await client.query('COMMIT');
-      console.log('✓ Schema executed successfully');
+      logger.info('✓ Schema executed successfully');
     } catch (error) {
       await client.query('ROLLBACK');
       throw new Error(`❌ Schema execution failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -80,16 +81,16 @@ async function migrate() {
     const tableCount = await client.query(
       "SELECT COUNT(*) as count FROM information_schema.tables WHERE table_schema = 'public'"
     );
-    console.log(`✓ Created ${tableCount.rows[0].count} tables`);
+    logger.info(`✓ Created ${tableCount.rows[0].count} tables`);
     
-    console.log('\n✅ Migration completed successfully!\n');
+    logger.info('\n✅ Migration completed successfully!\n');
     process.exit(0);
   } catch (error) {
-    console.error('\n❌ Migration failed:', error instanceof Error ? error.message : error);
-    console.error('\n💡 Troubleshooting:');
-    console.error('   1. Check DATABASE_URL in .env');
-    console.error('   2. Verify PostgreSQL is running: docker ps');
-    console.error('   3. Check schema.sql syntax\n');
+    logger.error('\n❌ Migration failed:', error instanceof Error ? error.message : error);
+    logger.error('\n💡 Troubleshooting:');
+    logger.error('   1. Check DATABASE_URL in .env');
+    logger.error('   2. Verify PostgreSQL is running: docker ps');
+    logger.error('   3. Check schema.sql syntax\n');
     process.exit(1);
   } finally {
     client.release();
@@ -98,7 +99,7 @@ async function migrate() {
 
 // Handle unhandled rejections
 process.on('unhandledRejection', (error) => {
-  console.error('❌ Unhandled rejection:', error);
+  logger.error('❌ Unhandled rejection:', error);
   process.exit(1);
 });
 
