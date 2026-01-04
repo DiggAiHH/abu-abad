@@ -108,7 +108,7 @@ services:
     
     environment:
       NODE_ENV: production
-      PORT: 3000
+      PORT: 4000
       
       # Database Connection
       DATABASE_URL: postgresql://${DATABASE_USER:-therapist_user}:${DATABASE_PASSWORD:-CHANGE_ME}@postgres:5432/${DATABASE_NAME:-therapist_db}
@@ -139,12 +139,12 @@ services:
       FRONTEND_URL: https://your-domain.de
       
       # PeerJS
-      PEER_PORT: 3001
+      PEER_PORT: 9001
       PEER_PATH: /peerjs
       
     ports:
-      - "3000:3000"
-      - "3001:3001"
+      - "4000:4000"
+      - "9001:9001"
       
     networks:
       - abu-abad-network
@@ -156,7 +156,7 @@ services:
         condition: service_healthy
         
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/api/health"]
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:4000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -204,7 +204,7 @@ services:
       - ./certs:/etc/nginx/certs:ro
       
       # Custom Nginx Config (optional)
-      - ./apps/frontend/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./apps/frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost/"]

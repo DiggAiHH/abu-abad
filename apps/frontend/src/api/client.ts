@@ -1,12 +1,32 @@
 import axios, { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
+import { clearAccessToken, getAccessToken, setAccessToken } from '../auth/token';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+function coerceErrorMessage(value: unknown): string {
+  if (typeof value === 'string') return value;
+  if (!value || typeof value !== 'object') return 'Ein Fehler ist aufgetreten';
+
+  const obj = value as any;
+  // Häufige Backend-Formate: { error: string } oder { error: { message: string } }
+  if (typeof obj.error === 'string') return obj.error;
+  if (obj.error) return coerceErrorMessage(obj.error);
+  if (typeof obj.message === 'string') return obj.message;
+  if (typeof obj.detail === 'string') return obj.detail;
+  if (typeof obj.title === 'string') return obj.title;
+
+  return 'Ein Fehler ist aufgetreten';
+}
+
+const RAW_API_URL = import.meta.env.VITE_API_URL || '';
+// VITE_API_URL soll auf die Backend-Origin zeigen (z.B. http://localhost:4000)
+// Robustheit: falls /api im Wert steckt, entfernen und sauber wieder anhängen.
+const API_ORIGIN = RAW_API_URL.replace(/\/$/, '').replace(/\/api$/, '');
+const BASE_URL = API_ORIGIN ? `${API_ORIGIN}/api` : '/api';
 
 // SECURITY: Timeout verhindert Hanging Requests (DoS-Prävention)
 // GDPR-COMPLIANCE: Keine Third-Party Analytics oder Tracking
 export const api = axios.create({
-  baseURL: `${API_URL}/api`,
+  baseURL: BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -17,7 +37,7 @@ export const api = axios.create({
 // Request Interceptor: Add JWT Token
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = getAccessToken();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -28,16 +48,66 @@ api.interceptors.request.use(
 
 // Response Interceptor: Handle Errors
 let isRedirecting = false;
+let isRefreshing = false;
+let refreshPromise: Promise<string | null> | null = null;
+let logoutInProgress = false;
+
+export function setLogoutInProgress(value: boolean): void {
+  logoutInProgress = value;
+}
+
+export function isLogoutInProgress(): boolean {
+  return logoutInProgress;
+}
+
+async function refreshAccessToken(): Promise<string | null> {
+  if (logoutInProgress) return null;
+  if (isRefreshing && refreshPromise) return refreshPromise;
+
+  isRefreshing = true;
+  refreshPromise = (async () => {
+    try {
+      const res = await api.post('/auth/refresh', {});
+      const token = (res.data?.accessToken || res.data?.token) as string | undefined;
+      if (!token) return null;
+      setAccessToken(token);
+      return token;
+    } catch {
+      return null;
+    } finally {
+      isRefreshing = false;
+      refreshPromise = null;
+    }
+  })();
+
+  return refreshPromise;
+}
 
 api.interceptors.response.use(
   (response) => response,
-  (error: AxiosError<{ error: string }>) => {
-    const message = error.response?.data?.error || 'Ein Fehler ist aufgetreten';
+  async (error: AxiosError<{ error: string }>) => {
+    const message = coerceErrorMessage(error.response?.data);
+    const originalRequest: any = error.config;
     
     if (error.response?.status === 401) {
+      if (logoutInProgress) {
+        return Promise.reject(error);
+      }
+      // Einmalig versuchen: Refresh via HttpOnly Cookie, dann Request erneut
+      if (originalRequest && !originalRequest._retry) {
+        originalRequest._retry = true;
+        const newToken = await refreshAccessToken();
+        if (newToken) {
+          originalRequest.headers = originalRequest.headers || {};
+          originalRequest.headers.Authorization = `Bearer ${newToken}`;
+          return api.request(originalRequest);
+        }
+      }
+
+      // Refresh fehlgeschlagen: Logout/Redirect
       if (!isRedirecting) {
         isRedirecting = true;
-        localStorage.removeItem('token');
+        clearAccessToken();
         toast.error('Sitzung abgelaufen. Bitte neu anmelden.');
         setTimeout(() => {
           if (window.location.pathname !== '/login' && window.location.pathname !== '/register') {
@@ -79,6 +149,8 @@ export const authAPI = {
   }) => api.post('/auth/register', data),
   
   getMe: () => api.get('/auth/me'),
+
+  refresh: () => api.post('/auth/refresh', {}),
   
   logout: () => api.post('/auth/logout'),
 };
@@ -140,3 +212,6 @@ export const userAPI = {
   
   getTherapists: () => api.get('/users/therapists'),
 };
+
+// Alias für Komponenten-Kompatibilität
+export const apiClient = api;

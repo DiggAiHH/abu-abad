@@ -8,6 +8,7 @@ import { format } from 'date-fns';
 import { de } from 'date-fns/locale';
 import { useNavigate } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
+import { logger } from '../utils/logger';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '');
 
@@ -23,7 +24,7 @@ export default function PatientDashboard() {
   useEffect(() => {
     // Guard clause: User muss existieren
     if (!user?.id) {
-      console.warn('No user found, redirecting to login');
+      logger.warn('PatientDashboard: no user found, redirecting to login');
       navigate('/login');
       return;
     }
@@ -55,11 +56,11 @@ export default function PatientDashboard() {
       setAvailableSlots(available);
       setMessages(msgs);
     } catch (error: any) {
-      console.error('Fehler beim Laden:', error);
+      logger.error('PatientDashboard: Fehler beim Laden', error);
       
       if (error.response?.status === 401) {
         toast.error('Sitzung abgelaufen. Bitte neu anmelden.');
-        logout();
+        void logout();
         navigate('/login');
       } else if (!error.response) {
         toast.error('Keine Verbindung zum Server. Daten werden nicht aktualisiert.');
@@ -72,7 +73,7 @@ export default function PatientDashboard() {
   };
 
   const handleLogout = () => {
-    logout();
+    void logout();
     navigate('/login');
     toast.success('Erfolgreich abgemeldet');
   };
@@ -113,7 +114,7 @@ export default function PatientDashboard() {
         throw error;
       }
     } catch (error: any) {
-      console.error('Buchungsfehler:', error);
+      logger.error('PatientDashboard: Buchungsfehler', error);
       toast.error(error.message || 'Buchung fehlgeschlagen');
       await loadData(); // Daten neu laden nach Fehler
     } finally {
@@ -161,7 +162,7 @@ export default function PatientDashboard() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center gap-4">
               <div className="bg-blue-100 p-3 rounded-lg">
@@ -199,6 +200,85 @@ export default function PatientDashboard() {
               </div>
             </div>
           </div>
+
+          <div className="bg-white rounded-lg shadow p-6 cursor-pointer hover:shadow-lg transition" onClick={() => navigate('/materials')}>
+            <div className="flex items-center gap-4">
+              <div className="bg-orange-100 p-3 rounded-lg">
+                <User className="text-orange-600" size={24} />
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">Vorbereitung</p>
+                <p className="text-lg font-bold">Materialien</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-4 mb-8">
+          <button
+            onClick={() => navigate('/diary')}
+            className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-lg shadow-lg p-5 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-lg font-bold mb-1">📔 Tagebuch</h3>
+            <p className="text-indigo-100 text-sm">Stimmung & Symptome</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/screenings')}
+            className="bg-gradient-to-br from-teal-500 to-teal-600 text-white rounded-lg shadow-lg p-5 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-lg font-bold mb-1">📊 Screenings</h3>
+            <p className="text-teal-100 text-sm">PHQ-9, GAD-7 Tests</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/crisis-plan')}
+            className="bg-gradient-to-br from-red-500 to-red-600 text-white rounded-lg shadow-lg p-5 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-lg font-bold mb-1">🆘 Krisenplan</h3>
+            <p className="text-red-100 text-sm">Notfall-Kontakte</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/medications')}
+            className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-lg shadow-lg p-5 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-lg font-bold mb-1">💊 Medikamente</h3>
+            <p className="text-emerald-100 text-sm">Tracker & Einnahme</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/exercises')}
+            className="bg-gradient-to-br from-violet-500 to-violet-600 text-white rounded-lg shadow-lg p-5 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-lg font-bold mb-1">📚 Übungen</h3>
+            <p className="text-violet-100 text-sm">Hausaufgaben</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/materials')}
+            className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg shadow-lg p-5 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-lg font-bold mb-1">📝 Materialien</h3>
+            <p className="text-blue-100 text-sm">Dateien hochladen</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/questionnaires')}
+            className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg shadow-lg p-5 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-lg font-bold mb-1">📋 Fragebögen</h3>
+            <p className="text-green-100 text-sm">Zugewiesene Bögen</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/documents')}
+            className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-lg shadow-lg p-5 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-lg font-bold mb-1">📄 Dokumente</h3>
+            <p className="text-purple-100 text-sm">Uploads verwalten</p>
+          </button>
         </div>
 
         {/* Tabs */}

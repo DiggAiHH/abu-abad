@@ -201,7 +201,7 @@ test.describe('Login Flow', () => {
     const loginPage = new LoginPage(page);
     
     // FIX: Navigate directly to login page and login
-    await page.goto('http://localhost:5173/login');
+    await page.goto('/login');
     await page.waitForLoadState('networkidle');
     
     // Fill credentials directly (bypass helper to debug)

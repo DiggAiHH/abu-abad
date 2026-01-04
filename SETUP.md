@@ -34,8 +34,8 @@ docker compose up -d
 ```
 
 This will:
-- Build and start the backend API on port 5000
-- Build and start the frontend web app on port 3000
+- Build and start the backend API on port 4000
+- Build and start the frontend web app on port 5175
 - Set up a Docker network for communication between services
 
 3. **Verify services are running:**
@@ -45,7 +45,7 @@ docker compose ps
 
 4. **Access the applications:**
 - Backend API: http://localhost:5000
-- Frontend Web: http://localhost:3000
+- Frontend Web: http://localhost:5175
 
 5. **View logs:**
 ```bash
@@ -120,7 +120,7 @@ npm install
 npm start
 ```
 
-The frontend will be available at http://localhost:3000
+The frontend will be available at http://localhost:5175
 
 #### Mobile App Setup
 
@@ -233,11 +233,11 @@ ipconfig
 If you see "port already in use" errors:
 
 ```bash
-# Find and kill process on port 5000 (backend)
-lsof -ti:5000 | xargs kill -9
+# Find and kill process on port 4000 (backend)
+lsof -ti:4000 | xargs kill -9
 
-# Find and kill process on port 3000 (frontend)
-lsof -ti:3000 | xargs kill -9
+# Find and kill process on port 5175 (frontend)
+lsof -ti:5175 | xargs kill -9
 ```
 
 ### Docker Build Fails

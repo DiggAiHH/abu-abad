@@ -1,0 +1,50 @@
+# Fly.io Configuration (Backend Deployment in EU)
+# DSGVO-SAFE: Deployed in Frankfurt (fra)
+# HISTORY-AWARE: Uses existing Dockerfile
+
+app = "abu-abad-api"
+primary_region = "fra"
+
+[build]
+  dockerfile = "apps/backend/Dockerfile.prod"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "4000"
+  PEER_PORT = "9001"
+
+[[services]]
+  internal_port = 4000
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+    force_https = true
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.http_checks]]
+    interval = "30s"
+    timeout = "5s"
+    grace_period = "10s"
+    method = "GET"
+    path = "/api/health"
+    protocol = "http"
+
+[[services]]
+  internal_port = 9001
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 9001
+
+[mounts]
+  source = "abu_abad_uploads"
+  destination = "/app/uploads"
+
+[[statics]]
+  guest_path = "/app/public"
+  url_prefix = "/public"

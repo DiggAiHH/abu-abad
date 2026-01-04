@@ -8,7 +8,7 @@
 import { Router, Request, Response } from 'express';
 import Stripe from 'stripe';
 import { query } from '../database/init.js';
-import { authenticate } from '../middleware/auth';
+import { authenticate } from '../middleware/auth.js';
 import { createPaymentIntentSchema } from '../utils/validation.js';
 import { AppError } from '../middleware/errorHandler.js';
 import { logger } from '../utils/logger.js';

@@ -117,7 +117,7 @@ Tests verfügbar:
 ```
 **Output:**
 - Frontend: http://localhost
-- Backend: http://localhost:3000
+- Backend: http://localhost:4000
 - PostgreSQL: localhost:5432
 - Redis: localhost:6379
 
@@ -295,7 +295,7 @@ Largest Contentful Paint: <2.5s
 ### Tests schlagen fehl?
 ```bash
 # Backend läuft?
-curl http://localhost:3000/api/health
+curl http://localhost:4000/api/health
 
 # Playwright Chromium installiert?
 npx playwright install --with-deps chromium
@@ -310,7 +310,7 @@ docker-compose restart backend
 docker-compose logs backend
 
 # Port belegt?
-sudo lsof -i :3000
+sudo lsof -i :4000
 
 # Clean Rebuild
 docker-compose down -v

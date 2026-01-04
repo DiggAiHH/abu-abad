@@ -85,7 +85,7 @@
 - ✅ CORS configured with allowed origins
 - ✅ Credentials support enabled
 - ✅ Environment-based configuration
-- ✅ Default origins: localhost:3000, localhost:19006
+- ✅ Default origins: localhost:5175, localhost:19006
 
 ### Known Security Considerations
 1. Authentication middleware exists but not enforced on routes (by design for development)

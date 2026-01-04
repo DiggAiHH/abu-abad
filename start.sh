@@ -29,17 +29,17 @@ if [ ! -f ".env" ]; then
 fi
 
 # Cleanup alte Prozesse
-echo -e "${YELLOW}Beende alte Prozesse auf Ports 3000, 3001, 5173...${NC}"
-lsof -ti:3000 | xargs kill -9 2>/dev/null
-lsof -ti:3001 | xargs kill -9 2>/dev/null
-lsof -ti:5173 | xargs kill -9 2>/dev/null
+echo -e "${YELLOW}Beende alte Prozesse auf Ports 4000, 9001, 5175...${NC}"
+lsof -ti:4000 | xargs kill -9 2>/dev/null
+lsof -ti:9001 | xargs kill -9 2>/dev/null
+lsof -ti:5175 | xargs kill -9 2>/dev/null
 echo -e "${GREEN}✅ Ports freigegeben${NC}\n"
 
 # Starte Server
 echo -e "${BLUE}🚀 Starte Development-Server...${NC}\n"
-echo -e "${YELLOW}Backend:  ${BLUE}http://localhost:3000${NC}"
-echo -e "${YELLOW}Frontend: ${BLUE}http://localhost:5173${NC}"
-echo -e "${YELLOW}PeerJS:   ${BLUE}http://localhost:3001${NC}\n"
+echo -e "${YELLOW}Backend:  ${BLUE}http://localhost:4000${NC}"
+echo -e "${YELLOW}Frontend: ${BLUE}http://localhost:5175${NC}"
+echo -e "${YELLOW}PeerJS:   ${BLUE}http://localhost:9001${NC}\n"
 echo -e "${YELLOW}Drücke Ctrl+C zum Beenden${NC}\n"
 
 # Starte beide Server (concurrently sollte in package.json sein)

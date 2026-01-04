@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS users (
     data_retention_until TIMESTAMP WITH TIME ZONE
 );
 
-CREATE INDEX idx_users_email ON users(email);
-CREATE INDEX idx_users_role ON users(role);
+CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
+CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);
 
 -- Appointments Table
 CREATE TABLE IF NOT EXISTS appointments (
@@ -44,10 +44,10 @@ CREATE TABLE IF NOT EXISTS appointments (
     cancellation_reason TEXT
 );
 
-CREATE INDEX idx_appointments_therapist ON appointments(therapist_id);
-CREATE INDEX idx_appointments_patient ON appointments(patient_id);
-CREATE INDEX idx_appointments_status ON appointments(status);
-CREATE INDEX idx_appointments_time ON appointments(start_time, end_time);
+CREATE INDEX IF NOT EXISTS idx_appointments_therapist ON appointments(therapist_id);
+CREATE INDEX IF NOT EXISTS idx_appointments_patient ON appointments(patient_id);
+CREATE INDEX IF NOT EXISTS idx_appointments_status ON appointments(status);
+CREATE INDEX IF NOT EXISTS idx_appointments_time ON appointments(start_time, end_time);
 
 -- Messages Table (End-to-End verschlüsselt)
 CREATE TABLE IF NOT EXISTS messages (
@@ -61,9 +61,9 @@ CREATE TABLE IF NOT EXISTS messages (
     expires_at TIMESTAMP WITH TIME ZONE
 );
 
-CREATE INDEX idx_messages_sender ON messages(sender_id);
-CREATE INDEX idx_messages_receiver ON messages(receiver_id);
-CREATE INDEX idx_messages_created ON messages(created_at);
+CREATE INDEX IF NOT EXISTS idx_messages_sender ON messages(sender_id);
+CREATE INDEX IF NOT EXISTS idx_messages_receiver ON messages(receiver_id);
+CREATE INDEX IF NOT EXISTS idx_messages_created ON messages(created_at);
 
 -- Payments Table (Stripe Integration)
 CREATE TABLE IF NOT EXISTS payments (
@@ -80,8 +80,8 @@ CREATE TABLE IF NOT EXISTS payments (
     refund_reason TEXT
 );
 
-CREATE INDEX idx_payments_appointment ON payments(appointment_id);
-CREATE INDEX idx_payments_stripe ON payments(stripe_payment_intent_id);
+CREATE INDEX IF NOT EXISTS idx_payments_appointment ON payments(appointment_id);
+CREATE INDEX IF NOT EXISTS idx_payments_stripe ON payments(stripe_payment_intent_id);
 
 -- Audit Log (DSGVO Art. 30 - Verarbeitungsverzeichnis)
 CREATE TABLE IF NOT EXISTS audit_logs (
@@ -95,8 +95,8 @@ CREATE TABLE IF NOT EXISTS audit_logs (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_audit_user ON audit_logs(user_id);
-CREATE INDEX idx_audit_created ON audit_logs(created_at);
+CREATE INDEX IF NOT EXISTS idx_audit_user ON audit_logs(user_id);
+CREATE INDEX IF NOT EXISTS idx_audit_created ON audit_logs(created_at);
 
 -- Function: Auto-update updated_at
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -108,14 +108,32 @@ END;
 $$ language 'plpgsql';
 
 -- Triggers
-CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users
-    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_users_updated_at') THEN
+        CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users
+            FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+    END IF;
+END
+$$;
 
-CREATE TRIGGER update_appointments_updated_at BEFORE UPDATE ON appointments
-    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_appointments_updated_at') THEN
+        CREATE TRIGGER update_appointments_updated_at BEFORE UPDATE ON appointments
+            FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+    END IF;
+END
+$$;
 
-CREATE TRIGGER update_payments_updated_at BEFORE UPDATE ON payments
-    FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_trigger WHERE tgname = 'update_payments_updated_at') THEN
+        CREATE TRIGGER update_payments_updated_at BEFORE UPDATE ON payments
+            FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+    END IF;
+END
+$$;
 
 -- DSGVO: View für Datenauskunft (Art. 15 DSGVO)
 CREATE OR REPLACE VIEW user_data_export AS

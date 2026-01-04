@@ -19,7 +19,7 @@ npm install && cd apps/backend && npm install && cd ../frontend && npm install &
 cp .env.example .env
 nano .env  # Setze: DATABASE_URL, JWT_SECRET, STRIPE_SECRET_KEY, ENCRYPTION_KEY
 
-# 3. Starten (Backend :3000 + Frontend :5173)
+# 3. Starten (Backend :4000 + Frontend :5175)
 npm run dev
 
 # 5. Playwright-Tests ausführen (64 Edge Cases)
@@ -159,14 +159,16 @@ cp .env.example .env
 DATABASE_URL=postgresql://user:password@localhost:5432/therapist_platform
 JWT_SECRET=$(openssl rand -base64 32)
 ENCRYPTION_KEY=$(openssl rand -base64 32)
+ENCRYPTION_KEY_VERSION=default-key-v1
 STRIPE_SECRET_KEY=sk_test_xxxxx  # Von Stripe Dashboard
 STRIPE_PUBLISHABLE_KEY=pk_test_xxxxx
 STRIPE_WEBHOOK_SECRET=whsec_xxxxx
 PORT=3000
 NODE_ENV=development
-FRONTEND_URL=http://localhost:5173
-CORS_ORIGIN=http://localhost:5173
-SIGNALING_PORT=3001
+FRONTEND_URL=http://localhost:5175
+ALLOWED_ORIGINS=http://localhost:5175
+PEER_PORT=9001
+PEER_PATH=/peerjs
 ```
 
 **Frontend** (`/workspaces/abu-abad/apps/frontend/.env`):
@@ -174,10 +176,10 @@ SIGNALING_PORT=3001
 cp apps/frontend/.env.example apps/frontend/.env
 
 # Bearbeite und setze:
-VITE_API_URL=http://localhost:3000
+VITE_API_URL=http://localhost:4000
 VITE_STRIPE_PUBLISHABLE_KEY=pk_test_xxxxx
 VITE_PEER_SERVER_HOST=localhost
-VITE_PEER_SERVER_PORT=3001
+VITE_PEER_SERVER_PORT=9001
 VITE_PEER_SERVER_SECURE=false
 ```
 
@@ -226,9 +228,9 @@ npm run dev:frontend
 ```
 
 Die Anwendung läuft jetzt auf:
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:3000
-- PeerJS Server: http://localhost:3001
+- Frontend: http://localhost:5175
+- Backend API: http://localhost:4000
+- PeerJS Server: http://localhost:9001
 
 ## 📚 API-Dokumentation
 
@@ -327,14 +329,14 @@ psql -U postgres -d therapist_platform
 ### Port bereits belegt
 ```bash
 # Prozess finden und beenden
-lsof -ti:3000 | xargs kill -9
-lsof -ti:5173 | xargs kill -9
+lsof -ti:4000 | xargs kill -9
+lsof -ti:5175 | xargs kill -9
 ```
 
 ### WebRTC funktioniert nicht
 - Stelle sicher, dass HTTPS aktiviert ist (Production)
 - Browser-Berechtigungen für Kamera/Mikrofon prüfen
-- Firewall-Regeln für Ports 3001 prüfen
+- Firewall-Regeln für Ports 9001 prüfen
 
 ## 📖 Quellen & Standards
 

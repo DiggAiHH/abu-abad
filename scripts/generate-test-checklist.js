@@ -15,7 +15,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { glob as globFunc } from 'glob';
+import globPkg from 'glob';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -167,8 +167,7 @@ function generateTestCases(element) {
  */
 async function scanProject() {
   const pattern = path.join(config.srcPath, '**/*.tsx');
-  const files = await glob(pattern);
-  const allElements = [];Func(pattern);
+  const files = globPkg.sync(pattern, { nodir: true });
   const allElements = [];
   
   if (!Array.isArray(files)) {

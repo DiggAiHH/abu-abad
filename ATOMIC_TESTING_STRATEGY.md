@@ -255,7 +255,7 @@ test.describe('Registration Flow', () => {
   test('TC-REG-002: Should register new patient successfully', async ({ page }) => {
     const registerPage = new RegisterPage(page);
     
-    await page.goto('http://localhost:5173/register');
+    await page.goto('http://localhost:5175/register');
     
     const uniqueEmail = `patient-${Date.now()}@test.de`;
     
@@ -281,7 +281,7 @@ test.describe('Registration Flow', () => {
   test('TC-REG-004: Should reject duplicate email', async ({ page }) => {
     const registerPage = new RegisterPage(page);
     
-    await page.goto('http://localhost:5173/register');
+    await page.goto('http://localhost:5175/register');
     
     // Use existing test user
     await registerPage.register({

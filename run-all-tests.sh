@@ -19,16 +19,16 @@ echo ""
 echo -e "${YELLOW}🔍 Pre-Flight Checks...${NC}"
 
 # Check Services Running
-if ! curl -s http://localhost:3000/health > /dev/null 2>&1; then
-    echo -e "${RED}❌ Backend nicht erreichbar (Port 3000)${NC}"
+if ! curl -s http://localhost:4000/api/health > /dev/null 2>&1; then
+  echo -e "${RED}❌ Backend nicht erreichbar (Port 4000)${NC}"
     echo -e "${YELLOW}⚠️  Starte Backend...${NC}"
     cd /workspaces/abu-abad
     ./start-services.sh
     sleep 5
 fi
 
-if ! curl -s http://localhost:5173 > /dev/null 2>&1; then
-    echo -e "${RED}❌ Frontend nicht erreichbar (Port 5173)${NC}"
+if ! curl -s http://localhost:5175 > /dev/null 2>&1; then
+  echo -e "${RED}❌ Frontend nicht erreichbar (Port 5175)${NC}"
     echo -e "${YELLOW}⚠️  Starte Services...${NC}"
     cd /workspaces/abu-abad
     ./start-services.sh
@@ -37,17 +37,23 @@ fi
 
 echo -e "${GREEN}✅ Services running${NC}"
 
+# Ensure Playwright targets the local dev URLs.
+export PLAYWRIGHT_BASE_URL="${PLAYWRIGHT_BASE_URL:-http://localhost:5175}"
+export PLAYWRIGHT_API_BASE_URL="${PLAYWRIGHT_API_BASE_URL:-http://localhost:4000}"
+
 # Check Test Users Exist
-PATIENT_LOGIN=$(curl -s -X POST http://localhost:3000/api/auth/login \
+PATIENT_LOGIN_RESPONSE=$(curl -s -X POST http://localhost:4000/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"patient@test.de","password":"Test123!"}' \
-  | jq -r '.token // empty')
+  -d '{"email":"patient@test.de","password":"Test123!"}')
+
+# Avoid hard dependency on jq.
+PATIENT_LOGIN=$(node -e 'try { const j = JSON.parse(process.argv[1] || "{}"); process.stdout.write(j.token || ""); } catch { process.stdout.write(""); }' "$PATIENT_LOGIN_RESPONSE")
 
 if [ -z "$PATIENT_LOGIN" ]; then
     echo -e "${RED}❌ Test-User nicht vorhanden${NC}"
     echo -e "${YELLOW}⚠️  Erstelle Test-User...${NC}"
     
-    curl -s -X POST http://localhost:3000/api/auth/register \
+    curl -s -X POST http://localhost:4000/api/auth/register \
       -H "Content-Type: application/json" \
       -d '{
         "email": "patient@test.de",
@@ -76,7 +82,8 @@ echo -e "${BLUE}🧪 Running Tests...${NC}"
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
 # Run Playwright Tests
-npx playwright test tests/e2e/login.spec.ts --reporter=html
+# NOTE: html reporter can start a local server and block; keep this script non-interactive.
+npx playwright test --reporter=line
 
 # STEP 4: Results
 echo ""

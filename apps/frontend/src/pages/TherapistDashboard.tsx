@@ -3,10 +3,11 @@ import { useAuthStore } from '../store/authStore';
 import { appointmentAPI, messageAPI } from '../api/client';
 import { Appointment, Message } from '../types';
 import toast from 'react-hot-toast';
-import { Calendar, Video, MessageSquare, LogOut, Plus, Clock } from 'lucide-react';
+import { Calendar, Video, MessageSquare, LogOut, Plus, Clock, User } from 'lucide-react';
 import { format } from 'date-fns';
 import { de } from 'date-fns/locale';
 import { useNavigate } from 'react-router-dom';
+import { logger } from '../utils/logger';
 
 export default function TherapistDashboard() {
   const { user, logout } = useAuthStore();
@@ -20,7 +21,7 @@ export default function TherapistDashboard() {
   useEffect(() => {
     // Guard clause: User muss existieren
     if (!user?.id) {
-      console.warn('No user found, redirecting to login');
+      logger.warn('TherapistDashboard: no user found, redirecting to login');
       navigate('/login');
       return;
     }
@@ -49,11 +50,11 @@ export default function TherapistDashboard() {
       setAppointments(allAppointments);
       setMessages(msgs);
     } catch (error: any) {
-      console.error('Fehler beim Laden:', error);
+      logger.error('TherapistDashboard: Fehler beim Laden', error);
       
       if (error.response?.status === 401) {
         toast.error('Sitzung abgelaufen. Bitte neu anmelden.');
-        logout();
+        void logout();
         navigate('/login');
       } else if (!error.response) {
         toast.error('Keine Verbindung zum Server. Daten werden nicht aktualisiert.');
@@ -66,7 +67,7 @@ export default function TherapistDashboard() {
   };
 
   const handleLogout = () => {
-    logout();
+    void logout();
     navigate('/login');
     toast.success('Erfolgreich abgemeldet');
   };
@@ -111,7 +112,7 @@ export default function TherapistDashboard() {
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center gap-4">
               <div className="bg-blue-100 p-3 rounded-lg">
@@ -152,19 +153,88 @@ export default function TherapistDashboard() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-white rounded-lg shadow p-6 cursor-pointer hover:shadow-lg transition" onClick={() => navigate('/questionnaires')}>
             <div className="flex items-center gap-4">
               <div className="bg-purple-100 p-3 rounded-lg">
                 <MessageSquare className="text-purple-600" size={24} />
               </div>
               <div>
-                <p className="text-sm text-gray-600">Neue Nachrichten</p>
-                <p className="text-2xl font-bold">
-                  {messages.filter(m => m && !m.read).length}
-                </p>
+                <p className="text-sm text-gray-600">Fragebögen</p>
+                <p className="text-lg font-bold">Verwalten</p>
               </div>
             </div>
           </div>
+
+          <div className="bg-white rounded-lg shadow p-6 cursor-pointer hover:shadow-lg transition" onClick={() => navigate('/documents')}>
+            <div className="flex items-center gap-4">
+              <div className="bg-orange-100 p-3 rounded-lg">
+                <User className="text-orange-600" size={24} />
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">Dokumente</p>
+                <p className="text-lg font-bold">Anfragen</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-8">
+          <button
+            onClick={() => navigate('/therapy-notes')}
+            className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-xl font-bold mb-2">📔 Therapie-Notizen</h3>
+            <p className="text-indigo-100">SOAP-Dokumentation und Sitzungsprotokolle</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/reports')}
+            className="bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-xl font-bold mb-2">📄 Berichte</h3>
+            <p className="text-cyan-100">Behandlungsberichte erstellen und exportieren</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/queue')}
+            className="bg-gradient-to-br from-teal-500 to-teal-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-xl font-bold mb-2">👥 Wartezimmer</h3>
+            <p className="text-teal-100">Wartende Patienten einsehen und aufrufen</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/questionnaires')}
+            className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-xl font-bold mb-2">📋 Fragebogen erstellen</h3>
+            <p className="text-blue-100">Anamnese, Symptom-Check oder individuelle Fragebögen</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/documents')}
+            className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-xl font-bold mb-2">📄 Dokumente anfordern</h3>
+            <p className="text-green-100">Scans, Befunde oder spezifische Unterlagen von Patienten anfordern</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/materials')}
+            className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-xl font-bold mb-2">📝 Patientenmaterialien</h3>
+            <p className="text-purple-100">Notizen und Vorbereitungen der Patienten einsehen</p>
+          </button>
+
+          <button
+            onClick={() => navigate('/billing')}
+            className="bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-lg shadow-lg p-6 hover:shadow-xl transition text-left"
+          >
+            <h3 className="text-xl font-bold mb-2">💶 Abrechnung</h3>
+            <p className="text-emerald-100">Rechnungen erstellen und verwalten</p>
+          </button>
         </div>
 
         {/* Tabs */}

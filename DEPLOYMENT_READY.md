@@ -349,7 +349,7 @@ jobs:
 **Lösung:**
 ```bash
 # Backend läuft?
-curl http://localhost:3000/api/health
+curl http://localhost:4000/api/health
 
 # Playwright Browser installiert?
 npx playwright install --with-deps chromium
@@ -365,7 +365,7 @@ docker-compose -f docker-compose.prod.yml restart backend
 docker-compose -f docker-compose.prod.yml logs backend
 
 # Port belegt?
-sudo lsof -i :3000
+sudo lsof -i :4000
 sudo kill -9 <PID>
 
 # Clean Rebuild

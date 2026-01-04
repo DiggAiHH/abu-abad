@@ -22,7 +22,8 @@ test.describe('Terminbuchung - Edge Cases', () => {
   });
 
   test('EDGE CASE: Endzeit vor Startzeit sollte abgelehnt werden', async ({ page }) => {
-    await page.waitForURL('**/dashboard');
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
     
     await page.click('button:has-text("Slot erstellen")');
     
@@ -41,7 +42,8 @@ test.describe('Terminbuchung - Edge Cases', () => {
   });
 
   test('EDGE CASE: Termin in der Vergangenheit sollte nicht buchbar sein', async ({ page }) => {
-    await page.waitForURL('**/dashboard');
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
     
     await page.click('button:has-text("Slot erstellen")');
     
@@ -63,7 +65,8 @@ test.describe('Terminbuchung - Edge Cases', () => {
   });
 
   test('EDGE CASE: Überschneidende Termine sollten verhindert werden', async ({ page }) => {
-    await page.waitForURL('**/dashboard');
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
     
     // Erstelle ersten Termin: 10:00 - 11:00
     await createAppointment(
@@ -97,7 +100,8 @@ test.describe('Terminbuchung - Edge Cases', () => {
 
   test('EDGE CASE: Doppelbuchung desselben Slots (Race Condition)', async ({ page, context }) => {
     // Erstelle Therapeut und Slot
-    await page.waitForURL('**/dashboard');
+      await page.goto('/dashboard');
+      await page.waitForLoadState('networkidle');
     
     await createAppointment(
       page,
@@ -115,13 +119,15 @@ test.describe('Terminbuchung - Edge Cases', () => {
     // Patient 1 registrieren
     const patient1Email = generateRandomEmail();
     await registerUser(page, { ...TEST_USERS.patient, email: patient1Email });
-    await page.waitForURL('**/dashboard');
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
     
     // Öffne zweiten Tab für Patient 2
     const page2 = await context.newPage();
     const patient2Email = generateRandomEmail();
     await registerUser(page2, { ...TEST_USERS.patient, email: patient2Email });
-    await page2.waitForURL('**/dashboard');
+      await page2.goto('/dashboard');
+      await page2.waitForLoadState('networkidle');
     
     // Beide versuchen gleichzeitig zu buchen
     await page.click('text=Termin buchen');
@@ -156,7 +162,8 @@ test.describe('Terminbuchung - Edge Cases', () => {
   });
 
   test('EDGE CASE: Negativer oder Null-Preis sollte abgelehnt werden', async ({ page }) => {
-    await page.waitForURL('**/dashboard');
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
     
     await page.click('button:has-text("Slot erstellen")');
     
@@ -178,7 +185,8 @@ test.describe('Terminbuchung - Edge Cases', () => {
   });
 
   test('EDGE CASE: Extrem kurze Termine (<5 Minuten) sollten validiert werden', async ({ page }) => {
-    await page.waitForURL('**/dashboard');
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
     
     await page.click('button:has-text("Slot erstellen")');
     
@@ -202,7 +210,8 @@ test.describe('Terminbuchung - Edge Cases', () => {
 
   test('Happy Path: Erfolgreiche Terminbuchung', async ({ page, context }) => {
     // Therapeut erstellt Slot
-    await page.waitForURL('**/dashboard');
+      await page.goto('/dashboard');
+      await page.waitForLoadState('networkidle');
     
     await createAppointment(
       page,
@@ -220,7 +229,8 @@ test.describe('Terminbuchung - Edge Cases', () => {
     // Patient registrieren und buchen
     const patientEmail = generateRandomEmail();
     await registerUser(page, { ...TEST_USERS.patient, email: patientEmail });
-    await page.waitForURL('**/dashboard');
+    await page.goto('/dashboard');
+    await page.waitForLoadState('networkidle');
     
     await page.click('text=Termin buchen');
     await page.waitForTimeout(1000);

@@ -44,6 +44,8 @@ export async function authenticate(
     const payload = verifyAccessToken(token);
     
     req.user = payload;
+    (req as any).userId = (payload as any).userId ?? (payload as any).id;
+    (req as any).userRole = payload.role;
     next();
   } catch (error) {
     // GDPR-COMPLIANCE: Error-Log ohne Token-Details

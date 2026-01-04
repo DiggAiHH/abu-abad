@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { registerUser, loginUser, TEST_USERS, generateRandomEmail } from '../helpers';
 
+const API_BASE_URL = process.env.PLAYWRIGHT_API_BASE_URL || 'http://localhost:4000';
+
 /**
  * DSGVO-Compliance Tests: Art. 15 (Auskunft), Art. 17 (Löschung), Art. 30 (Audit)
  * 
@@ -12,7 +14,7 @@ import { registerUser, loginUser, TEST_USERS, generateRandomEmail } from '../hel
 test.describe('DSGVO Art. 6: Rechtmäßigkeit der Verarbeitung', () => {
   
   test('EDGE CASE: Registrierung ohne Einwilligung sollte fehlschlagen', async ({ page }) => {
-    await page.goto('http://localhost:5173/register');
+    await page.goto('/register');
     
     const email = generateRandomEmail();
     await page.fill('input[type="email"]', email);
@@ -32,7 +34,7 @@ test.describe('DSGVO Art. 6: Rechtmäßigkeit der Verarbeitung', () => {
   });
 
   test('EDGE CASE: Einwilligungs-Text sollte vollständig sichtbar sein', async ({ page }) => {
-    await page.goto('http://localhost:5173/register');
+    await page.goto('/register');
     
     // Datenschutzerklärung-Link sollte vorhanden sein
     const privacyLink = page.locator('a[href*="datenschutz"], a:has-text("Datenschutz")');
@@ -54,7 +56,7 @@ test.describe('DSGVO Art. 15: Recht auf Auskunft', () => {
     const token = await page.evaluate(() => localStorage.getItem('token'));
     
     // Navigiere zu Profil/Einstellungen
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Profil|Einstellungen|Settings|Profile/i');
     
     // Suche "Daten exportieren" Button
@@ -83,7 +85,7 @@ test.describe('DSGVO Art. 15: Recht auf Auskunft', () => {
       }
     } else {
       // Alternativ: API-Endpoint direkt testen
-      const response = await request.get('http://localhost:3000/api/users/export', {
+      const response = await request.get(`${API_BASE_URL}/api/users/export`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -103,12 +105,12 @@ test.describe('DSGVO Art. 15: Recht auf Auskunft', () => {
     const token = await page.evaluate(() => localStorage.getItem('token'));
     
     // Führe einige Aktionen aus (generiert Audit-Logs)
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Profil|Settings/i');
     await page.waitForTimeout(1000);
     
     // Export anfordern
-    const response = await request.get('http://localhost:3000/api/users/export', {
+    const response = await request.get(`${API_BASE_URL}/api/users/export`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -135,7 +137,7 @@ test.describe('DSGVO Art. 17: Recht auf Löschung', () => {
     const token = await page.evaluate(() => localStorage.getItem('token'));
     
     // Navigiere zu Account-Löschung
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Profil|Einstellungen|Settings/i');
     
     // Suche "Account löschen" Button
@@ -166,7 +168,7 @@ test.describe('DSGVO Art. 17: Recht auf Löschung', () => {
       await expect(page.locator('text=/nicht gefunden|not found|ungültig/i')).toBeVisible({ timeout: 5000 });
     } else {
       // API-Endpoint direkt testen
-      const deleteResponse = await request.delete('http://localhost:3000/api/users/me', {
+      const deleteResponse = await request.delete(`${API_BASE_URL}/api/users/me`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -175,7 +177,7 @@ test.describe('DSGVO Art. 17: Recht auf Löschung', () => {
       expect(deleteResponse.ok()).toBe(true);
       
       // Versuch auf gelöschten User zuzugreifen
-      const getResponse = await request.get('http://localhost:3000/api/auth/me', {
+      const getResponse = await request.get(`${API_BASE_URL}/api/auth/me`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -194,7 +196,7 @@ test.describe('DSGVO Art. 17: Recht auf Löschung', () => {
     // ... (Optional: Testdaten erstellen)
     
     // Account löschen
-    const deleteResponse = await request.delete('http://localhost:3000/api/users/me', {
+    const deleteResponse = await request.delete(`${API_BASE_URL}/api/users/me`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -203,7 +205,7 @@ test.describe('DSGVO Art. 17: Recht auf Löschung', () => {
     expect(deleteResponse.ok()).toBe(true);
     
     // Überprüfe, dass Daten nicht mehr abrufbar sind
-    const appointmentsResponse = await request.get('http://localhost:3000/api/appointments', {
+    const appointmentsResponse = await request.get(`${API_BASE_URL}/api/appointments`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -219,7 +221,7 @@ test.describe('DSGVO Art. 17: Recht auf Löschung', () => {
     // Erstelle zukünftigen Termin
     // ... (Optional)
     
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Profil|Settings/i');
     
     const deleteButton = page.locator('button:has-text("Account löschen")');
@@ -239,7 +241,7 @@ test.describe('DSGVO Art. 25: Privacy by Design', () => {
     const email = generateRandomEmail();
     await registerUser(page, { ...TEST_USERS.patient, email });
     
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Profil|Einstellungen|Settings/i');
     
     // Überprüfe Datenschutz-Einstellungen
@@ -265,13 +267,13 @@ test.describe('DSGVO Art. 30: Verarbeitungsverzeichnis', () => {
     const token = await page.evaluate(() => localStorage.getItem('token'));
     
     // Führe verschiedene Aktionen aus
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     await page.click('text=/Profil|Settings/i');
     await page.waitForTimeout(500);
-    await page.goto('http://localhost:5173/dashboard');
+    await page.goto('/dashboard');
     
     // Rufe Audit-Logs ab
-    const response = await request.get('http://localhost:3000/api/users/audit-logs', {
+    const response = await request.get(`${API_BASE_URL}/api/users/audit-logs`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -304,7 +306,7 @@ test.describe('DSGVO Art. 30: Verarbeitungsverzeichnis', () => {
     const token = await page.evaluate(() => localStorage.getItem('token'));
     
     // Rufe Audit-Logs ab
-    const response = await request.get('http://localhost:3000/api/users/audit-logs', {
+    const response = await request.get(`${API_BASE_URL}/api/users/audit-logs`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -331,7 +333,7 @@ test.describe('DSGVO Art. 32: Sicherheit der Verarbeitung', () => {
     // Füge sensible Gesundheitsdaten hinzu
     const healthData = 'Diagnose: Depression, Medikation: Sertralin 50mg';
     
-    const updateResponse = await request.put('http://localhost:3000/api/users/profile', {
+    const updateResponse = await request.put(`${API_BASE_URL}/api/users/profile`, {
       headers: {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -343,7 +345,7 @@ test.describe('DSGVO Art. 32: Sicherheit der Verarbeitung', () => {
     
     if (updateResponse.ok()) {
       // Rufe Daten ab - sollten entschlüsselt zurückkommen
-      const getResponse = await request.get('http://localhost:3000/api/users/profile', {
+      const getResponse = await request.get(`${API_BASE_URL}/api/users/profile`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -367,7 +369,7 @@ test.describe('DSGVO Art. 32: Sicherheit der Verarbeitung', () => {
     });
     
     // Versuche mit falschem Passwort einzuloggen
-    await page.goto('http://localhost:5173/login');
+    await page.goto('/login');
     await page.fill('input[type="email"]', email);
     await page.fill('input[type="password"]', 'WrongPassword123!');
     await page.click('button[type="submit"]');
@@ -390,11 +392,11 @@ test.describe('DSGVO Art. 33: Meldepflicht bei Datenpannen', () => {
     const email = generateRandomEmail();
     await registerUser(page, { ...TEST_USERS.patient, email });
     
-    await page.goto('http://localhost:5173/logout');
+    await page.goto('/logout');
     
     // 5 fehlgeschlagene Login-Versuche
     for (let i = 0; i < 5; i++) {
-      await page.goto('http://localhost:5173/login');
+      await page.goto('/login');
       await page.fill('input[type="email"]', email);
       await page.fill('input[type="password"]', 'FalschesPasswort123!');
       await page.click('button[type="submit"]');
@@ -406,7 +408,7 @@ test.describe('DSGVO Art. 33: Meldepflicht bei Datenpannen', () => {
     const token = await page.evaluate(() => localStorage.getItem('token'));
     
     // Audit-Logs sollten fehlgeschlagene Versuche enthalten
-    const response = await request.get('http://localhost:3000/api/users/audit-logs', {
+    const response = await request.get(`${API_BASE_URL}/api/users/audit-logs`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -428,7 +430,7 @@ test.describe('DSGVO Art. 33: Meldepflicht bei Datenpannen', () => {
 test.describe('DSGVO: Datenminimierung', () => {
   
   test('EDGE CASE: Registrierung sollte nur notwendige Daten abfragen', async ({ page }) => {
-    await page.goto('http://localhost:5173/register');
+    await page.goto('/register');
     
     // Zähle Pflichtfelder
     const requiredFields = page.locator('input[required], input[aria-required="true"]');

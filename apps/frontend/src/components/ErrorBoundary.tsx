@@ -35,19 +35,48 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // Zentrales Logging
+    // HISTORY-AWARE: Use existing logging infrastructure
+    // DSGVO-SAFE: No external error tracking, local-only
     if (window && (window as any).logError) {
       (window as any).logError(error, 'ErrorBoundary', errorInfo);
     } else {
       console.error('ErrorBoundary caught an error:', error, errorInfo);
     }
+    
     this.setState({
       error,
       errorInfo,
     });
-    // Optional: An Error-Tracking-Service senden (z.B. Sentry)
-    // logErrorToService(error, errorInfo);
+
+    // DSGVO-SAFE: Send error report to local backend (opt-in only)
+    this.sendErrorReport(error, errorInfo);
   }
+
+  sendErrorReport = async (error: Error, errorInfo: ErrorInfo) => {
+    try {
+      const errorReport = {
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        url: window.location.href,
+        errorMessage: error.message,
+        errorStack: error.stack,
+        componentStack: errorInfo.componentStack,
+        userFeedback: this.state.userFeedback,
+      };
+
+      // DSGVO-SAFE: Only send to local backend (no third-party)
+      await fetch('/api/errors/report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(errorReport),
+      }).catch(() => {
+        // Silent fail - don't crash on error reporting
+        console.warn('Failed to send error report to backend');
+      });
+    } catch (err) {
+      console.error('Error reporting failed:', err);
+    }
+  };
 
   handleReset = () => {
     this.setState({

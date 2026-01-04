@@ -283,7 +283,7 @@ JWT_SECRET=IEE1N2dV... (43 chars) ✅
 REFRESH_TOKEN_SECRET=vXno0xdl... (43 chars) ✅
 ENCRYPTION_KEY=vXno0xdl... (AES-256 compatible) ✅
 STRIPE_SECRET_KEY=sk_test_... (Test Mode) ✅
-ALLOWED_ORIGINS=http://localhost:5173 ✅
+ALLOWED_ORIGINS=http://localhost:5175 ✅
 ```
 
 ---
@@ -292,13 +292,13 @@ ALLOWED_ORIGINS=http://localhost:5173 ✅
 
 ### System Status (All Green)
 ```bash
-$ curl http://localhost:3000/health
+$ curl http://localhost:4000/api/health
 {"status":"OK","timestamp":"2025-12-28T21:08:39.006Z","uptime":675}
 
-$ curl http://localhost:5173
+$ curl http://localhost:5175
 <!doctype html><html lang="de">...<title>Abu-Abbad</title>...
 
-$ curl -X POST http://localhost:3000/api/auth/register ...
+$ curl -X POST http://localhost:4000/api/auth/register ...
 {"message":"Registrierung erfolgreich","token":"eyJ..."}
 ```
 

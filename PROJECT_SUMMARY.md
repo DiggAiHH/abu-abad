@@ -166,9 +166,9 @@ nano apps/frontend/.env
 npm run dev
 
 # URLs:
-# Frontend: http://localhost:5173
-# Backend:  http://localhost:3000
-# PeerJS:   http://localhost:3001
+# Frontend: http://localhost:5175
+# Backend:  http://localhost:4000
+# PeerJS:   http://localhost:9001
 ```
 
 ---

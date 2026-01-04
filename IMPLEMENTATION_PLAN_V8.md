@@ -164,7 +164,7 @@ openssl rand -base64 32  # ENCRYPTION_KEY
 ```bash
 # Ziel: 8/8 Tests für Registrierung
 cd /workspaces/abu-abad
-npx playwright codegen http://localhost:5173/register
+npx playwright codegen http://localhost:5175/register
 # → Record interactions
 # → Copy to tests/e2e/register.spec.ts
 ```

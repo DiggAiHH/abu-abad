@@ -148,9 +148,9 @@ echo -e "\n${YELLOW}[5/8]${NC} Baue Frontend..."
 cd "$PROJECT_ROOT/apps/frontend"
 
 # Set environment variables for build
-export VITE_API_URL="${VITE_API_URL:-http://localhost:3000}"
+export VITE_API_URL="${VITE_API_URL:-http://localhost:4000}"
 export VITE_PEER_SERVER_HOST="${VITE_PEER_SERVER_HOST:-localhost}"
-export VITE_PEER_SERVER_PORT="${VITE_PEER_SERVER_PORT:-3001}"
+export VITE_PEER_SERVER_PORT="${VITE_PEER_SERVER_PORT:-9001}"
 export VITE_PEER_SERVER_SECURE="${VITE_PEER_SERVER_SECURE:-false}"
 
 npm run build
@@ -195,7 +195,7 @@ if [ "$ENV" = "local" ]; then
     echo "✅ Docker Container gestartet"
     echo ""
     echo "🌐 Frontend:  http://localhost"
-    echo "🔌 Backend:   http://localhost:3000"
+    echo "🔌 Backend:   http://localhost:4000"
     echo "📊 Logs:      docker-compose -f docker-compose.prod.yml logs -f"
   else
     echo -e "${YELLOW}⚠️  docker-compose.prod.yml nicht gefunden${NC}"
@@ -256,7 +256,7 @@ if [ "$ENV" = "local" ]; then
   fi
   
   # Check Backend
-  if curl -sf http://localhost:3000/api/health > /dev/null; then
+  if curl -sf http://localhost:4000/api/health > /dev/null; then
     echo "✅ Backend erreichbar"
   else
     echo -e "${YELLOW}⚠️  Backend nicht erreichbar (möglicherweise noch startend)${NC}"
@@ -285,7 +285,7 @@ echo -e "${NC}"
 
 if [ "$ENV" = "local" ]; then
   echo "🌐 Frontend:   http://localhost"
-  echo "🔌 Backend:    http://localhost:3000"
+  echo "🔌 Backend:    http://localhost:4000"
   echo "🗄️  PostgreSQL: localhost:5432"
   echo "💾 Redis:      localhost:6379"
   echo ""

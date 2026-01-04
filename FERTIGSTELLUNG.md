@@ -229,9 +229,9 @@ npm run dev
 ```
 
 **URLs:**
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:3000
-- PeerJS Server: http://localhost:3001
+- Frontend: http://localhost:5175
+- Backend API: http://localhost:4000
+- PeerJS Server: http://localhost:9001
 
 ### 6. Production Deployment ⏱️ 30 Minuten
 Siehe [DEPLOYMENT.md](DEPLOYMENT.md)

@@ -8,7 +8,7 @@ const http = require('http');
 const users = [
   {
     email: 'therapeut@test.de',
-    password: 'Test1234!',
+    password: 'Test123!',
     firstName: 'Dr. Anna',
     lastName: 'Schmidt',
     role: 'therapist',
@@ -20,7 +20,7 @@ const users = [
   },
   {
     email: 'patient@test.de',
-    password: 'Test1234!',
+    password: 'Test123!',
     firstName: 'Max',
     lastName: 'Mustermann',
     role: 'patient',
@@ -35,7 +35,7 @@ async function registerUser(user) {
     
     const options = {
       hostname: 'localhost',
-      port: 3000,
+      port: 4000,
       path: '/api/auth/register',
       method: 'POST',
       headers: {
@@ -88,11 +88,11 @@ async function createTestUsers() {
   console.log('━'.repeat(50));
   console.log('Therapeut:');
   console.log('  Email:    therapeut@test.de');
-  console.log('  Passwort: Test1234!');
+  console.log('  Passwort: Test123!');
   console.log('');
   console.log('Patient:');
   console.log('  Email:    patient@test.de');
-  console.log('  Passwort: Test1234!');
+  console.log('  Passwort: Test123!');
   console.log('━'.repeat(50));
 }
 
