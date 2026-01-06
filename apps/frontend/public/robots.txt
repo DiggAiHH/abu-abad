@@ -1,0 +1,21 @@
+User-agent: *
+Disallow: /dashboard
+Disallow: /login
+Disallow: /register
+Disallow: /call/
+Disallow: /materials
+Disallow: /questionnaires
+Disallow: /documents
+Disallow: /diary
+Disallow: /therapy-notes
+Disallow: /screenings
+Disallow: /crisis-plan
+Disallow: /medications
+Disallow: /exercises
+Disallow: /reminders
+Disallow: /reports
+Disallow: /waiting-room
+Disallow: /queue
+Disallow: /billing
+
+Sitemap: /sitemap.xml

@@ -1,0 +1,11 @@
+# Cloudflare named tunnel config (Doctor-Test)
+# 1) Ersetze TUNNEL_UUID und HOSTNAME
+# 2) Stelle sicher, dass ~/.cloudflared/TUNNEL_UUID.json existiert (via `cloudflared tunnel create ...`)
+
+tunnel: TUNNEL_UUID
+credentials-file: /root/.cloudflared/TUNNEL_UUID.json
+
+ingress:
+  - hostname: HOSTNAME
+    service: http://frontend:80
+  - service: http_status:404

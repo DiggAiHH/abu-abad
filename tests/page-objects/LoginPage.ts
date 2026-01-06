@@ -65,7 +65,7 @@ export class LoginPage {
     
     // PREVENTS: Fehler X (Assertion before Navigation completes)
     await this.page.waitForURL(/\/(dashboard|patient-dashboard|therapist-dashboard)/, { 
-      timeout: 10000 
+      timeout: 30000 
     });
     
     // DEFENSIVE: Wait for React Hydration

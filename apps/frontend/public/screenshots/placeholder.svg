@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720">
+  <rect width="1280" height="720" fill="#f3f4f6"/>
+  <rect x="120" y="110" width="1040" height="500" rx="24" fill="#ffffff" stroke="#e5e7eb"/>
+  <text x="640" y="360" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="42" fill="#111827">Abu-Abbad</text>
+  <text x="640" y="410" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="22" fill="#6b7280">Screenshot folgt (Testing Build)</text>
+</svg>

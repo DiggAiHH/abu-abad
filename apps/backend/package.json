@@ -10,6 +10,7 @@
     "start": "node dist/index.js",
     "migrate": "tsx --env-file=../../.env src/database/migrate.ts",
     "seed": "tsx --env-file=../../.env src/database/seed.ts",
+    "seed:doctor-demo": "tsx --env-file=../../.env src/database/seed_doctor_demo.ts",
     "retention:run": "tsx --env-file=../../.env src/scripts/retention.ts",
     "test": "vitest",
     "lint": "eslint src --ext .ts"
@@ -23,6 +24,7 @@
     "date-fns": "^3.0.6",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
     "express-rate-limit": "^7.1.5",
     "express-validator": "^7.0.1",
     "helmet": "^7.1.0",

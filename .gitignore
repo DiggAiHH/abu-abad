@@ -70,6 +70,10 @@ KI Notizen
 # Docker
 docker-compose.override.yml
 
+# Cloudflare Tunnel (local)
+cloudflared/config.yml
+.cloudflared/
+
 # Mobile
 mobile/.expo/
 mobile/.expo-shared/
@@ -83,3 +87,6 @@ uploads/
 venv/
 __pycache__/
 *.pyc
+
+# Local Netlify folder
+.netlify

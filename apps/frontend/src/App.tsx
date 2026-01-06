@@ -1,29 +1,34 @@
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useAuthStore } from './store/authStore';
 import ErrorBoundary from './components/ErrorBoundary';
+
 import Login from './pages/Login';
 import Register from './pages/Register';
-import TherapistDashboard from './pages/TherapistDashboard';
-import PatientDashboard from './pages/PatientDashboard';
-import VideoCall from './pages/VideoCall';
 import NotFound from './pages/NotFound';
-import PatientMaterials from './pages/PatientMaterials';
-import QuestionnaireBuilder from './pages/QuestionnaireBuilder';
-import PatientQuestionnaires from './pages/PatientQuestionnaires';
-import DocumentRequests from './pages/DocumentRequests';
-import SymptomDiary from './pages/SymptomDiary';
-import TherapyNotes from './pages/TherapyNotes';
-import PsychScreenings from './pages/PsychScreenings';
-import CrisisPlan from './pages/CrisisPlan';
-import MedicationTracker from './pages/MedicationTracker';
-import Exercises from './pages/Exercises';
-import ReminderSettings from './pages/ReminderSettings';
-import Reports from './pages/Reports';
-import WaitingRoom from './pages/WaitingRoom';
-import TherapistQueue from './pages/TherapistQueue';
-import Billing from './pages/Billing';
+
+const Landing = lazy(() => import('./pages/Landing'));
+const Share = lazy(() => import('./pages/Share'));
+
+const TherapistDashboard = lazy(() => import('./pages/TherapistDashboard'));
+const PatientDashboard = lazy(() => import('./pages/PatientDashboard'));
+const VideoCall = lazy(() => import('./pages/VideoCall'));
+const PatientMaterials = lazy(() => import('./pages/PatientMaterials'));
+const QuestionnaireBuilder = lazy(() => import('./pages/QuestionnaireBuilder'));
+const PatientQuestionnaires = lazy(() => import('./pages/PatientQuestionnaires'));
+const DocumentRequests = lazy(() => import('./pages/DocumentRequests'));
+const SymptomDiary = lazy(() => import('./pages/SymptomDiary'));
+const TherapyNotes = lazy(() => import('./pages/TherapyNotes'));
+const PsychScreenings = lazy(() => import('./pages/PsychScreenings'));
+const CrisisPlan = lazy(() => import('./pages/CrisisPlan'));
+const MedicationTracker = lazy(() => import('./pages/MedicationTracker'));
+const Exercises = lazy(() => import('./pages/Exercises'));
+const ReminderSettings = lazy(() => import('./pages/ReminderSettings'));
+const Reports = lazy(() => import('./pages/Reports'));
+const WaitingRoom = lazy(() => import('./pages/WaitingRoom'));
+const TherapistQueue = lazy(() => import('./pages/TherapistQueue'));
+const Billing = lazy(() => import('./pages/Billing'));
 
 function App() {
   const { user, loading, checkAuth } = useAuthStore();
@@ -38,11 +43,16 @@ function App() {
     </div>
   );
 
+  const withSuspense = (node: JSX.Element) => <Suspense fallback={spinner}>{node}</Suspense>;
+
   return (
     <ErrorBoundary>
       <BrowserRouter>
         <Toaster position="top-right" />
         <Routes>
+          <Route path="/" element={user ? <Navigate to="/dashboard" /> : withSuspense(<Landing />)} />
+          <Route path="/share" element={withSuspense(<Share />)} />
+
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
           <Route path="/register" element={!user ? <Register /> : <Navigate to="/dashboard" />} />
           
@@ -52,7 +62,9 @@ function App() {
               loading ? (
                 spinner
               ) : user ? (
-                user.role === 'therapist' ? <TherapistDashboard /> : <PatientDashboard />
+                user.role === 'therapist'
+                  ? withSuspense(<TherapistDashboard />)
+                  : withSuspense(<PatientDashboard />)
               ) : (
                 <Navigate to="/login" />
               )
@@ -61,13 +73,13 @@ function App() {
           
           <Route
             path="/call/:roomId"
-            element={loading ? spinner : user ? <VideoCall /> : <Navigate to="/login" />}
+            element={loading ? spinner : user ? withSuspense(<VideoCall />) : <Navigate to="/login" />}
           />
           
           {/* Patient Pre-Session Materials */}
           <Route
             path="/materials"
-            element={loading ? spinner : user ? <PatientMaterials /> : <Navigate to="/login" />}
+            element={loading ? spinner : user ? withSuspense(<PatientMaterials />) : <Navigate to="/login" />}
           />
           
           {/* Questionnaire System */}
@@ -77,7 +89,9 @@ function App() {
               loading ? (
                 spinner
               ) : user ? (
-                user.role === 'therapist' ? <QuestionnaireBuilder /> : <PatientQuestionnaires />
+                user.role === 'therapist'
+                  ? withSuspense(<QuestionnaireBuilder />)
+                  : withSuspense(<PatientQuestionnaires />)
               ) : (
                 <Navigate to="/login" />
               )
@@ -87,7 +101,7 @@ function App() {
           {/* Document Requests */}
           <Route
             path="/documents"
-            element={loading ? spinner : user ? <DocumentRequests /> : <Navigate to="/login" />}
+            element={loading ? spinner : user ? withSuspense(<DocumentRequests />) : <Navigate to="/login" />}
           />
           
           {/* Symptom Diary - Patient Only */}
@@ -97,7 +111,7 @@ function App() {
               loading ? (
                 spinner
               ) : user?.role === 'patient' ? (
-                <SymptomDiary />
+                withSuspense(<SymptomDiary />)
               ) : (
                 <Navigate to="/dashboard" />
               )
@@ -111,7 +125,7 @@ function App() {
               loading ? (
                 spinner
               ) : user?.role === 'therapist' ? (
-                <TherapyNotes />
+                withSuspense(<TherapyNotes />)
               ) : (
                 <Navigate to="/dashboard" />
               )
@@ -123,7 +137,7 @@ function App() {
               loading ? (
                 spinner
               ) : user?.role === 'therapist' ? (
-                <TherapyNotes />
+                withSuspense(<TherapyNotes />)
               ) : (
                 <Navigate to="/dashboard" />
               )
@@ -137,7 +151,7 @@ function App() {
               loading ? (
                 spinner
               ) : user?.role === 'patient' ? (
-                <PsychScreenings />
+                withSuspense(<PsychScreenings />)
               ) : (
                 <Navigate to="/dashboard" />
               )
@@ -151,7 +165,7 @@ function App() {
               loading ? (
                 spinner
               ) : user?.role === 'patient' ? (
-                <CrisisPlan />
+                withSuspense(<CrisisPlan />)
               ) : (
                 <Navigate to="/dashboard" />
               )
@@ -165,7 +179,7 @@ function App() {
               loading ? (
                 spinner
               ) : user?.role === 'patient' ? (
-                <MedicationTracker />
+                withSuspense(<MedicationTracker />)
               ) : (
                 <Navigate to="/dashboard" />
               )
@@ -179,7 +193,7 @@ function App() {
               loading ? (
                 spinner
               ) : user?.role === 'patient' ? (
-                <Exercises />
+                withSuspense(<Exercises />)
               ) : (
                 <Navigate to="/dashboard" />
               )
@@ -189,7 +203,7 @@ function App() {
           {/* Reminder Settings - Both Roles */}
           <Route
             path="/reminders"
-            element={loading ? spinner : user ? <ReminderSettings /> : <Navigate to="/login" />}
+            element={loading ? spinner : user ? withSuspense(<ReminderSettings />) : <Navigate to="/login" />}
           />
           
           {/* Treatment Reports - Therapist Only */}
@@ -199,7 +213,7 @@ function App() {
               loading ? (
                 spinner
               ) : user?.role === 'therapist' ? (
-                <Reports />
+                withSuspense(<Reports />)
               ) : (
                 <Navigate to="/dashboard" />
               )
@@ -213,7 +227,7 @@ function App() {
               loading ? (
                 spinner
               ) : user?.role === 'patient' ? (
-                <WaitingRoom />
+                withSuspense(<WaitingRoom />)
               ) : (
                 <Navigate to="/dashboard" />
               )
@@ -227,7 +241,7 @@ function App() {
               loading ? (
                 spinner
               ) : user?.role === 'therapist' ? (
-                <TherapistQueue />
+                withSuspense(<TherapistQueue />)
               ) : (
                 <Navigate to="/dashboard" />
               )
@@ -241,14 +255,13 @@ function App() {
               loading ? (
                 spinner
               ) : user?.role === 'therapist' ? (
-                <Billing />
+                withSuspense(<Billing />)
               ) : (
                 <Navigate to="/dashboard" />
               )
             }
           />
-          
-          <Route path="/" element={<Navigate to="/dashboard" />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

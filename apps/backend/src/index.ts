@@ -10,6 +10,9 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
+// Ensure async route errors are handled by Express error middleware
+import 'express-async-errors';
+
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -26,6 +29,12 @@ import patientMaterialsRoutes from './routes/patient-materials.routes.js';
 import questionnaireRoutes from './routes/questionnaire.routes.js';
 import documentRequestsRoutes from './routes/document-requests.routes.js';
 import errorRoutes from './routes/error.routes.js';
+import analyticsRoutes from './routes/analytics.routes.js';
+import symptomDiaryRoutes from './routes/symptom-diary.routes.js';
+import medicationsRoutes from './routes/medications.routes.js';
+import therapyNotesRoutes from './routes/therapy-notes.routes.js';
+import billingRoutes from './routes/billing.routes.js';
+import patientsRoutes from './routes/patients.routes.js';
 import { initDatabase, getPool } from './database/init.js';
 import { startPeerServer } from './services/peerServer.js';
 import env from './config/env.js'; // Validiert alle ENV beim Import (nach dotenv.config())
@@ -59,6 +68,16 @@ function isCodespacesOrPreviewOrigin(origin: string): boolean {
   }
 }
 
+function isTryCloudflareOrigin(origin: string): boolean {
+  try {
+    const url = new URL(origin);
+    const host = url.hostname.toLowerCase();
+    return host.endsWith('.trycloudflare.com');
+  } catch {
+    return false;
+  }
+}
+
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -76,11 +95,16 @@ app.use(
         return callback(null, true);
       }
 
+      // DEV ONLY: Quick Tunnels für externe Tests zulassen (z.B. Arzt-Testing)
+      if (env.NODE_ENV !== 'production' && isTryCloudflareOrigin(origin)) {
+        return callback(null, true);
+      }
+
       return callback(new Error(`CORS blocked origin: ${origin}`));
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Access-Token'],
   })
 );
 
@@ -147,6 +171,7 @@ app.get('/api/health', (_req: Request, res: Response): void => {
 });
 
 // API Routes (alle authenticated via middleware)
+app.use('/api/analytics', analyticsRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/payments', paymentRoutes);
@@ -156,6 +181,11 @@ app.use('/api/patient-materials', patientMaterialsRoutes);
 app.use('/api/questionnaires', questionnaireRoutes);
 app.use('/api/document-requests', documentRequestsRoutes);
 app.use('/api/errors', errorRoutes);
+app.use('/api/symptom-diary', symptomDiaryRoutes);
+app.use('/api/medications', medicationsRoutes);
+app.use('/api/therapy-notes', therapyNotesRoutes);
+app.use('/api/billing', billingRoutes);
+app.use('/api/patients', patientsRoutes);
 
 // 404 Handler für unbekannte Routes
 app.use((req: Request, res: Response): void => {

@@ -13,76 +13,33 @@
   
   "icons": [
     {
-      "src": "/icons/icon-72x72.png",
-      "sizes": "72x72",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-96x96.png",
-      "sizes": "96x96",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-128x128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-144x144.png",
-      "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-152x152.png",
-      "sizes": "152x152",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icons/icon-512x512.png",
+      "src": "/icons/icon.svg",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/maskable.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ],
   
   "screenshots": [
     {
-      "src": "/screenshots/login-desktop.png",
+      "src": "/screenshots/placeholder.svg",
       "sizes": "1280x720",
-      "type": "image/png",
+      "type": "image/svg+xml",
       "form_factor": "wide",
-      "label": "Login-Bildschirm (Desktop)"
+      "label": "Screenshot (Placeholder)"
     },
     {
-      "src": "/screenshots/login-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
+      "src": "/screenshots/placeholder.svg",
+      "sizes": "1280x720",
+      "type": "image/svg+xml",
       "form_factor": "narrow",
-      "label": "Login-Bildschirm (Mobile)"
-    },
-    {
-      "src": "/screenshots/dashboard-mobile.png",
-      "sizes": "390x844",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Dashboard (Mobile)"
+      "label": "Screenshot (Placeholder)"
     }
   ],
   
@@ -94,40 +51,22 @@
   
   "shortcuts": [
     {
-      "name": "Neue Videosprechstunde",
-      "short_name": "Video",
-      "description": "Starte eine neue Videosprechstunde",
-      "url": "/video-call",
-      "icons": [
-        {
-          "src": "/icons/shortcut-video.png",
-          "sizes": "96x96"
-        }
-      ]
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "Öffne das Dashboard",
+      "url": "/dashboard"
     },
     {
-      "name": "Nachrichten",
-      "short_name": "Chat",
-      "description": "Öffne den Chat",
-      "url": "/messages",
-      "icons": [
-        {
-          "src": "/icons/shortcut-chat.png",
-          "sizes": "96x96"
-        }
-      ]
+      "name": "Fragebögen",
+      "short_name": "Fragebögen",
+      "description": "Öffne Fragebögen",
+      "url": "/questionnaires"
     },
     {
-      "name": "Termine",
-      "short_name": "Termine",
-      "description": "Verwalte deine Termine",
-      "url": "/appointments",
-      "icons": [
-        {
-          "src": "/icons/shortcut-calendar.png",
-          "sizes": "96x96"
-        }
-      ]
+      "name": "Erinnerungen",
+      "short_name": "Erinnerungen",
+      "description": "Erinnerungen verwalten",
+      "url": "/reminders"
     }
   ],
   
@@ -136,21 +75,13 @@
   
   "share_target": {
     "action": "/share",
-    "method": "POST",
-    "enctype": "multipart/form-data",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
     "params": {
       "title": "title",
       "text": "text",
       "url": "url",
-      "files": [
-        {
-          "name": "file",
-          "accept": [
-            "image/*",
-            "application/pdf"
-          ]
-        }
-      ]
+      "files": []
     }
   },
   

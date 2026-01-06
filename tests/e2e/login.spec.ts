@@ -13,6 +13,15 @@
 import { test, expect } from '@playwright/test';
 import { LoginPage } from '../page-objects/LoginPage';
 
+async function getStoredAccessToken(page: any): Promise<string | null> {
+  return page.evaluate(() => {
+    return (
+      sessionStorage.getItem('accessToken') ||
+      localStorage.getItem('token')
+    );
+  });
+}
+
 // DEFENSIVE: Test Isolation (Clean State between Tests)
 test.beforeEach(async ({ page, context }) => {
   // PREVENTS: Fehler in Race Conditions (localStorage from previous test)
@@ -49,8 +58,8 @@ test.describe('Login Flow', () => {
     // ASSERTION: Redirected to Dashboard
     await expect(page).toHaveURL(/dashboard/);
     
-    // ASSERTION: JWT Token in LocalStorage
-    const token = await page.evaluate(() => localStorage.getItem('token'));
+    // ASSERTION: JWT Token stored client-side (sessionStorage preferred)
+    const token = await getStoredAccessToken(page);
     expect(token).toBeTruthy();
     expect(token).toMatch(/^eyJ/); // JWT starts with "eyJ"
     
@@ -68,7 +77,7 @@ test.describe('Login Flow', () => {
     await expect(page).toHaveURL(/dashboard/);
     
     // ASSERTION: Therapeut Role (check API response or UI element)
-    const token = await page.evaluate(() => localStorage.getItem('token'));
+    const token = await getStoredAccessToken(page);
     expect(token).toBeTruthy();
     
     console.log('✅ Therapeut Login: Token received');
@@ -90,8 +99,8 @@ test.describe('Login Flow', () => {
     // ASSERTION: Still on Login Page
     await expect(page).toHaveURL(/login/);
     
-    // ASSERTION: No Token in LocalStorage
-    const token = await page.evaluate(() => localStorage.getItem('token'));
+    // ASSERTION: No Token stored
+    const token = await getStoredAccessToken(page);
     expect(token).toBeNull();
   });
 
@@ -142,7 +151,7 @@ test.describe('Login Flow', () => {
     await page.waitForTimeout(2000); // Wait for any potential navigation
     
     await expect(page).toHaveURL(/login/); // Still on login page
-    const token = await page.evaluate(() => localStorage.getItem('token'));
+    const token = await getStoredAccessToken(page);
     expect(token).toBeNull(); // No auth token stored
     
     console.log('✅ SQL Injection Test: Attack blocked (no authentication)');
@@ -214,14 +223,22 @@ test.describe('Login Flow', () => {
     
     const currentUrl = page.url();
     console.log(`✅ After login: ${currentUrl}`);
+
+    // Ensure token is persisted before we reload (avoids race conditions).
+    await expect
+      .poll(() => getStoredAccessToken(page), { timeout: 5000 })
+      .toBeTruthy();
     
     // ACTION: Refresh Page
     await page.reload();
+
+    // Wait for app bootstrap (and potential refresh flow) to complete.
+    await page.waitForURL((url) => !url.pathname.includes('/login'), { timeout: 15000 });
     
     // ASSERTION: Still on same page (not redirected to login)
     await expect(page).not.toHaveURL(/login/);
     
-    const token = await page.evaluate(() => localStorage.getItem('token'));
+    const token = await getStoredAccessToken(page);
     expect(token).toBeTruthy();
     
     console.log('✅ Session Persistence: Token survives refresh');

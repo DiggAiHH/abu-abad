@@ -14,7 +14,7 @@ interface InvoiceItem {
 
 interface Invoice {
   id: number;
-  patientId: number;
+  patientId: string;
   patientName: string;
   invoiceNumber: string;
   date: string;
@@ -106,8 +106,7 @@ const Billing = () => {
 
     try {
       await api.post('/billing/invoices', {
-        ...newInvoice,
-        patientId: parseInt(newInvoice.patientId)
+        ...newInvoice
       });
       toast.success('Rechnung erstellt');
       setActiveTab('invoices');

@@ -20,6 +20,56 @@ import { v4 as uuidv4 } from 'uuid';
 const router = Router();
 
 /**
+ * GET /api/appointments
+ * Minimaler Endpoint für Therapist-UI (u.a. TherapyNotes Patientenliste).
+ * Query: ?status=booked|completed|available|cancelled
+ */
+router.get('/', authenticate, requireTherapist, async (req: Request, res: Response) => {
+  const { status } = req.query;
+
+  const params: any[] = [req.user!.userId];
+  let queryText = `
+    SELECT
+      a.id,
+      a.patient_id,
+      a.start_time,
+      a.end_time,
+      a.status,
+      u.first_name_encrypted,
+      u.last_name_encrypted
+    FROM appointments a
+    LEFT JOIN users u ON u.id = a.patient_id
+    WHERE a.therapist_id = $1
+  `;
+
+  if (status && typeof status === 'string') {
+    queryText += ' AND a.status = $2';
+    params.push(status);
+  }
+
+  queryText += ' ORDER BY a.start_time DESC LIMIT 500';
+
+  const result = await query(queryText, params);
+
+  // Map to the minimal shape used by TherapyNotes.tsx
+  const appointments = result.rows.map((r: any) => ({
+    id: r.id,
+    patientId: r.patient_id,
+    startTime: r.start_time,
+    endTime: r.end_time,
+    status: r.status,
+    patient: r.patient_id
+      ? {
+          firstName: r.first_name_encrypted ? decrypt(r.first_name_encrypted) : '',
+          lastName: r.last_name_encrypted ? decrypt(r.last_name_encrypted) : '',
+        }
+      : null,
+  }));
+
+  res.json(appointments);
+});
+
+/**
  * POST /api/appointments
  * Therapeut erstellt verfügbare Slots
  */

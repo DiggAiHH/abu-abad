@@ -31,14 +31,24 @@ export async function authenticate(
 ): Promise<void> {
   try {
     const authHeader = req.headers.authorization;
-    
-    // SECURITY: Strict Bearer Token Validation
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+
+    // In some deployments (e.g. when the app is protected by Nginx Basic Auth),
+    // the `Authorization` header is reserved for Basic credentials. In that case,
+    // the frontend sends the access token via `X-Access-Token`.
+    const xAccessToken = req.get('x-access-token');
+
+    let token: string | null = null;
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      token = authHeader.substring(7);
+    } else if (xAccessToken && typeof xAccessToken === 'string') {
+      token = xAccessToken;
+    }
+
+    // SECURITY: Strict token presence validation
+    if (!token) {
       res.status(401).json({ error: 'Authentifizierung erforderlich' });
       return;
     }
-    
-    const token = authHeader.substring(7);
     
     // SECURITY: Verhindert Token-Reuse nach Logout (Blacklist-Check könnte hier ergänzt werden)
     const payload = verifyAccessToken(token);

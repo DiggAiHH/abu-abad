@@ -26,7 +26,32 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:5175',
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:8080',
+
+    // Supports Nginx Basic Auth (doctor stack).
+    // If env vars are not set, default to the repo's doctor-stack credentials when
+    // targeting the local doctor entrypoint.
+    ...(() => {
+      const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:8080';
+      const isDoctorLocal =
+        baseURL.includes('://localhost:8080') || baseURL.includes('://127.0.0.1:8080');
+
+      const username =
+        process.env.BASIC_AUTH_USER || (isDoctorLocal ? 'Abu-Abbad-Psyjo-App-Test' : undefined);
+      const password =
+        process.env.BASIC_AUTH_PASS || (isDoctorLocal ? 'DoctorTest2026!' : undefined);
+
+      if (!username || !password) return {};
+
+      const token = Buffer.from(`${username}:${password}`).toString('base64');
+      return {
+        httpCredentials: { username, password },
+        // NOTE: We send Authorization proactively to avoid 401 challenges in E2E.
+        extraHTTPHeaders: {
+          Authorization: `Basic ${token}`,
+        },
+      };
+    })(),
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',

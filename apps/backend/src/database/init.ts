@@ -64,7 +64,8 @@ export async function initDatabase(): Promise<void> {
 async function createSchema(client: PoolClient): Promise<void> {
   const schemaFiles = [
     new URL('./schema.sql', import.meta.url),
-    new URL('./schema_extension_patient_prep.sql', import.meta.url)
+    new URL('./schema_extension_patient_prep.sql', import.meta.url),
+    new URL('./schema_extension_clinical_modules.sql', import.meta.url)
   ];
 
   for (const schemaFileUrl of schemaFiles) {

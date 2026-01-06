@@ -17,8 +17,8 @@ const CRITICAL_ASSETS = [
   '/index.html',
   '/manifest.json',
   '/offline.html',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  '/icons/icon.svg',
+  '/icons/maskable.svg'
 ];
 
 // ══════════════════════════════════════════════════════════════

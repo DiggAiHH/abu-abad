@@ -1,5 +1,6 @@
 # Frontend Dockerfile
-FROM node:18-alpine AS builder
+# Vite 7 requires Node.js >= 20.19
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 

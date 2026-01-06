@@ -14,6 +14,7 @@ import { Pool } from 'pg';
 import multer from 'multer';
 import pdfParse from 'pdf-parse';
 import { authenticate } from '../middleware/auth.js';
+import { AppError } from '../middleware/errorHandler.js';
 import { encrypt, decrypt } from '../utils/encryption.js';
 import { logger } from '../utils/logger.js';
 import { ocrPdfBufferToText } from '../utils/ocr.js';

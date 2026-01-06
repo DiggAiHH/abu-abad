@@ -7,8 +7,8 @@
 # ══════════════════════════════════════════════════════════════
 
 [build]
-  # Frontend Build Command
-  command = "cd apps/frontend && npm install && npm run build"
+  # Frontend Build Command (npm workspaces + root package-lock.json)
+  command = "npm ci && npm run build --workspace=frontend"
   
   # Output Directory (Vite Default)
   publish = "apps/frontend/dist"
@@ -40,27 +40,11 @@
 
 [[redirects]]
   # SPA Fallback: Alle Routes → index.html
+  # Backend-Calls sollen im Frontend via VITE_API_URL direkt auf die Backend-Origin gehen.
   from = "/*"
   to = "/index.html"
   status = 200
   force = false
-  
-  # SECURITY: Exclude API calls (should go to backend)
-  conditions = { Role = ["!api"] }
-
-[[redirects]]
-  # API Proxy: /api/* → Backend Server
-  # WICHTIG: Backend-URL in Environment Variables setzen
-  from = "/api/*"
-  to = "https://your-backend-url.railway.app/api/:splat"
-  status = 200
-  force = true
-  
-  # HEADERS für CORS
-  [redirects.headers]
-    Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
-    Access-Control-Allow-Headers = "Content-Type, Authorization"
 
 # ══════════════════════════════════════════════════════════════
 # HEADERS (SECURITY & PERFORMANCE)
@@ -80,11 +64,11 @@
     # CONTENT SECURITY POLICY (Strict)
     Content-Security-Policy = """
       default-src 'self';
-      script-src 'self' 'unsafe-inline' 'unsafe-eval';
+      script-src 'self';
       style-src 'self' 'unsafe-inline';
       img-src 'self' data: blob:;
       font-src 'self' data:;
-      connect-src 'self' https://your-backend-url.railway.app wss://your-backend-url.railway.app;
+      connect-src 'self' https: wss:;
       media-src 'self' blob:;
       object-src 'none';
       base-uri 'self';

@@ -21,7 +21,9 @@ const RAW_API_URL = import.meta.env.VITE_API_URL || '';
 // VITE_API_URL soll auf die Backend-Origin zeigen (z.B. http://localhost:4000)
 // Robustheit: falls /api im Wert steckt, entfernen und sauber wieder anhängen.
 const API_ORIGIN = RAW_API_URL.replace(/\/$/, '').replace(/\/api$/, '');
-const BASE_URL = API_ORIGIN ? `${API_ORIGIN}/api` : '/api';
+const HAS_API_ORIGIN = Boolean(API_ORIGIN);
+const IS_PROD = Boolean(import.meta.env.PROD);
+const BASE_URL = HAS_API_ORIGIN ? `${API_ORIGIN}/api` : '/api';
 
 // SECURITY: Timeout verhindert Hanging Requests (DoS-Prävention)
 // GDPR-COMPLIANCE: Keine Third-Party Analytics oder Tracking
@@ -37,9 +39,24 @@ export const api = axios.create({
 // Request Interceptor: Add JWT Token
 api.interceptors.request.use(
   (config) => {
+    // Secure-by-default: In Production muss die Backend-Origin explizit konfiguriert sein.
+    // In DEV ist '/api' via Vite-Proxy üblich.
+    if (IS_PROD && !HAS_API_ORIGIN) {
+      // Avoid repeated toasts if multiple requests fire.
+      if (!(window as any).__missingApiOriginToastShown) {
+        (window as any).__missingApiOriginToastShown = true;
+        toast.error('Konfiguration fehlt: VITE_API_URL ist nicht gesetzt.');
+      }
+      return Promise.reject(new Error('Missing VITE_API_URL (backend origin)'));
+    }
+
     const token = getAccessToken();
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers = config.headers || {};
+      // NOTE: This app is often protected by Nginx Basic Auth, which uses the
+      // `Authorization` header. To avoid header collisions, we send the access
+      // token in a dedicated header.
+      (config.headers as any)['X-Access-Token'] = token;
     }
     return config;
   },
@@ -88,8 +105,15 @@ api.interceptors.response.use(
   async (error: AxiosError<{ error: string }>) => {
     const message = coerceErrorMessage(error.response?.data);
     const originalRequest: any = error.config;
+    const requestUrl = typeof originalRequest?.url === 'string' ? originalRequest.url : '';
     
     if (error.response?.status === 401) {
+      // Auth endpoints should not trigger refresh-token flows.
+      // Otherwise invalid credentials can hang behind refresh attempts.
+      if (requestUrl.includes('/auth/login') || requestUrl.includes('/auth/register')) {
+        return Promise.reject(error);
+      }
+
       if (logoutInProgress) {
         return Promise.reject(error);
       }
@@ -99,7 +123,7 @@ api.interceptors.response.use(
         const newToken = await refreshAccessToken();
         if (newToken) {
           originalRequest.headers = originalRequest.headers || {};
-          originalRequest.headers.Authorization = `Bearer ${newToken}`;
+          originalRequest.headers['X-Access-Token'] = newToken;
           return api.request(originalRequest);
         }
       }

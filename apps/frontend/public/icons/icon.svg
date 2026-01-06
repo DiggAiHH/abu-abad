@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Abu-Abbad">
+  <rect width="512" height="512" rx="96" fill="#2563eb"/>
+  <path d="M166 338c0-70 40-118 90-118s90 48 90 118" fill="none" stroke="#fff" stroke-width="34" stroke-linecap="round"/>
+  <path d="M190 214c18-24 40-36 66-36s48 12 66 36" fill="none" stroke="#fff" stroke-width="26" stroke-linecap="round"/>
+  <circle cx="214" cy="254" r="14" fill="#fff"/>
+  <circle cx="298" cy="254" r="14" fill="#fff"/>
+</svg>

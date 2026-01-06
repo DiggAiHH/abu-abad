@@ -1,0 +1,125 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: doctor_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: therapist_user
+      POSTGRES_PASSWORD: secure_password
+      POSTGRES_DB: therapist_db
+    volumes:
+      - doctor-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U therapist_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - doctor-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: doctor_redis
+    restart: unless-stopped
+    volumes:
+      - doctor-redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - doctor-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: apps/backend/Dockerfile
+    container_name: doctor_backend
+    restart: unless-stopped
+    command: >
+      sh -lc '
+        set -euo pipefail;
+        mkdir -p /secrets;
+        if [ ! -f /secrets/backend.env ]; then
+          JWT_SECRET="$(node -e "process.stdout.write(require(\"crypto\").randomBytes(32).toString(\"hex\"))")";
+          REFRESH_TOKEN_SECRET="$(node -e "process.stdout.write(require(\"crypto\").randomBytes(32).toString(\"hex\"))")";
+          ENCRYPTION_KEY="$(node -e "process.stdout.write(require(\"crypto\").randomBytes(32).toString(\"hex\"))")";
+          STRIPE_SECRET_KEY="sk_test_dummy_$(node -e "process.stdout.write(require(\"crypto\").randomBytes(16).toString(\"hex\"))")";
+          STRIPE_PUBLISHABLE_KEY="pk_test_dummy_$(node -e "process.stdout.write(require(\"crypto\").randomBytes(16).toString(\"hex\"))")";
+          {
+            echo "JWT_SECRET=$JWT_SECRET";
+            echo "REFRESH_TOKEN_SECRET=$REFRESH_TOKEN_SECRET";
+            echo "ENCRYPTION_KEY=$ENCRYPTION_KEY";
+            echo "STRIPE_SECRET_KEY=$STRIPE_SECRET_KEY";
+            echo "STRIPE_PUBLISHABLE_KEY=$STRIPE_PUBLISHABLE_KEY";
+          } > /secrets/backend.env;
+          chmod 600 /secrets/backend.env;
+        fi;
+        set -a; . /secrets/backend.env; set +a;
+        exec node dist/index.js;
+      '
+    environment:
+      NODE_ENV: development
+      PORT: 4000
+
+      # Wichtig: Im Container NICHT localhost verwenden
+      DATABASE_URL: postgresql://therapist_user:secure_password@postgres:5432/therapist_db
+      REDIS_URL: redis://redis:6379
+
+      # CORS: muss den PUBLIC_URL Origin enthalten (z.B. https://doctor.example.com)
+      # Default bleibt localhost für lokale Checks.
+      ALLOWED_ORIGINS: http://localhost:8080,http://127.0.0.1:8080
+      FRONTEND_URL: http://localhost:8080
+
+      # PeerJS
+      PEER_PORT: 9001
+      PEER_PATH: /peerjs
+
+      # Stripe (Test) – wird als Dummy in /secrets/backend.env erzeugt
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-whsec_placeholder}
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - doctor-network
+    volumes:
+      - doctor-secrets:/secrets
+
+  frontend:
+    build:
+      context: .
+      dockerfile: apps/frontend/Dockerfile
+    container_name: doctor_frontend
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:80"
+    depends_on:
+      - backend
+    networks:
+      - doctor-network
+    volumes:
+      - ./doctor/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./doctor/htpasswd:/etc/nginx/.htpasswd:ro
+
+  cloudflared:
+    image: cloudflare/cloudflared:2025.11.1
+    container_name: doctor_cloudflared
+    restart: unless-stopped
+    command: tunnel --url http://frontend:80
+    depends_on:
+      - frontend
+    networks:
+      - doctor-network
+
+volumes:
+  doctor-postgres-data:
+  doctor-redis-data:
+  doctor-secrets:
+
+networks:
+  doctor-network:
+    driver: bridge
