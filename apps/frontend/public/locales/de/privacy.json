@@ -1,0 +1,47 @@
+{
+  "title": "Datenschutzerklärung",
+  "lastUpdated": "Stand: Januar 2026",
+  "backToHome": "Zurück zur Startseite",
+  "sections": {
+    "responsible": {
+      "title": "1. Verantwortlicher",
+      "content": "Verantwortlich für die Datenverarbeitung im Sinne der DSGVO ist:\n\nAbu-Abbad Teletherapie\nMusterstraße 123\n12345 Musterstadt\nDeutschland\n\nE-Mail: datenschutz@abu-abbad.de\nTelefon: +49 (0) 123 456789"
+    },
+    "dataCollection": {
+      "title": "2. Welche Daten wir erheben",
+      "content": "Wir erheben und verarbeiten folgende personenbezogene Daten:\n\n• **Stammdaten:** Name, E-Mail-Adresse, Telefonnummer\n• **Gesundheitsdaten:** Symptomtagebücher, Therapienotizen, Screening-Ergebnisse (besondere Kategorie nach Art. 9 DSGVO)\n• **Nutzungsdaten:** Login-Zeiten, Sitzungsdauer (anonymisiert)\n• **Kommunikationsdaten:** Video-/Audiodaten während Therapiesitzungen (werden nicht gespeichert)"
+    },
+    "purpose": {
+      "title": "3. Zweck der Datenverarbeitung",
+      "content": "Wir verarbeiten Ihre Daten ausschließlich zu folgenden Zwecken:\n\n• Durchführung von Teletherapie-Sitzungen\n• Verwaltung Ihres Patientenkontos\n• Dokumentation des Therapieverlaufs\n• Kommunikation zwischen Patient und Therapeut\n• Erinnerungen an Termine und Medikamente\n\nRechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung) sowie Art. 9 Abs. 2 lit. h DSGVO (Gesundheitsversorgung)"
+    },
+    "storage": {
+      "title": "4. Speicherung und Sicherheit",
+      "content": "Ihre Daten werden nach höchsten Sicherheitsstandards gespeichert:\n\n• **Verschlüsselung:** AES-256-GCM für alle gespeicherten Daten\n• **Übertragung:** TLS 1.3 für alle Verbindungen\n• **Speicherort:** Server in der Europäischen Union\n• **Zugriffskontrolle:** Nur autorisierte Therapeuten haben Zugriff auf Ihre Daten\n• **Backup:** Tägliche verschlüsselte Backups"
+    },
+    "retention": {
+      "title": "5. Speicherdauer",
+      "content": "Wir speichern Ihre Daten nur so lange, wie es für den Verarbeitungszweck erforderlich ist:\n\n• **Stammdaten:** Bis zur Löschung Ihres Kontos\n• **Therapiedokumentation:** 10 Jahre nach Behandlungsende (gesetzliche Aufbewahrungspflicht)\n• **Kommunikationsdaten:** Werden nicht gespeichert"
+    },
+    "rights": {
+      "title": "6. Ihre Rechte",
+      "content": "Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:\n\n• **Auskunft (Art. 15):** Sie können jederzeit Auskunft über Ihre gespeicherten Daten verlangen\n• **Berichtigung (Art. 16):** Sie können unrichtige Daten korrigieren lassen\n• **Löschung (Art. 17):** Sie können die Löschung Ihrer Daten verlangen (unter Beachtung gesetzlicher Aufbewahrungsfristen)\n• **Einschränkung (Art. 18):** Sie können die Verarbeitung einschränken lassen\n• **Datenübertragbarkeit (Art. 20):** Sie können Ihre Daten in einem gängigen Format erhalten\n• **Widerspruch (Art. 21):** Sie können der Verarbeitung widersprechen"
+    },
+    "thirdParties": {
+      "title": "7. Weitergabe an Dritte",
+      "content": "Wir geben Ihre Daten nur in folgenden Fällen an Dritte weiter:\n\n• Mit Ihrer ausdrücklichen Einwilligung\n• Zur Erfüllung gesetzlicher Pflichten\n• An Auftragsverarbeiter (z.B. Hosting-Provider) unter Einhaltung von Art. 28 DSGVO\n\nEine Übermittlung in Drittländer außerhalb der EU findet nicht statt."
+    },
+    "cookies": {
+      "title": "8. Cookies und Tracking",
+      "content": "Wir verwenden nur technisch notwendige Cookies:\n\n• **Session-Cookie:** Für die Authentifizierung\n• **Spracheinstellung:** Für Ihre bevorzugte Sprache\n\nWir verwenden keine Tracking-Cookies oder Analyse-Tools von Drittanbietern."
+    },
+    "changes": {
+      "title": "9. Änderungen dieser Datenschutzerklärung",
+      "content": "Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf anzupassen. Die aktuelle Version ist stets auf unserer Website verfügbar. Bei wesentlichen Änderungen werden Sie per E-Mail informiert."
+    },
+    "contact": {
+      "title": "10. Kontakt und Beschwerderecht",
+      "content": "Bei Fragen zum Datenschutz oder zur Ausübung Ihrer Rechte wenden Sie sich an:\n\ndatenschutz@abu-abbad.de\n\nSie haben zudem das Recht, sich bei einer Aufsichtsbehörde zu beschweren, z.B. beim Landesbeauftragten für Datenschutz und Informationsfreiheit Ihres Bundeslandes."
+    }
+  }
+}

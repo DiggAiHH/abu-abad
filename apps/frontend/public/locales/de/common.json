@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "logout": "Abmelden",
+    "settings": "Einstellungen",
+    "home": "Startseite",
+    "back": "Zurück"
+  },
+  "buttons": {
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "submit": "Absenden",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "close": "Schließen",
+    "confirm": "Bestätigen",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "loading": "Wird geladen..."
+  },
+  "errors": {
+    "required": "Pflichtfeld",
+    "invalidEmail": "Ungültige E-Mail-Adresse",
+    "serverError": "Serverfehler. Bitte versuchen Sie es später erneut.",
+    "networkError": "Keine Verbindung zum Server möglich",
+    "timeout": "Zeitüberschreitung. Bitte versuchen Sie es erneut.",
+    "unknown": "Ein unbekannter Fehler ist aufgetreten"
+  },
+  "validation": {
+    "minLength": "Mindestens {{min}} Zeichen erforderlich",
+    "maxLength": "Maximal {{max}} Zeichen erlaubt",
+    "passwordMismatch": "Passwörter stimmen nicht überein",
+    "passwordTooShort": "Passwort muss mindestens 8 Zeichen haben"
+  },
+  "common": {
+    "yes": "Ja",
+    "no": "Nein",
+    "or": "oder",
+    "and": "und",
+    "all": "Alle",
+    "none": "Keine",
+    "search": "Suchen",
+    "filter": "Filtern",
+    "sort": "Sortieren",
+    "date": "Datum",
+    "time": "Uhrzeit",
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "address": "Adresse",
+    "notes": "Notizen"
+  },
+  "roles": {
+    "therapist": "Therapeut",
+    "patient": "Patient"
+  },
+  "gdpr": {
+    "dataProtection": "Datenschutz",
+    "privacyPolicy": "Datenschutzerklärung",
+    "consent": "Einwilligung",
+    "secureStorage": "Alle Daten werden verschlüsselt gespeichert."
+  }
+}

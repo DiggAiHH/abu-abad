@@ -69,8 +69,8 @@ services:
 
       # CORS: muss den PUBLIC_URL Origin enthalten (z.B. https://doctor.example.com)
       # Default bleibt localhost für lokale Checks.
-      ALLOWED_ORIGINS: http://localhost:8080,http://127.0.0.1:8080
-      FRONTEND_URL: http://localhost:8080
+      ALLOWED_ORIGINS: http://localhost:5175,http://127.0.0.1:5175
+      FRONTEND_URL: http://localhost:5175
 
       # PeerJS
       PEER_PORT: 9001

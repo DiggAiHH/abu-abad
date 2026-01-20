@@ -1,0 +1,47 @@
+{
+  "title": "Politika e privatësisë",
+  "lastUpdated": "Përditësimi: Janar 2026",
+  "backToHome": "Kthehu në ballinë",
+  "sections": {
+    "responsible": {
+      "title": "1. Pala përgjegjëse",
+      "content": "Përgjegjës për përpunimin e të dhënave sipas GDPR-së është:\n\nAbu-Abbad Teleterapi\nMusterstraße 123\n12345 Musterstadt\nGjermani\n\nEmail: datenschutz@abu-abbad.de\nTelefon: +49 (0) 123 456789"
+    },
+    "dataCollection": {
+      "title": "2. Cilat të dhëna mbledhim",
+      "content": "Ne mbledhim dhe përpunojmë të dhënat personale të mëposhtme:\n\n• **Të dhënat bazë:** Emri, adresa e emailit, numri i telefonit\n• **Të dhënat shëndetësore:** Ditarët e simptomave, shënimet e terapisë, rezultatet e screeningut (kategori e veçantë sipas nenit 9 të GDPR-së)\n• **Të dhënat e përdorimit:** Kohët e hyrjes, kohëzgjatja e seancave (të anonimizuara)\n• **Të dhënat e komunikimit:** Të dhënat video/audio gjatë seancave të terapisë (nuk ruhen)"
+    },
+    "purpose": {
+      "title": "3. Qëllimi i përpunimit të të dhënave",
+      "content": "Ne i përpunojmë të dhënat tuaja ekskluzivisht për qëllimet e mëposhtme:\n\n• Kryerja e seancave të teleterapisë\n• Menaxhimi i llogarisë suaj të pacientit\n• Dokumentimi i ecurisë së terapisë\n• Komunikimi midis pacientit dhe terapistit\n• Kujtesat për takimet dhe ilaçet\n\nBaza ligjore: Neni 6, paragrafi 1, shkronja b e GDPR-së (përmbushja e kontratës) dhe neni 9, paragrafi 2, shkronja h e GDPR-së (kujdesi shëndetësor)"
+    },
+    "storage": {
+      "title": "4. Ruajtja dhe siguria",
+      "content": "Të dhënat tuaja ruhen sipas standardeve më të larta të sigurisë:\n\n• **Enkriptimi:** AES-256-GCM për të gjitha të dhënat e ruajtura\n• **Transmetimi:** TLS 1.3 për të gjitha lidhjet\n• **Vendndodhja e ruajtjes:** Serverë brenda Bashkimit Evropian\n• **Kontrolli i aksesit:** Vetëm terapistët e autorizuar kanë akses në të dhënat tuaja\n• **Kopje rezervë:** Kopje rezervë ditore të enkriptuara"
+    },
+    "retention": {
+      "title": "5. Periudha e ruajtjes",
+      "content": "Ne i ruajmë të dhënat tuaja vetëm për aq kohë sa është e nevojshme për qëllimin e përpunimit:\n\n• **Të dhënat bazë:** Deri në fshirjen e llogarisë suaj\n• **Dokumentacioni i terapisë:** 10 vjet pas përfundimit të trajtimit (detyrimi ligjor i ruajtjes)\n• **Të dhënat e komunikimit:** Nuk ruhen"
+    },
+    "rights": {
+      "title": "6. Të drejtat tuaja",
+      "content": "Ju keni të drejtat e mëposhtme lidhur me të dhënat tuaja personale:\n\n• **Aksesi (neni 15):** Mund të kërkoni informacion mbi të dhënat tuaja të ruajtura në çdo kohë\n• **Korrigjimi (neni 16):** Mund të kërkoni korrigjimin e të dhënave të pasakta\n• **Fshirja (neni 17):** Mund të kërkoni fshirjen e të dhënave tuaja (duke respektuar afatet ligjore të ruajtjes)\n• **Kufizimi (neni 18):** Mund të kërkoni kufizimin e përpunimit\n• **Transportueshmëria e të dhënave (neni 20):** Mund të merrni të dhënat tuaja në një format të zakonshëm\n• **Kundërshtimi (neni 21):** Mund të kundërshtoni përpunimin"
+    },
+    "thirdParties": {
+      "title": "7. Ndarja me palë të treta",
+      "content": "Ne i ndajmë të dhënat tuaja me palë të treta vetëm në rastet e mëposhtme:\n\n• Me pëlqimin tuaj të shprehur\n• Për të përmbushur detyrimet ligjore\n• Me përpunuesit e të dhënave (p.sh. ofruesit e hostingut) në përputhje me nenin 28 të GDPR-së\n\nTransferimi në vende të treta jashtë BE-së nuk bëhet."
+    },
+    "cookies": {
+      "title": "8. Cookies dhe gjurmimi",
+      "content": "Ne përdorim vetëm cookies teknikisht të nevojshme:\n\n• **Cookie e sesionit:** Për autentifikim\n• **Cilësimi i gjuhës:** Për gjuhën tuaj të preferuar\n\nNe nuk përdorim cookies gjurmuese apo mjete analize nga palë të treta."
+    },
+    "changes": {
+      "title": "9. Ndryshimet e kësaj politike të privatësisë",
+      "content": "Ne rezervojmë të drejtën për të përshtatur këtë politikë të privatësisë sipas nevojës. Versioni aktual është gjithmonë i disponueshëm në faqen tonë të internetit. Për ndryshime thelbësore do të njoftoheni me email."
+    },
+    "contact": {
+      "title": "10. Kontakti dhe e drejta e ankesës",
+      "content": "Për pyetje rreth mbrojtjes së të dhënave ose për të ushtruar të drejtat tuaja, kontaktoni:\n\ndatenschutz@abu-abbad.de\n\nGjithashtu keni të drejtë të paraqisni një ankesë pranë një autoriteti mbikëqyrës, p.sh. Komisionerit për Mbrojtjen e të Dhënave."
+    }
+  }
+}

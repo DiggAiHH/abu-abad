@@ -1,0 +1,206 @@
+{
+  "landing": {
+    "title": "Abu-Abbad – GDPR-Compliant Teletherapy",
+    "header": {
+      "login": "Sign In",
+      "tryFree": "Try for Free"
+    },
+    "hero": {
+      "headline": "Teletherapy that feels secure.",
+      "description": "GDPR-compliant platform for therapists and patients – with appointment management, secure communication, and video sessions."
+    },
+    "cta": {
+      "start": "Get Started",
+      "hasAccount": "I already have an account"
+    },
+    "features": {
+      "encryption": "Encryption & Privacy by Design",
+      "video": "Video & Audio Sessions (WebRTC)",
+      "questionnaires": "Questionnaires, Materials, Documents",
+      "pwa": "Installable as PWA for testing"
+    },
+    "quickTest": {
+      "title": "Quick Test",
+      "description": "For testing, you can sign in directly or create a new account.",
+      "login": "Login",
+      "register": "Register",
+      "note": "Note: In production, imprint/privacy policy are required. This is intentionally minimal for testing."
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Page not found",
+    "backToDashboard": "Back to Dashboard"
+  },
+  "share": {
+    "title": "Share Document",
+    "loading": "Loading document...",
+    "error": "Document not found or expired"
+  },
+  "dashboard": {
+    "therapist": {
+      "title": "Therapist Dashboard",
+      "welcome": "Welcome back",
+      "patients": "My Patients",
+      "appointments": "Upcoming Appointments",
+      "noAppointments": "No upcoming appointments",
+      "quickActions": "Quick Actions"
+    },
+    "patient": {
+      "title": "Patient Dashboard",
+      "welcome": "Welcome back",
+      "nextAppointment": "Next Appointment",
+      "noAppointment": "No appointment scheduled",
+      "myTherapist": "My Therapist",
+      "bookAppointment": "Book Appointment"
+    }
+  },
+  "videoCall": {
+    "title": "Video Call",
+    "connecting": "Connecting...",
+    "waiting": "Waiting for other participant",
+    "controls": {
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "videoOff": "Turn Video Off",
+      "videoOn": "Turn Video On",
+      "shareScreen": "Share Screen",
+      "stopSharing": "Stop Sharing",
+      "endCall": "End Call"
+    },
+    "error": {
+      "connection": "Connection Error",
+      "camera": "Camera not available",
+      "microphone": "Microphone not available"
+    }
+  },
+  "materials": {
+    "title": "Materials",
+    "description": "Here you will find all materials provided by your therapist.",
+    "noMaterials": "No materials available",
+    "download": "Download",
+    "categories": {
+      "all": "All",
+      "documents": "Documents",
+      "exercises": "Exercises",
+      "audio": "Audio",
+      "video": "Video"
+    }
+  },
+  "questionnaires": {
+    "builder": {
+      "title": "Questionnaire Builder",
+      "newQuestion": "New Question",
+      "questionTypes": {
+        "text": "Free Text",
+        "multipleChoice": "Multiple Choice",
+        "scale": "Scale",
+        "yesNo": "Yes/No"
+      },
+      "save": "Save Questionnaire",
+      "preview": "Preview"
+    },
+    "patient": {
+      "title": "Questionnaires",
+      "pending": "Pending",
+      "completed": "Completed",
+      "noPending": "No pending questionnaires",
+      "submit": "Submit"
+    }
+  },
+  "documents": {
+    "title": "Document Requests",
+    "request": "Request Document",
+    "upload": "Upload Document",
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected"
+  },
+  "diary": {
+    "title": "Symptom Diary",
+    "newEntry": "New Entry",
+    "mood": "Mood",
+    "symptoms": "Symptoms",
+    "notes": "Notes",
+    "date": "Date",
+    "noEntries": "No entries yet"
+  },
+  "therapyNotes": {
+    "title": "Therapy Notes",
+    "newNote": "New Note",
+    "patient": "Patient",
+    "session": "Session",
+    "progress": "Progress",
+    "nextSteps": "Next Steps"
+  },
+  "screenings": {
+    "title": "Psychological Screenings",
+    "available": "Available Screenings",
+    "completed": "Completed Screenings",
+    "start": "Start Screening",
+    "results": "Results"
+  },
+  "crisisPlan": {
+    "title": "Crisis Plan",
+    "emergencyContacts": "Emergency Contacts",
+    "warningSigns": "Warning Signs",
+    "copingStrategies": "Coping Strategies",
+    "professionalHelp": "Professional Help",
+    "edit": "Edit Crisis Plan"
+  },
+  "medications": {
+    "title": "Medication Tracker",
+    "addMedication": "Add Medication",
+    "name": "Medication Name",
+    "dosage": "Dosage",
+    "frequency": "Frequency",
+    "reminders": "Reminders",
+    "taken": "Taken",
+    "missed": "Missed"
+  },
+  "exercises": {
+    "title": "Exercises & Homework",
+    "assigned": "Assigned",
+    "completed": "Completed",
+    "instructions": "Instructions",
+    "markComplete": "Mark as Complete"
+  },
+  "reminders": {
+    "title": "Reminder Settings",
+    "appointments": "Appointment Reminders",
+    "medications": "Medication Reminders",
+    "exercises": "Exercise Reminders",
+    "email": "Email",
+    "push": "Push Notifications",
+    "sms": "SMS"
+  },
+  "reports": {
+    "title": "Treatment Reports",
+    "generate": "Generate Report",
+    "dateRange": "Date Range",
+    "patient": "Patient",
+    "export": "Export"
+  },
+  "waitingRoom": {
+    "title": "Waiting Room",
+    "yourTurn": "It's your turn",
+    "position": "Position in queue",
+    "estimatedWait": "Estimated wait time",
+    "therapistReady": "Your therapist is ready"
+  },
+  "queue": {
+    "title": "Queue",
+    "nextPatient": "Next Patient",
+    "waitingPatients": "Waiting Patients",
+    "callNext": "Call Next",
+    "empty": "Queue is empty"
+  },
+  "billing": {
+    "title": "Billing",
+    "invoices": "Invoices",
+    "payments": "Payments",
+    "pending": "Pending",
+    "paid": "Paid",
+    "createInvoice": "Create Invoice"
+  }
+}

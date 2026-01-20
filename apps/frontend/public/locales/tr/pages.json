@@ -1,0 +1,206 @@
+{
+  "landing": {
+    "title": "Abu-Abbad – KVKK Uyumlu Teleiterapi",
+    "header": {
+      "login": "Giriş Yap",
+      "tryFree": "Ücretsiz Dene"
+    },
+    "hero": {
+      "headline": "Güvenli hissettiren teleiterapi.",
+      "description": "Terapistler ve hastalar için KVKK uyumlu platform – randevu yönetimi, güvenli iletişim ve görüntülü görüşme."
+    },
+    "cta": {
+      "start": "Şimdi Başla",
+      "hasAccount": "Zaten bir hesabım var"
+    },
+    "features": {
+      "encryption": "Şifreleme ve Tasarımda Gizlilik",
+      "video": "Görüntülü ve Sesli Görüşmeler (WebRTC)",
+      "questionnaires": "Anketler, Materyaller, Belgeler",
+      "pwa": "Test için PWA olarak yüklenebilir"
+    },
+    "quickTest": {
+      "title": "Hızlı Test",
+      "description": "Test için doğrudan giriş yapabilir veya yeni bir hesap oluşturabilirsiniz.",
+      "login": "Giriş",
+      "register": "Kayıt",
+      "note": "Not: Üretim ortamında künye/gizlilik politikası gereklidir. Test için kasıtlı olarak minimal tutulmuştur."
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Sayfa bulunamadı",
+    "backToDashboard": "Panele Dön"
+  },
+  "share": {
+    "title": "Belge Paylaş",
+    "loading": "Belge yükleniyor...",
+    "error": "Belge bulunamadı veya süresi doldu"
+  },
+  "dashboard": {
+    "therapist": {
+      "title": "Terapist Paneli",
+      "welcome": "Tekrar hoş geldiniz",
+      "patients": "Hastalarım",
+      "appointments": "Yaklaşan Randevular",
+      "noAppointments": "Yaklaşan randevu yok",
+      "quickActions": "Hızlı İşlemler"
+    },
+    "patient": {
+      "title": "Hasta Paneli",
+      "welcome": "Tekrar hoş geldiniz",
+      "nextAppointment": "Sonraki Randevu",
+      "noAppointment": "Planlanmış randevu yok",
+      "myTherapist": "Terapistim",
+      "bookAppointment": "Randevu Al"
+    }
+  },
+  "videoCall": {
+    "title": "Görüntülü Arama",
+    "connecting": "Bağlanıyor...",
+    "waiting": "Diğer katılımcı bekleniyor",
+    "controls": {
+      "mute": "Sessize Al",
+      "unmute": "Sesi Aç",
+      "videoOff": "Videoyu Kapat",
+      "videoOn": "Videoyu Aç",
+      "shareScreen": "Ekran Paylaş",
+      "stopSharing": "Paylaşımı Durdur",
+      "endCall": "Aramayı Bitir"
+    },
+    "error": {
+      "connection": "Bağlantı Hatası",
+      "camera": "Kamera kullanılamıyor",
+      "microphone": "Mikrofon kullanılamıyor"
+    }
+  },
+  "materials": {
+    "title": "Materyaller",
+    "description": "Burada terapistinizin size sağladığı tüm materyalleri bulabilirsiniz.",
+    "noMaterials": "Materyal bulunamadı",
+    "download": "İndir",
+    "categories": {
+      "all": "Tümü",
+      "documents": "Belgeler",
+      "exercises": "Egzersizler",
+      "audio": "Ses",
+      "video": "Video"
+    }
+  },
+  "questionnaires": {
+    "builder": {
+      "title": "Anket Oluşturucu",
+      "newQuestion": "Yeni Soru",
+      "questionTypes": {
+        "text": "Serbest Metin",
+        "multipleChoice": "Çoktan Seçmeli",
+        "scale": "Ölçek",
+        "yesNo": "Evet/Hayır"
+      },
+      "save": "Anketi Kaydet",
+      "preview": "Önizleme"
+    },
+    "patient": {
+      "title": "Anketler",
+      "pending": "Bekleyen",
+      "completed": "Tamamlanan",
+      "noPending": "Bekleyen anket yok",
+      "submit": "Gönder"
+    }
+  },
+  "documents": {
+    "title": "Belge Talepleri",
+    "request": "Belge Talep Et",
+    "upload": "Belge Yükle",
+    "pending": "Bekleyen",
+    "approved": "Onaylanan",
+    "rejected": "Reddedilen"
+  },
+  "diary": {
+    "title": "Semptom Günlüğü",
+    "newEntry": "Yeni Kayıt",
+    "mood": "Ruh Hali",
+    "symptoms": "Semptomlar",
+    "notes": "Notlar",
+    "date": "Tarih",
+    "noEntries": "Henüz kayıt yok"
+  },
+  "therapyNotes": {
+    "title": "Terapi Notları",
+    "newNote": "Yeni Not",
+    "patient": "Hasta",
+    "session": "Seans",
+    "progress": "İlerleme",
+    "nextSteps": "Sonraki Adımlar"
+  },
+  "screenings": {
+    "title": "Psikolojik Taramalar",
+    "available": "Mevcut Taramalar",
+    "completed": "Tamamlanan Taramalar",
+    "start": "Taramayı Başlat",
+    "results": "Sonuçlar"
+  },
+  "crisisPlan": {
+    "title": "Kriz Planı",
+    "emergencyContacts": "Acil Durum İletişimleri",
+    "warningSigns": "Uyarı İşaretleri",
+    "copingStrategies": "Başa Çıkma Stratejileri",
+    "professionalHelp": "Profesyonel Yardım",
+    "edit": "Kriz Planını Düzenle"
+  },
+  "medications": {
+    "title": "İlaç Takibi",
+    "addMedication": "İlaç Ekle",
+    "name": "İlaç Adı",
+    "dosage": "Doz",
+    "frequency": "Sıklık",
+    "reminders": "Hatırlatıcılar",
+    "taken": "Alındı",
+    "missed": "Kaçırıldı"
+  },
+  "exercises": {
+    "title": "Egzersizler ve Ödevler",
+    "assigned": "Atanan",
+    "completed": "Tamamlanan",
+    "instructions": "Talimatlar",
+    "markComplete": "Tamamlandı Olarak İşaretle"
+  },
+  "reminders": {
+    "title": "Hatırlatıcı Ayarları",
+    "appointments": "Randevu Hatırlatıcıları",
+    "medications": "İlaç Hatırlatıcıları",
+    "exercises": "Egzersiz Hatırlatıcıları",
+    "email": "E-posta",
+    "push": "Push Bildirimleri",
+    "sms": "SMS"
+  },
+  "reports": {
+    "title": "Tedavi Raporları",
+    "generate": "Rapor Oluştur",
+    "dateRange": "Tarih Aralığı",
+    "patient": "Hasta",
+    "export": "Dışa Aktar"
+  },
+  "waitingRoom": {
+    "title": "Bekleme Odası",
+    "yourTurn": "Sıra sizde",
+    "position": "Sıradaki yeriniz",
+    "estimatedWait": "Tahmini bekleme süresi",
+    "therapistReady": "Terapistiniz hazır"
+  },
+  "queue": {
+    "title": "Sıra",
+    "nextPatient": "Sonraki Hasta",
+    "waitingPatients": "Bekleyen Hastalar",
+    "callNext": "Sonrakini Çağır",
+    "empty": "Sıra boş"
+  },
+  "billing": {
+    "title": "Faturalama",
+    "invoices": "Faturalar",
+    "payments": "Ödemeler",
+    "pending": "Bekleyen",
+    "paid": "Ödendi",
+    "createInvoice": "Fatura Oluştur"
+  }
+}

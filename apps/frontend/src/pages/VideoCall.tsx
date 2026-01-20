@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
 import Peer, { MediaConnection } from 'peerjs';
@@ -22,6 +23,7 @@ const DUPLICATE_MESSAGE = 'Video-Call bereits geöffnet in einem anderen Tab.';
 const buildRoomLockKey = (userId?: string) => `${ACTIVE_ROOM_KEY_PREFIX}:${userId ?? 'guest'}`;
 
 export default function VideoCall() {
+  const { t: _t } = useTranslation('pages');
   const { roomId } = useParams<{ roomId: string }>();
   const { user } = useAuthStore();
   const navigate = useNavigate();

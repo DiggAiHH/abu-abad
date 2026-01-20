@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { track } from '../utils/analytics';
 
@@ -8,6 +9,7 @@ function useQuery() {
 }
 
 export default function Share() {
+  const { t: _t } = useTranslation('pages');
   const q = useQuery();
   const title = q.get('title') || '';
   const text = q.get('text') || '';

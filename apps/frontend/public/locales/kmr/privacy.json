@@ -1,0 +1,47 @@
+{
+  "title": "Polîtîkaya Parastina Daneyê",
+  "lastUpdated": "Nûvekirina dawî: Çile 2026",
+  "intro": "Em parastina daneyên we yên kesane pir cidî digirin. Li jêr, em we bi şefafî agahdar dikin ka em çawa daneyên we pêvajo dikin.",
+  "sections": {
+    "controller": {
+      "title": "1. Berpirsiyar",
+      "content": "Berpirsiyarê pêvajoykirina daneyan li gor Rêziknameyê Giştî ya Parastina Daneyan (GDPR) Abu-Abbad Teletherapy GmbH e. Ji bo pirsên parastina daneyan, hûn dikarin her dem bi navnîşana e-nameya me ya parastina daneyan bi me re têkilî daynin."
+    },
+    "dataCollection": {
+      "title": "2. Em kîjan daneyan berhev dikin",
+      "content": "Em daneyên kesane yên jêrîn berhev dikin: daneyên bingehîn (nav, paşnav, e-name), daneyên ragihandinê (jimara telefonê), daneyên tenduristiyê (notên terapiyê, teşhîs, pêşveçûna dermankirinê) û daneyên teknîkî (navnîşana IP, cureyê gerokê, demên tomar). Daneyên tenduristiyê bi taybetî hesas in û bi veşartiya herî bilind têne pêvajokirin."
+    },
+    "purpose": {
+      "title": "3. Mebestên pêvajoykirinê",
+      "content": "Em daneyên we tenê ji bo van mebestenan pêvajo dikin: pêkanîna danişînên terapiyê, belgekirin pêşveçûna dermankirinê, fatûrekirin, bicîhanîna berpirsiyariyên qanûnî (wek mînak demên parastinê) û garantîkirina ewlehiya teknîkî ya platforma me."
+    },
+    "legalBasis": {
+      "title": "4. Bingeha qanûnî",
+      "content": "Pêvajokirin li ser bingeha van pêk tê: razîbûna we ya eşkere (Xal. 9 ben. 2 tîpa a GDPR) ji bo daneyên tenduristiyê, pêkanîna peymanek (Xal. 6 ben. 1 tîpa b GDPR) ji bo peymana terapiyê, û berpirsiyariyên qanûnî (Xal. 6 ben. 1 tîpa c GDPR) ji bo daneyên hesabê û bacê."
+    },
+    "encryption": {
+      "title": "5. Şîfrekirin û ewlehî",
+      "content": "Hemû dane bi TLS 1.3 şîfrekirî têne veguheztin û bi AES-256-GCM şîfrekirî têne hilanîn. Em mîmariya bêzanîn ji bo daneyên terapiyê yên hesas bi kar tînin: tenê hûn û terapîstê we dikarin naverokê vekin. Serverên me tenê li YE-yê (Almanya) ne."
+    },
+    "rights": {
+      "title": "6. Mafên we",
+      "content": "Li gor GDPR, mafên jêrîn hene: Mafê gihîştinê (Xal. 15 GDPR), Mafê rastkirinê (Xal. 16 GDPR), Mafê jêbirinê (Xal. 17 GDPR), Mafê sînordarkirina pêvajoykirinê (Xal. 18 GDPR), Mafê veguheztina daneyan (Xal. 20 GDPR) û Mafê nerazîbûnê (Xal. 21 GDPR)."
+    },
+    "retention": {
+      "title": "7. Demên parastinê",
+      "content": "Daneyên terapiyê 10 sal piştî dermankirina dawî têne parastin (berpirsiyariya qanûnî). Daneyên hesabê dikarin li ser daxwazê bêne jêbirin, ji bilî daneyên ku di bin berpirsiyariya parastinê de ne. Daneyên fatûreyê divê ji ber sedemên bacê 10 sal bêne parastin."
+    },
+    "thirdParties": {
+      "title": "8. Veguheztina daneyan",
+      "content": "Em daneyên we ji kesên sêyemîn re naşînin, ji bilî pêvajoykerên teknîkî (pêşkêşkerên hosting, pêşkêşkerên e-nameyê) ku bi peyman mecbûr in GDPR-ê bişopînin. Tu dane ji derveyî YE-yê nayê veguheztin."
+    },
+    "cookies": {
+      "title": "9. Cookies",
+      "content": "Em tenê cookies ku ji bo xebata danişînê ji aliyê teknîkî ve pêwîst in bi kar tînin. Em cookies şopandinê an reklamê bi kar naînin. Tokena danişîna me wekî Cookie HttpOnly tê hilanîn."
+    },
+    "contact": {
+      "title": "10. Têkilî",
+      "content": "Heke pirsên we yên li ser parastina daneyan hebin, hûn dikarin her dem bi me re têkilî daynin. Hûn di heman demê de mafê we heye ku giliyê li desthilatdariya çavdêriyê ya berpirsiyar bikin."
+    }
+  }
+}

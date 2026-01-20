@@ -1,0 +1,206 @@
+{
+  "landing": {
+    "title": "Abu-Abbad – Teleterapia në përputhje me GDPR",
+    "header": {
+      "login": "Hyrje",
+      "tryFree": "Provoni falas"
+    },
+    "hero": {
+      "headline": "Teleterapia që ju bën të ndiheni të sigurt.",
+      "description": "Platformë në përputhje me GDPR për terapistët dhe pacientët – me menaxhimin e takimeve, komunikim të sigurt dhe sesione video."
+    },
+    "cta": {
+      "start": "Filloni",
+      "hasAccount": "Kam tashmë një llogari"
+    },
+    "features": {
+      "encryption": "Enkriptim dhe privatësi nga dizajni",
+      "video": "Sesione video dhe audio (WebRTC)",
+      "questionnaires": "Pyetësorë, materiale, dokumente",
+      "pwa": "I instalueshëm si PWA për testim"
+    },
+    "quickTest": {
+      "title": "Test i shpejtë",
+      "description": "Për testim, mund të hyni direkt ose të krijoni një llogari të re.",
+      "login": "Hyrje",
+      "register": "Regjistrim",
+      "note": "Shënim: Në prodhim, kërkohen të dhëna ligjore/politika e privatësisë. Kjo është qëllimisht minimale për testim."
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Faqja nuk u gjet",
+    "backToDashboard": "Kthehu në panel"
+  },
+  "share": {
+    "title": "Ndani dokumentin",
+    "loading": "Duke ngarkuar dokumentin...",
+    "error": "Dokumenti nuk u gjet ose ka skaduar"
+  },
+  "dashboard": {
+    "therapist": {
+      "title": "Paneli i terapistit",
+      "welcome": "Mirëseerdhët përsëri",
+      "patients": "Pacientët e mi",
+      "appointments": "Takimet e ardhshme",
+      "noAppointments": "Nuk ka takime të ardhshme",
+      "quickActions": "Veprime të shpejta"
+    },
+    "patient": {
+      "title": "Paneli i pacientit",
+      "welcome": "Mirëseerdhët përsëri",
+      "nextAppointment": "Takimi i ardhshëm",
+      "noAppointment": "Nuk ka takim të planifikuar",
+      "myTherapist": "Terapisti im",
+      "bookAppointment": "Rezervoni takim"
+    }
+  },
+  "videoCall": {
+    "title": "Thirrje video",
+    "connecting": "Duke u lidhur...",
+    "waiting": "Duke pritur pjesëmarrësin tjetër",
+    "controls": {
+      "mute": "Hesht",
+      "unmute": "Aktivizo zërin",
+      "videoOff": "Çaktivizo videon",
+      "videoOn": "Aktivizo videon",
+      "shareScreen": "Ndani ekranin",
+      "stopSharing": "Ndaloni ndarjen",
+      "endCall": "Përfundoni thirrjen"
+    },
+    "error": {
+      "connection": "Gabim lidhje",
+      "camera": "Kamera nuk është e disponueshme",
+      "microphone": "Mikrofoni nuk është i disponueshëm"
+    }
+  },
+  "materials": {
+    "title": "Materialet",
+    "description": "Këtu do të gjeni të gjitha materialet e ofruara nga terapisti juaj.",
+    "noMaterials": "Nuk ka materiale të disponueshme",
+    "download": "Shkarko",
+    "categories": {
+      "all": "Të gjitha",
+      "documents": "Dokumente",
+      "exercises": "Ushtrime",
+      "audio": "Audio",
+      "video": "Video"
+    }
+  },
+  "questionnaires": {
+    "builder": {
+      "title": "Ndërtuesi i pyetësorëve",
+      "newQuestion": "Pyetje e re",
+      "questionTypes": {
+        "text": "Tekst i lirë",
+        "multipleChoice": "Zgjedhje e shumëfishtë",
+        "scale": "Shkallë",
+        "yesNo": "Po/Jo"
+      },
+      "save": "Ruaj pyetësorin",
+      "preview": "Parapamje"
+    },
+    "patient": {
+      "title": "Pyetësorët",
+      "pending": "Në pritje",
+      "completed": "Të përfunduar",
+      "noPending": "Nuk ka pyetësorë në pritje",
+      "submit": "Dërgo"
+    }
+  },
+  "documents": {
+    "title": "Kërkesat për dokumente",
+    "request": "Kërkoni dokument",
+    "upload": "Ngarkoni dokument",
+    "pending": "Në pritje",
+    "approved": "I aprovuar",
+    "rejected": "I refuzuar"
+  },
+  "diary": {
+    "title": "Ditari i simptomave",
+    "newEntry": "Hyrje e re",
+    "mood": "Humori",
+    "symptoms": "Simptomat",
+    "notes": "Shënime",
+    "date": "Data",
+    "noEntries": "Ende nuk ka hyrje"
+  },
+  "therapyNotes": {
+    "title": "Shënimet e terapisë",
+    "newNote": "Shënim i ri",
+    "patient": "Pacienti",
+    "session": "Sesioni",
+    "progress": "Progresi",
+    "nextSteps": "Hapat e ardhshëm"
+  },
+  "screenings": {
+    "title": "Kontrollet psikologjike",
+    "available": "Kontrollet e disponueshme",
+    "completed": "Kontrollet e përfunduara",
+    "start": "Filloni kontrollin",
+    "results": "Rezultatet"
+  },
+  "crisisPlan": {
+    "title": "Plani i krizës",
+    "emergencyContacts": "Kontaktet e emergjencës",
+    "warningSigns": "Shenjat paralajmëruese",
+    "copingStrategies": "Strategjitë e përballimit",
+    "professionalHelp": "Ndihma profesionale",
+    "edit": "Modifikoni planin e krizës"
+  },
+  "medications": {
+    "title": "Gjurmimi i ilaçeve",
+    "addMedication": "Shtoni ilaç",
+    "name": "Emri i ilaçit",
+    "dosage": "Dozimi",
+    "frequency": "Frekuenca",
+    "reminders": "Përkujtuesit",
+    "taken": "Marrë",
+    "missed": "Humbur"
+  },
+  "exercises": {
+    "title": "Ushtrimet dhe detyrat",
+    "assigned": "I caktuar",
+    "completed": "I përfunduar",
+    "instructions": "Udhëzimet",
+    "markComplete": "Shëno si të përfunduar"
+  },
+  "reminders": {
+    "title": "Cilësimet e përkujtuesve",
+    "appointments": "Përkujtuesit e takimeve",
+    "medications": "Përkujtuesit e ilaçeve",
+    "exercises": "Përkujtuesit e ushtrimeve",
+    "email": "Email",
+    "push": "Njoftimet push",
+    "sms": "SMS"
+  },
+  "reports": {
+    "title": "Raportet e trajtimit",
+    "generate": "Gjeneroni raport",
+    "dateRange": "Periudha e datave",
+    "patient": "Pacienti",
+    "export": "Eksportoni"
+  },
+  "waitingRoom": {
+    "title": "Dhoma e pritjes",
+    "yourTurn": "Është radha juaj",
+    "position": "Pozicioni në radhë",
+    "estimatedWait": "Koha e pritjes e parashikuar",
+    "therapistReady": "Terapisti juaj është gati"
+  },
+  "queue": {
+    "title": "Radha",
+    "nextPatient": "Pacienti i ardhshëm",
+    "waitingPatients": "Pacientët në pritje",
+    "callNext": "Thirrni të ardhshmin",
+    "empty": "Radha është boshe"
+  },
+  "billing": {
+    "title": "Faturimi",
+    "invoices": "Faturat",
+    "payments": "Pagesat",
+    "pending": "Në pritje",
+    "paid": "Paguar",
+    "createInvoice": "Krijoni faturë"
+  }
+}

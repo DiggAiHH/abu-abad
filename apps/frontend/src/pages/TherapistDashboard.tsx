@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuthStore } from '../store/authStore';
 import { appointmentAPI, messageAPI } from '../api/client';
 import { Appointment, Message } from '../types';
@@ -10,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { logger } from '../utils/logger';
 
 export default function TherapistDashboard() {
+  const { t: _t } = useTranslation('pages');
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
   const [appointments, setAppointments] = useState<Appointment[]>([]);

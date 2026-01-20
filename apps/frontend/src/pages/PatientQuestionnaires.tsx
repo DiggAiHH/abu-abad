@@ -5,6 +5,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Check, Clock, Save } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { apiClient } from '../api/client';
@@ -26,6 +27,7 @@ interface QuestionnaireRequest {
 type FormResponses = Record<string, any>;
 
 export default function PatientQuestionnaires() {
+  const { t: _t } = useTranslation('pages');
   const [requests, setRequests] = useState<QuestionnaireRequest[]>([]);
   const [loading, setLoading] = useState(true);
   

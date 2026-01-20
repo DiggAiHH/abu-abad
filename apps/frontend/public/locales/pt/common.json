@@ -1,0 +1,66 @@
+{
+  "nav": {
+    "dashboard": "Painel de Controle",
+    "logout": "Sair",
+    "settings": "Configurações",
+    "home": "Início",
+    "back": "Voltar"
+  },
+  "buttons": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "submit": "Enviar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Fechar",
+    "confirm": "Confirmar",
+    "next": "Seguinte",
+    "previous": "Anterior",
+    "loading": "A carregar..."
+  },
+  "errors": {
+    "required": "Campo obrigatório",
+    "invalidEmail": "Endereço de e-mail inválido",
+    "serverError": "Erro do servidor. Por favor, tente novamente mais tarde.",
+    "networkError": "Não foi possível conectar ao servidor",
+    "timeout": "Tempo limite excedido. Por favor, tente novamente.",
+    "unknown": "Ocorreu um erro desconhecido"
+  },
+  "validation": {
+    "minLength": "Mínimo de {{min}} caracteres necessários",
+    "maxLength": "Máximo de {{max}} caracteres permitidos",
+    "passwordMismatch": "As palavras-passe não coincidem",
+    "passwordTooShort": "A palavra-passe deve ter pelo menos 8 caracteres"
+  },
+  "common": {
+    "yes": "Sim",
+    "no": "Não",
+    "or": "ou",
+    "and": "e",
+    "all": "Todos",
+    "none": "Nenhum",
+    "search": "Pesquisar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "date": "Data",
+    "time": "Hora",
+    "name": "Nome",
+    "email": "E-mail",
+    "phone": "Telefone",
+    "address": "Morada",
+    "notes": "Notas"
+  },
+  "roles": {
+    "therapist": "Terapeuta",
+    "patient": "Paciente"
+  },
+  "gdpr": {
+    "dataProtection": "Proteção de Dados",
+    "privacyPolicy": "Política de Privacidade",
+    "consent": "Consentimento",
+    "secureStorage": "Todos os dados são armazenados de forma encriptada."
+  },
+  "accessibility": {
+    "languageSelector": "Seletor de idioma"
+  }
+}

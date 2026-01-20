@@ -1,0 +1,47 @@
+{
+  "title": "Politique de Confidentialité",
+  "lastUpdated": "Dernière mise à jour : Janvier 2026",
+  "intro": "Nous prenons la protection de vos données personnelles très au sérieux. Ci-dessous, nous vous informons de manière transparente sur la façon dont nous traitons vos données.",
+  "sections": {
+    "controller": {
+      "title": "1. Responsable du traitement",
+      "content": "Le responsable du traitement des données au sens du Règlement Général sur la Protection des Données (RGPD) est Abu-Abbad Teletherapy GmbH. Pour toute question relative à la protection des données, vous pouvez nous contacter à tout moment via notre adresse e-mail dédiée à la protection des données."
+    },
+    "dataCollection": {
+      "title": "2. Quelles données nous collectons",
+      "content": "Nous collectons les données personnelles suivantes : données de base (nom, prénom, e-mail), données de communication (numéro de téléphone), données de santé (notes de thérapie, diagnostics, progrès du traitement) et données techniques (adresse IP, type de navigateur, horodatages). Les données de santé sont particulièrement sensibles et sont traitées avec la plus grande confidentialité."
+    },
+    "purpose": {
+      "title": "3. Finalités du traitement",
+      "content": "Nous traitons vos données exclusivement pour : réaliser des séances de thérapie, documenter les progrès du traitement, la facturation, respecter les obligations légales (par exemple, les délais de conservation) et garantir la sécurité technique de notre plateforme."
+    },
+    "legalBasis": {
+      "title": "4. Base juridique",
+      "content": "Le traitement est effectué sur la base de : votre consentement explicite (Art. 9 par. 2 let. a RGPD) pour les données de santé, l'exécution d'un contrat (Art. 6 par. 1 let. b RGPD) pour le contrat de thérapie, et les obligations légales (Art. 6 par. 1 let. c RGPD) pour les données comptables et fiscales."
+    },
+    "encryption": {
+      "title": "5. Chiffrement et sécurité",
+      "content": "Toutes les données sont transmises chiffrées via TLS 1.3 et stockées chiffrées avec AES-256-GCM. Nous utilisons une architecture à connaissance nulle pour les données de thérapie sensibles : seuls vous et votre thérapeute pouvez déchiffrer le contenu. Nos serveurs sont situés exclusivement dans l'UE (Allemagne)."
+    },
+    "rights": {
+      "title": "6. Vos droits",
+      "content": "Selon le RGPD, vous disposez des droits suivants : Droit d'accès (Art. 15 RGPD), Droit de rectification (Art. 16 RGPD), Droit à l'effacement (Art. 17 RGPD), Droit à la limitation du traitement (Art. 18 RGPD), Droit à la portabilité des données (Art. 20 RGPD) et Droit d'opposition (Art. 21 RGPD)."
+    },
+    "retention": {
+      "title": "7. Durées de conservation",
+      "content": "Les données de thérapie sont conservées pendant 10 ans après le dernier traitement (obligation légale). Les données du compte peuvent être supprimées sur demande, sauf les données soumises aux obligations de conservation. Les données de facturation doivent être conservées pendant 10 ans pour des raisons fiscales."
+    },
+    "thirdParties": {
+      "title": "8. Transmission des données",
+      "content": "Nous ne transmettons pas vos données à des tiers, sauf aux sous-traitants techniques (hébergeurs, fournisseurs d'e-mail) qui sont contractuellement tenus de respecter le RGPD. Aucune donnée n'est transférée en dehors de l'UE."
+    },
+    "cookies": {
+      "title": "9. Cookies",
+      "content": "Nous utilisons uniquement des cookies techniquement nécessaires au fonctionnement des sessions. Nous n'utilisons pas de cookies de suivi ou de publicité. Notre jeton de session est stocké en tant que Cookie HttpOnly."
+    },
+    "contact": {
+      "title": "10. Contact",
+      "content": "Si vous avez des questions concernant la protection des données, vous pouvez nous contacter à tout moment. Vous avez également le droit de déposer une plainte auprès de l'autorité de contrôle compétente."
+    }
+  }
+}

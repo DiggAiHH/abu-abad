@@ -1,0 +1,47 @@
+{
+  "title": "Politika privatnosti",
+  "lastUpdated": "Datum: Januar 2026",
+  "backToHome": "Nazad na početnu stranicu",
+  "sections": {
+    "responsible": {
+      "title": "1. Odgovorna strana",
+      "content": "Odgovoran za obradu podataka u smislu GDPR-a je:\n\nAbu-Abbad Teleterapija\nMusterstraße 123\n12345 Musterstadt\nNjemačka\n\nE-mail: datenschutz@abu-abbad.de\nTelefon: +49 (0) 123 456789"
+    },
+    "dataCollection": {
+      "title": "2. Koje podatke prikupljamo",
+      "content": "Prikupljamo i obrađujemo sljedeće lične podatke:\n\n• **Osnovni podaci:** Ime, e-mail adresa, broj telefona\n• **Zdravstveni podaci:** Dnevnici simptoma, terapijske bilješke, rezultati screeninga (posebna kategorija prema članu 9 GDPR-a)\n• **Podaci o korištenju:** Vremena prijave, trajanje sesija (anonimizirano)\n• **Komunikacijski podaci:** Video/audio podaci tokom terapijskih sesija (ne čuvaju se)"
+    },
+    "purpose": {
+      "title": "3. Svrha obrade podataka",
+      "content": "Vaše podatke obrađujemo isključivo u sljedeće svrhe:\n\n• Provođenje teleterapijskih sesija\n• Upravljanje vašim korisničkim računom pacijenta\n• Dokumentacija toka terapije\n• Komunikacija između pacijenta i terapeuta\n• Podsjetnici za termine i lijekove\n\nPravni osnov: Član 6, stav 1, tačka b GDPR-a (izvršenje ugovora) i član 9, stav 2, tačka h GDPR-a (zdravstvena zaštita)"
+    },
+    "storage": {
+      "title": "4. Pohrana i sigurnost",
+      "content": "Vaši podaci se čuvaju prema najvišim sigurnosnim standardima:\n\n• **Šifriranje:** AES-256-GCM za sve pohranjene podatke\n• **Prijenos:** TLS 1.3 za sve veze\n• **Lokacija pohrane:** Serveri u Evropskoj uniji\n• **Kontrola pristupa:** Samo ovlašteni terapeuti imaju pristup vašim podacima\n• **Backup:** Dnevne šifrirane rezervne kopije"
+    },
+    "retention": {
+      "title": "5. Razdoblje čuvanja",
+      "content": "Vaše podatke čuvamo samo onoliko dugo koliko je potrebno za svrhu obrade:\n\n• **Osnovni podaci:** Do brisanja vašeg korisničkog računa\n• **Terapijska dokumentacija:** 10 godina nakon završetka liječenja (zakonska obaveza čuvanja)\n• **Komunikacijski podaci:** Ne čuvaju se"
+    },
+    "rights": {
+      "title": "6. Vaša prava",
+      "content": "Imate sljedeća prava u vezi s vašim ličnim podacima:\n\n• **Pristup (član 15):** Možete u bilo kojem trenutku zatražiti informacije o vašim pohranjenim podacima\n• **Ispravka (član 16):** Možete zatražiti ispravku netačnih podataka\n• **Brisanje (član 17):** Možete zatražiti brisanje vaših podataka (uz poštivanje zakonskih rokova čuvanja)\n• **Ograničenje (član 18):** Možete zatražiti ograničenje obrade\n• **Prenosivost podataka (član 20):** Možete dobiti svoje podatke u uobičajenom formatu\n• **Prigovor (član 21):** Možete se usprotiviti obradi"
+    },
+    "thirdParties": {
+      "title": "7. Prijenos trećim stranama",
+      "content": "Vaše podatke prenosimo trećim stranama samo u sljedećim slučajevima:\n\n• Uz vašu izričitu saglasnost\n• Radi ispunjavanja zakonskih obaveza\n• Obrađivačima podataka (npr. pružateljima hostinga) u skladu s članom 28 GDPR-a\n\nPrijenos u treće zemlje izvan EU-a se ne vrši."
+    },
+    "cookies": {
+      "title": "8. Kolačići i praćenje",
+      "content": "Koristimo samo tehnički neophodne kolačiće:\n\n• **Sesijski kolačić:** Za autentifikaciju\n• **Postavka jezika:** Za vaš preferirani jezik\n\nNe koristimo kolačiće za praćenje niti alate za analizu trećih strana."
+    },
+    "changes": {
+      "title": "9. Promjene ove politike privatnosti",
+      "content": "Zadržavamo pravo da po potrebi prilagodimo ovu politiku privatnosti. Trenutna verzija je uvijek dostupna na našoj web stranici. O bitnim promjenama bit ćete obaviješteni putem e-maila."
+    },
+    "contact": {
+      "title": "10. Kontakt i pravo na žalbu",
+      "content": "Za pitanja o zaštiti podataka ili ostvarivanje vaših prava, obratite se na:\n\ndatenschutz@abu-abbad.de\n\nTakođer imate pravo podnijeti žalbu nadzornom tijelu, npr. Povjereniku za zaštitu podataka."
+    }
+  }
+}

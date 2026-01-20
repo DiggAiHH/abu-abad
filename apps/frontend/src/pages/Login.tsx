@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useAuthStore } from '../store/authStore';
 import toast from 'react-hot-toast';
 import { logger } from '../utils/logger';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 export default function Login() {
+  const { t } = useTranslation('auth');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -52,16 +55,21 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+      {/* Language Switcher - Top Right */}
+      <div className="absolute top-4 right-4">
+        <LanguageSwitcher />
+      </div>
+
       <div className="max-w-md w-full bg-white rounded-lg shadow-xl p-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Abu-Abbad Login</h1>
-          <p className="text-gray-600 mt-2">Melden Sie sich an, um fortzufahren</p>
+          <h1 className="text-3xl font-bold text-gray-900">{t('login.title')}</h1>
+          <p className="text-gray-600 mt-2">{t('login.subtitle')}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-              E-Mail
+              {t('login.email')}
             </label>
             <input
               id="email"
@@ -80,7 +88,7 @@ export default function Login() {
 
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-              Passwort
+              {t('login.password')}
             </label>
             <input
               id="password"
@@ -103,14 +111,14 @@ export default function Login() {
             className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition disabled:opacity-50 disabled:cursor-not-allowed font-medium"
             data-testid="login-submit"
           >
-            {loading ? 'Wird angemeldet...' : 'Anmelden'}
+            {loading ? t('login.submitting', 'Wird angemeldet...') : t('login.submit')}
           </button>
         </form>
 
         <p className="mt-6 text-center text-sm text-gray-600">
-          Noch kein Konto?{' '}
+          {t('login.noAccount')}{' '}
           <Link to="/register" className="text-blue-600 hover:text-blue-700 font-medium">
-            Jetzt registrieren
+            {t('login.registerLink')}
           </Link>
         </p>
 

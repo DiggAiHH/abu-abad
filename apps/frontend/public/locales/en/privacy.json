@@ -1,0 +1,47 @@
+{
+  "title": "Privacy Policy",
+  "lastUpdated": "Last updated: January 2026",
+  "backToHome": "Back to home",
+  "sections": {
+    "responsible": {
+      "title": "1. Data Controller",
+      "content": "The data controller within the meaning of the GDPR is:\n\nAbu-Abbad Teletherapy\nMusterstraße 123\n12345 Musterstadt\nGermany\n\nEmail: privacy@abu-abbad.de\nPhone: +49 (0) 123 456789"
+    },
+    "dataCollection": {
+      "title": "2. Data We Collect",
+      "content": "We collect and process the following personal data:\n\n• **Master data:** Name, email address, phone number\n• **Health data:** Symptom diaries, therapy notes, screening results (special category under Art. 9 GDPR)\n• **Usage data:** Login times, session duration (anonymized)\n• **Communication data:** Video/audio data during therapy sessions (not stored)"
+    },
+    "purpose": {
+      "title": "3. Purpose of Data Processing",
+      "content": "We process your data exclusively for the following purposes:\n\n• Conducting teletherapy sessions\n• Managing your patient account\n• Documenting therapy progress\n• Communication between patient and therapist\n• Reminders for appointments and medications\n\nLegal basis: Art. 6(1)(b) GDPR (contract performance) and Art. 9(2)(h) GDPR (healthcare)"
+    },
+    "storage": {
+      "title": "4. Storage and Security",
+      "content": "Your data is stored according to the highest security standards:\n\n• **Encryption:** AES-256-GCM for all stored data\n• **Transmission:** TLS 1.3 for all connections\n• **Storage location:** Servers in the European Union\n• **Access control:** Only authorized therapists have access to your data\n• **Backup:** Daily encrypted backups"
+    },
+    "retention": {
+      "title": "5. Retention Period",
+      "content": "We only store your data as long as necessary for the processing purpose:\n\n• **Master data:** Until deletion of your account\n• **Therapy documentation:** 10 years after end of treatment (legal retention requirement)\n• **Communication data:** Not stored"
+    },
+    "rights": {
+      "title": "6. Your Rights",
+      "content": "You have the following rights regarding your personal data:\n\n• **Access (Art. 15):** You can request information about your stored data at any time\n• **Rectification (Art. 16):** You can have incorrect data corrected\n• **Erasure (Art. 17):** You can request deletion of your data (subject to legal retention periods)\n• **Restriction (Art. 18):** You can request restriction of processing\n• **Data portability (Art. 20):** You can receive your data in a common format\n• **Objection (Art. 21):** You can object to processing"
+    },
+    "thirdParties": {
+      "title": "7. Disclosure to Third Parties",
+      "content": "We only share your data with third parties in the following cases:\n\n• With your explicit consent\n• To fulfill legal obligations\n• To processors (e.g., hosting providers) in compliance with Art. 28 GDPR\n\nNo transfer to third countries outside the EU takes place."
+    },
+    "cookies": {
+      "title": "8. Cookies and Tracking",
+      "content": "We only use technically necessary cookies:\n\n• **Session cookie:** For authentication\n• **Language setting:** For your preferred language\n\nWe do not use tracking cookies or third-party analytics tools."
+    },
+    "changes": {
+      "title": "9. Changes to this Privacy Policy",
+      "content": "We reserve the right to adapt this privacy policy if necessary. The current version is always available on our website. You will be informed by email of significant changes."
+    },
+    "contact": {
+      "title": "10. Contact and Right to Complain",
+      "content": "For questions about data protection or to exercise your rights, please contact:\n\nprivacy@abu-abbad.de\n\nYou also have the right to lodge a complaint with a supervisory authority, e.g., the Data Protection Commissioner of your federal state."
+    }
+  }
+}

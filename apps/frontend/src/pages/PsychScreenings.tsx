@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { api } from '../api/client';
 import toast from 'react-hot-toast';
 import { format, parseISO } from 'date-fns';
@@ -71,6 +72,7 @@ const SEVERITY_COLORS: Record<string, string> = {
 
 // ===== MAIN COMPONENT =====
 export default function PsychScreenings() {
+  const { t: _t } = useTranslation('pages');
   const navigate = useNavigate();
 
   const [templates, setTemplates] = useState<ScreeningTemplate[]>([]);

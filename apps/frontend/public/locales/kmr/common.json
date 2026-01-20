@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "dashboard": "Panela Sereke",
+    "logout": "Derkeve",
+    "settings": "Mîheng",
+    "profile": "Profîl",
+    "help": "Alîkarî"
+  },
+  "buttons": {
+    "save": "Tomar bike",
+    "cancel": "Betal bike",
+    "submit": "Bişîne",
+    "delete": "Jê bibe",
+    "edit": "Biguherîne",
+    "back": "Paşve",
+    "next": "Pêşve",
+    "close": "Bigire",
+    "confirm": "Piştrast bike"
+  },
+  "errors": {
+    "required": "Qada pêwîst",
+    "invalidEmail": "Navnîşana e-nameyê nederbasdar e",
+    "serverError": "Çewtiya serverê. Ji kerema xwe dîsa biceribîne.",
+    "networkError": "Pêwendiya bi serverê tune",
+    "unauthorized": "Destûr tune",
+    "notFound": "Nehat dîtin"
+  },
+  "messages": {
+    "loading": "Tê barkirin...",
+    "saving": "Tê tomarkirin...",
+    "success": "Bi serkeftî hat tomarkirin",
+    "confirmDelete": "Ma hûn dixwazin jê bibin?"
+  },
+  "language": {
+    "selector": "Ziman",
+    "current": "Kurmancî"
+  }
+}

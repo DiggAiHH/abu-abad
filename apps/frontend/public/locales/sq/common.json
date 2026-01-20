@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "dashboard": "Paneli",
+    "logout": "Dilni",
+    "settings": "Cilësimet",
+    "home": "Ballina",
+    "back": "Prapa"
+  },
+  "buttons": {
+    "save": "Ruaj",
+    "cancel": "Anulo",
+    "submit": "Dërgo",
+    "delete": "Fshi",
+    "edit": "Redakto",
+    "close": "Mbyll",
+    "confirm": "Konfirmo",
+    "next": "Vazhdo",
+    "previous": "Prapa",
+    "loading": "Duke u ngarkuar..."
+  },
+  "errors": {
+    "required": "Fushë e detyrueshme",
+    "invalidEmail": "Adresë emaili e pavlefshme",
+    "serverError": "Gabim serveri. Ju lutem provoni përsëri më vonë.",
+    "networkError": "Nuk mund të lidhet me serverin",
+    "timeout": "Koha skadoi. Ju lutem provoni përsëri.",
+    "unknown": "Ndodhi një gabim i panjohur"
+  },
+  "validation": {
+    "minLength": "Nevojiten të paktën {{min}} karaktere",
+    "maxLength": "Lejohen maksimumi {{max}} karaktere",
+    "passwordMismatch": "Fjalëkalimet nuk përputhen",
+    "passwordTooShort": "Fjalëkalimi duhet të ketë të paktën 8 karaktere"
+  },
+  "common": {
+    "yes": "Po",
+    "no": "Jo",
+    "or": "ose",
+    "and": "dhe",
+    "all": "Të gjitha",
+    "none": "Asnjë",
+    "search": "Kërko",
+    "filter": "Filtro",
+    "sort": "Rendit",
+    "date": "Data",
+    "time": "Ora",
+    "name": "Emri",
+    "email": "Email",
+    "phone": "Telefoni",
+    "address": "Adresa",
+    "notes": "Shënime"
+  },
+  "roles": {
+    "therapist": "Terapist",
+    "patient": "Pacient"
+  },
+  "gdpr": {
+    "dataProtection": "Mbrojtja e të dhënave",
+    "privacyPolicy": "Politika e privatësisë",
+    "consent": "Pëlqimi",
+    "secureStorage": "Të gjitha të dhënat ruhen të enkriptuara."
+  }
+}

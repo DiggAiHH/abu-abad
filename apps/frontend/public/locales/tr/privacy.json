@@ -1,0 +1,47 @@
+{
+  "title": "Gizlilik Politikası",
+  "lastUpdated": "Son güncelleme: Ocak 2026",
+  "backToHome": "Ana sayfaya dön",
+  "sections": {
+    "responsible": {
+      "title": "1. Veri Sorumlusu",
+      "content": "GDPR kapsamında veri sorumlusu:\n\nAbu-Abbad Tele-terapi\nMusterstraße 123\n12345 Musterstadt\nAlmanya\n\nE-posta: privacy@abu-abbad.de\nTelefon: +49 (0) 123 456789"
+    },
+    "dataCollection": {
+      "title": "2. Topladığımız Veriler",
+      "content": "Aşağıdaki kişisel verileri topluyoruz ve işliyoruz:\n\n• **Ana veriler:** Ad, e-posta adresi, telefon numarası\n• **Sağlık verileri:** Semptom günlükleri, terapi notları, tarama sonuçları (GDPR Madde 9 kapsamında özel kategori)\n• **Kullanım verileri:** Giriş zamanları, oturum süresi (anonimleştirilmiş)\n• **İletişim verileri:** Terapi seansları sırasında video/ses verileri (saklanmaz)"
+    },
+    "purpose": {
+      "title": "3. Veri İşleme Amacı",
+      "content": "Verilerinizi yalnızca aşağıdaki amaçlarla işliyoruz:\n\n• Tele-terapi seanslarının gerçekleştirilmesi\n• Hasta hesabınızın yönetimi\n• Terapi ilerlemesinin belgelenmesi\n• Hasta ve terapist arasında iletişim\n• Randevu ve ilaç hatırlatmaları\n\nYasal dayanak: GDPR Madde 6(1)(b) (sözleşmenin ifası) ve GDPR Madde 9(2)(h) (sağlık hizmeti)"
+    },
+    "storage": {
+      "title": "4. Depolama ve Güvenlik",
+      "content": "Verileriniz en yüksek güvenlik standartlarına göre saklanır:\n\n• **Şifreleme:** Tüm depolanan veriler için AES-256-GCM\n• **İletim:** Tüm bağlantılar için TLS 1.3\n• **Depolama konumu:** Avrupa Birliği'ndeki sunucular\n• **Erişim kontrolü:** Yalnızca yetkili terapistler verilerinize erişebilir\n• **Yedekleme:** Günlük şifrelenmiş yedeklemeler"
+    },
+    "retention": {
+      "title": "5. Saklama Süresi",
+      "content": "Verilerinizi yalnızca işleme amacı için gerekli olduğu sürece saklıyoruz:\n\n• **Ana veriler:** Hesabınız silinene kadar\n• **Terapi belgeleri:** Tedavi bitiminden 10 yıl sonrasına kadar (yasal saklama gereksinimi)\n• **İletişim verileri:** Saklanmaz"
+    },
+    "rights": {
+      "title": "6. Haklarınız",
+      "content": "Kişisel verilerinizle ilgili aşağıdaki haklara sahipsiniz:\n\n• **Erişim (Madde 15):** Saklanan verileriniz hakkında her zaman bilgi talep edebilirsiniz\n• **Düzeltme (Madde 16):** Yanlış verilerin düzeltilmesini isteyebilirsiniz\n• **Silme (Madde 17):** Verilerinizin silinmesini talep edebilirsiniz (yasal saklama süreleri dikkate alınarak)\n• **Kısıtlama (Madde 18):** İşlemenin kısıtlanmasını talep edebilirsiniz\n• **Veri taşınabilirliği (Madde 20):** Verilerinizi yaygın bir formatta alabilirsiniz\n• **İtiraz (Madde 21):** İşlemeye itiraz edebilirsiniz"
+    },
+    "thirdParties": {
+      "title": "7. Üçüncü Taraflara Açıklama",
+      "content": "Verilerinizi yalnızca aşağıdaki durumlarda üçüncü taraflarla paylaşıyoruz:\n\n• Açık onayınızla\n• Yasal yükümlülükleri yerine getirmek için\n• GDPR Madde 28'e uygun olarak işleyicilere (örneğin, barındırma sağlayıcıları)\n\nAB dışındaki üçüncü ülkelere veri aktarımı yapılmamaktadır."
+    },
+    "cookies": {
+      "title": "8. Çerezler ve İzleme",
+      "content": "Yalnızca teknik olarak gerekli çerezleri kullanıyoruz:\n\n• **Oturum çerezi:** Kimlik doğrulama için\n• **Dil ayarı:** Tercih ettiğiniz dil için\n\nİzleme çerezleri veya üçüncü taraf analiz araçları kullanmıyoruz."
+    },
+    "changes": {
+      "title": "9. Bu Gizlilik Politikasındaki Değişiklikler",
+      "content": "Gerektiğinde bu gizlilik politikasını uyarlama hakkını saklı tutuyoruz. Güncel sürüm her zaman web sitemizde mevcuttur. Önemli değişiklikler hakkında e-posta ile bilgilendirileceksiniz."
+    },
+    "contact": {
+      "title": "10. İletişim ve Şikayet Hakkı",
+      "content": "Veri koruma hakkında sorularınız veya haklarınızı kullanmak için lütfen iletişime geçin:\n\nprivacy@abu-abbad.de\n\nAyrıca bir denetim makamına şikayette bulunma hakkınız vardır, örneğin eyaletinizin Veri Koruma Komiseri."
+    }
+  }
+}

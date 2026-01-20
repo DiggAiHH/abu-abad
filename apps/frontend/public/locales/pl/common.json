@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "dashboard": "Panel",
+    "logout": "Wyloguj",
+    "settings": "Ustawienia",
+    "home": "Strona główna",
+    "back": "Wstecz"
+  },
+  "buttons": {
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "submit": "Wyślij",
+    "delete": "Usuń",
+    "edit": "Edytuj",
+    "close": "Zamknij",
+    "confirm": "Potwierdź",
+    "next": "Dalej",
+    "previous": "Wstecz",
+    "loading": "Ładowanie..."
+  },
+  "errors": {
+    "required": "Pole wymagane",
+    "invalidEmail": "Nieprawidłowy adres e-mail",
+    "serverError": "Błąd serwera. Spróbuj ponownie później.",
+    "networkError": "Nie można połączyć się z serwerem",
+    "timeout": "Upłynął limit czasu. Spróbuj ponownie.",
+    "unknown": "Wystąpił nieznany błąd"
+  },
+  "validation": {
+    "minLength": "Wymagane minimum {{min}} znaków",
+    "maxLength": "Dozwolone maksimum {{max}} znaków",
+    "passwordMismatch": "Hasła nie są zgodne",
+    "passwordTooShort": "Hasło musi mieć co najmniej 8 znaków"
+  },
+  "common": {
+    "yes": "Tak",
+    "no": "Nie",
+    "or": "lub",
+    "and": "i",
+    "all": "Wszystkie",
+    "none": "Żaden",
+    "search": "Szukaj",
+    "filter": "Filtruj",
+    "sort": "Sortuj",
+    "date": "Data",
+    "time": "Czas",
+    "name": "Imię",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "address": "Adres",
+    "notes": "Notatki"
+  },
+  "roles": {
+    "therapist": "Terapeuta",
+    "patient": "Pacjent"
+  },
+  "gdpr": {
+    "dataProtection": "Ochrona danych",
+    "privacyPolicy": "Polityka prywatności",
+    "consent": "Zgoda",
+    "secureStorage": "Wszystkie dane są przechowywane w formie zaszyfrowanej."
+  }
+}

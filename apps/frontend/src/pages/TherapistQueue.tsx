@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
   Users,
@@ -44,6 +45,7 @@ interface PreSessionDetails {
 }
 
 export default function TherapistQueue() {
+  const { t: _t } = useTranslation('pages');
   const navigate = useNavigate();
   const [queue, setQueue] = useState<QueueItem[]>([]);
   const [loading, setLoading] = useState(true);

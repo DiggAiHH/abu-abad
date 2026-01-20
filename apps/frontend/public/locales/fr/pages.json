@@ -1,0 +1,206 @@
+{
+  "landing": {
+    "title": "Abu-Abbad – Télétérapie conforme au RGPD",
+    "header": {
+      "login": "Se connecter",
+      "tryFree": "Essayer gratuitement"
+    },
+    "hero": {
+      "headline": "Une télétérapie qui inspire confiance.",
+      "description": "Plateforme conforme au RGPD pour thérapeutes et patients – avec gestion des rendez-vous, communication sécurisée et sessions vidéo."
+    },
+    "cta": {
+      "start": "Commencer",
+      "hasAccount": "J'ai déjà un compte"
+    },
+    "features": {
+      "encryption": "Chiffrement et confidentialité par conception",
+      "video": "Sessions vidéo et audio (WebRTC)",
+      "questionnaires": "Questionnaires, matériels, documents",
+      "pwa": "Installable en PWA pour les tests"
+    },
+    "quickTest": {
+      "title": "Test rapide",
+      "description": "Pour les tests, vous pouvez vous connecter directement ou créer un nouveau compte.",
+      "login": "Connexion",
+      "register": "Inscription",
+      "note": "Note : En production, les mentions légales/politique de confidentialité sont requises. Ceci est intentionnellement minimal pour les tests."
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Page non trouvée",
+    "backToDashboard": "Retour au tableau de bord"
+  },
+  "share": {
+    "title": "Partager le document",
+    "loading": "Chargement du document...",
+    "error": "Document non trouvé ou expiré"
+  },
+  "dashboard": {
+    "therapist": {
+      "title": "Tableau de bord du thérapeute",
+      "welcome": "Bienvenue",
+      "patients": "Mes patients",
+      "appointments": "Rendez-vous à venir",
+      "noAppointments": "Aucun rendez-vous à venir",
+      "quickActions": "Actions rapides"
+    },
+    "patient": {
+      "title": "Tableau de bord du patient",
+      "welcome": "Bienvenue",
+      "nextAppointment": "Prochain rendez-vous",
+      "noAppointment": "Aucun rendez-vous prévu",
+      "myTherapist": "Mon thérapeute",
+      "bookAppointment": "Prendre rendez-vous"
+    }
+  },
+  "videoCall": {
+    "title": "Appel vidéo",
+    "connecting": "Connexion en cours...",
+    "waiting": "En attente de l'autre participant",
+    "controls": {
+      "mute": "Couper le son",
+      "unmute": "Activer le son",
+      "videoOff": "Désactiver la vidéo",
+      "videoOn": "Activer la vidéo",
+      "shareScreen": "Partager l'écran",
+      "stopSharing": "Arrêter le partage",
+      "endCall": "Terminer l'appel"
+    },
+    "error": {
+      "connection": "Erreur de connexion",
+      "camera": "Caméra non disponible",
+      "microphone": "Microphone non disponible"
+    }
+  },
+  "materials": {
+    "title": "Matériels",
+    "description": "Vous trouverez ici tous les matériels fournis par votre thérapeute.",
+    "noMaterials": "Aucun matériel disponible",
+    "download": "Télécharger",
+    "categories": {
+      "all": "Tous",
+      "documents": "Documents",
+      "exercises": "Exercices",
+      "audio": "Audio",
+      "video": "Vidéo"
+    }
+  },
+  "questionnaires": {
+    "builder": {
+      "title": "Créateur de questionnaires",
+      "newQuestion": "Nouvelle question",
+      "questionTypes": {
+        "text": "Texte libre",
+        "multipleChoice": "Choix multiple",
+        "scale": "Échelle",
+        "yesNo": "Oui/Non"
+      },
+      "save": "Enregistrer le questionnaire",
+      "preview": "Aperçu"
+    },
+    "patient": {
+      "title": "Questionnaires",
+      "pending": "En attente",
+      "completed": "Terminé",
+      "noPending": "Aucun questionnaire en attente",
+      "submit": "Soumettre"
+    }
+  },
+  "documents": {
+    "title": "Demandes de documents",
+    "request": "Demander un document",
+    "upload": "Téléverser un document",
+    "pending": "En attente",
+    "approved": "Approuvé",
+    "rejected": "Rejeté"
+  },
+  "diary": {
+    "title": "Journal des symptômes",
+    "newEntry": "Nouvelle entrée",
+    "mood": "Humeur",
+    "symptoms": "Symptômes",
+    "notes": "Notes",
+    "date": "Date",
+    "noEntries": "Aucune entrée pour le moment"
+  },
+  "therapyNotes": {
+    "title": "Notes de thérapie",
+    "newNote": "Nouvelle note",
+    "patient": "Patient",
+    "session": "Séance",
+    "progress": "Progrès",
+    "nextSteps": "Prochaines étapes"
+  },
+  "screenings": {
+    "title": "Évaluations psychologiques",
+    "available": "Évaluations disponibles",
+    "completed": "Évaluations terminées",
+    "start": "Commencer l'évaluation",
+    "results": "Résultats"
+  },
+  "crisisPlan": {
+    "title": "Plan de crise",
+    "emergencyContacts": "Contacts d'urgence",
+    "warningSigns": "Signes d'alerte",
+    "copingStrategies": "Stratégies d'adaptation",
+    "professionalHelp": "Aide professionnelle",
+    "edit": "Modifier le plan de crise"
+  },
+  "medications": {
+    "title": "Suivi des médicaments",
+    "addMedication": "Ajouter un médicament",
+    "name": "Nom du médicament",
+    "dosage": "Dosage",
+    "frequency": "Fréquence",
+    "reminders": "Rappels",
+    "taken": "Pris",
+    "missed": "Manqué"
+  },
+  "exercises": {
+    "title": "Exercices et devoirs",
+    "assigned": "Assigné",
+    "completed": "Terminé",
+    "instructions": "Instructions",
+    "markComplete": "Marquer comme terminé"
+  },
+  "reminders": {
+    "title": "Paramètres des rappels",
+    "appointments": "Rappels de rendez-vous",
+    "medications": "Rappels de médicaments",
+    "exercises": "Rappels d'exercices",
+    "email": "E-mail",
+    "push": "Notifications push",
+    "sms": "SMS"
+  },
+  "reports": {
+    "title": "Rapports de traitement",
+    "generate": "Générer un rapport",
+    "dateRange": "Période",
+    "patient": "Patient",
+    "export": "Exporter"
+  },
+  "waitingRoom": {
+    "title": "Salle d'attente",
+    "yourTurn": "C'est votre tour",
+    "position": "Position dans la file",
+    "estimatedWait": "Temps d'attente estimé",
+    "therapistReady": "Votre thérapeute est prêt"
+  },
+  "queue": {
+    "title": "File d'attente",
+    "nextPatient": "Prochain patient",
+    "waitingPatients": "Patients en attente",
+    "callNext": "Appeler le suivant",
+    "empty": "La file est vide"
+  },
+  "billing": {
+    "title": "Facturation",
+    "invoices": "Factures",
+    "payments": "Paiements",
+    "pending": "En attente",
+    "paid": "Payé",
+    "createInvoice": "Créer une facture"
+  }
+}

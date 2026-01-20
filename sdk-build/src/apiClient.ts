@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import toast from 'react-hot-toast';
 
-const API_URL = process.env.VITE_API_URL || 'http://localhost:3000';
+const API_URL = process.env.VITE_API_URL || 'http://localhost:4000';
 
 // SECURITY: Timeout verhindert Hanging Requests (DoS-Prävention)
 // GDPR-COMPLIANCE: Keine Third-Party Analytics oder Tracking

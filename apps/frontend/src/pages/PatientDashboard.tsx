@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuthStore } from '../store/authStore';
 import { appointmentAPI, messageAPI, paymentAPI } from '../api/client';
 import { Appointment, Message } from '../types';
@@ -13,6 +14,7 @@ import { logger } from '../utils/logger';
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY || '');
 
 export default function PatientDashboard() {
+  const { t: _t } = useTranslation('pages');
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
   const [appointments, setAppointments] = useState<Appointment[]>([]);

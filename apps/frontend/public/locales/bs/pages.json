@@ -1,0 +1,206 @@
+{
+  "landing": {
+    "title": "Abu-Abbad – Teleterapija usklađena s GDPR-om",
+    "header": {
+      "login": "Prijavite se",
+      "tryFree": "Isprobaj besplatno"
+    },
+    "hero": {
+      "headline": "Teleterapija koja vam daje osjećaj sigurnosti.",
+      "description": "Platforma usklađena s GDPR-om za terapeute i pacijente – s upravljanjem terminima, sigurnom komunikacijom i video sesijama."
+    },
+    "cta": {
+      "start": "Započni",
+      "hasAccount": "Već imam račun"
+    },
+    "features": {
+      "encryption": "Enkripcija i privatnost po dizajnu",
+      "video": "Video i audio sesije (WebRTC)",
+      "questionnaires": "Upitnici, materijali, dokumenti",
+      "pwa": "Instaliraj kao PWA za testiranje"
+    },
+    "quickTest": {
+      "title": "Brzi test",
+      "description": "Za testiranje se možete direktno prijaviti ili kreirati novi račun.",
+      "login": "Prijava",
+      "register": "Registracija",
+      "note": "Napomena: U produkciji su potrebni impresum/politika privatnosti. Ovo je namjerno minimalno za testiranje."
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Stranica nije pronađena",
+    "backToDashboard": "Povratak na kontrolnu tablu"
+  },
+  "share": {
+    "title": "Podijeli dokument",
+    "loading": "Učitavanje dokumenta...",
+    "error": "Dokument nije pronađen ili je istekao"
+  },
+  "dashboard": {
+    "therapist": {
+      "title": "Kontrolna tabla terapeuta",
+      "welcome": "Dobrodošli nazad",
+      "patients": "Moji pacijenti",
+      "appointments": "Predstojeći termini",
+      "noAppointments": "Nema predstojećih termina",
+      "quickActions": "Brze akcije"
+    },
+    "patient": {
+      "title": "Kontrolna tabla pacijenta",
+      "welcome": "Dobrodošli nazad",
+      "nextAppointment": "Sljedeći termin",
+      "noAppointment": "Nema zakazanog termina",
+      "myTherapist": "Moj terapeut",
+      "bookAppointment": "Zakaži termin"
+    }
+  },
+  "videoCall": {
+    "title": "Video poziv",
+    "connecting": "Povezivanje...",
+    "waiting": "Čekanje drugog učesnika",
+    "controls": {
+      "mute": "Utišaj",
+      "unmute": "Uključi zvuk",
+      "videoOff": "Isključi video",
+      "videoOn": "Uključi video",
+      "shareScreen": "Podijeli ekran",
+      "stopSharing": "Prestani dijeliti",
+      "endCall": "Završi poziv"
+    },
+    "error": {
+      "connection": "Greška povezivanja",
+      "camera": "Kamera nije dostupna",
+      "microphone": "Mikrofon nije dostupan"
+    }
+  },
+  "materials": {
+    "title": "Materijali",
+    "description": "Ovdje ćete pronaći sve materijale koje je pružio vaš terapeut.",
+    "noMaterials": "Nema dostupnih materijala",
+    "download": "Preuzmi",
+    "categories": {
+      "all": "Sve",
+      "documents": "Dokumenti",
+      "exercises": "Vježbe",
+      "audio": "Audio",
+      "video": "Video"
+    }
+  },
+  "questionnaires": {
+    "builder": {
+      "title": "Kreator upitnika",
+      "newQuestion": "Novo pitanje",
+      "questionTypes": {
+        "text": "Slobodan tekst",
+        "multipleChoice": "Višestruki izbor",
+        "scale": "Skala",
+        "yesNo": "Da/Ne"
+      },
+      "save": "Sačuvaj upitnik",
+      "preview": "Pregled"
+    },
+    "patient": {
+      "title": "Upitnici",
+      "pending": "Na čekanju",
+      "completed": "Završeno",
+      "noPending": "Nema upitnika na čekanju",
+      "submit": "Pošalji"
+    }
+  },
+  "documents": {
+    "title": "Zahtjevi za dokumente",
+    "request": "Zatraži dokument",
+    "upload": "Učitaj dokument",
+    "pending": "Na čekanju",
+    "approved": "Odobreno",
+    "rejected": "Odbijeno"
+  },
+  "diary": {
+    "title": "Dnevnik simptoma",
+    "newEntry": "Novi unos",
+    "mood": "Raspoloženje",
+    "symptoms": "Simptomi",
+    "notes": "Bilješke",
+    "date": "Datum",
+    "noEntries": "Još nema unosa"
+  },
+  "therapyNotes": {
+    "title": "Bilješke o terapiji",
+    "newNote": "Nova bilješka",
+    "patient": "Pacijent",
+    "session": "Sesija",
+    "progress": "Napredak",
+    "nextSteps": "Sljedeći koraci"
+  },
+  "screenings": {
+    "title": "Psihološki pregledi",
+    "available": "Dostupni pregledi",
+    "completed": "Završeni pregledi",
+    "start": "Započni pregled",
+    "results": "Rezultati"
+  },
+  "crisisPlan": {
+    "title": "Krizni plan",
+    "emergencyContacts": "Hitni kontakti",
+    "warningSigns": "Znakovi upozorenja",
+    "copingStrategies": "Strategije suočavanja",
+    "professionalHelp": "Stručna pomoć",
+    "edit": "Uredi krizni plan"
+  },
+  "medications": {
+    "title": "Praćenje lijekova",
+    "addMedication": "Dodaj lijek",
+    "name": "Naziv lijeka",
+    "dosage": "Doziranje",
+    "frequency": "Učestalost",
+    "reminders": "Podsjetnici",
+    "taken": "Uzeto",
+    "missed": "Propušteno"
+  },
+  "exercises": {
+    "title": "Vježbe i domaći zadaci",
+    "assigned": "Dodijeljeno",
+    "completed": "Završeno",
+    "instructions": "Upute",
+    "markComplete": "Označi kao završeno"
+  },
+  "reminders": {
+    "title": "Postavke podsjetnika",
+    "appointments": "Podsjetnici za termine",
+    "medications": "Podsjetnici za lijekove",
+    "exercises": "Podsjetnici za vježbe",
+    "email": "E-mail",
+    "push": "Push obavijesti",
+    "sms": "SMS"
+  },
+  "reports": {
+    "title": "Izvještaji o liječenju",
+    "generate": "Generiši izvještaj",
+    "dateRange": "Raspon datuma",
+    "patient": "Pacijent",
+    "export": "Izvezi"
+  },
+  "waitingRoom": {
+    "title": "Čekaonica",
+    "yourTurn": "Na redu ste",
+    "position": "Pozicija u redu",
+    "estimatedWait": "Procijenjeno vrijeme čekanja",
+    "therapistReady": "Vaš terapeut je spreman"
+  },
+  "queue": {
+    "title": "Red",
+    "nextPatient": "Sljedeći pacijent",
+    "waitingPatients": "Pacijenti na čekanju",
+    "callNext": "Pozovi sljedećeg",
+    "empty": "Red je prazan"
+  },
+  "billing": {
+    "title": "Naplata",
+    "invoices": "Fakture",
+    "payments": "Plaćanja",
+    "pending": "Na čekanju",
+    "paid": "Plaćeno",
+    "createInvoice": "Kreiraj fakturu"
+  }
+}

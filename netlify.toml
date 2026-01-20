@@ -8,13 +8,13 @@
 
 [build]
   # Frontend Build Command (npm workspaces + root package-lock.json)
-  command = "npm ci && npm run build --workspace=frontend"
+  command = "npm ci && npm run build --workspace=apps/frontend"
   
   # Output Directory (Vite Default)
   publish = "apps/frontend/dist"
   
   # Environment: Production
-  environment = { NODE_ENV = "production" }
+  environment = { NODE_ENV = "production", NODE_VERSION = "20" }
 
 [build.processing]
   # Minification & Optimization

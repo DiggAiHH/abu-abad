@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { api } from '../api/client';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -57,6 +58,7 @@ const TYPE_LABELS: Record<string, string> = {
 };
 
 export default function ReminderSettings() {
+  const { t: _t } = useTranslation('pages');
   const navigate = useNavigate();
 
   const [preferences, setPreferences] = useState<ReminderPreferences>({

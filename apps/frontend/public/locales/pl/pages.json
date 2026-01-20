@@ -1,0 +1,206 @@
+{
+  "landing": {
+    "title": "Abu-Abbad – Teleterapia zgodna z RODO",
+    "header": {
+      "login": "Zaloguj się",
+      "tryFree": "Wypróbuj za darmo"
+    },
+    "hero": {
+      "headline": "Teleterapia, która daje poczucie bezpieczeństwa.",
+      "description": "Platforma zgodna z RODO dla terapeutów i pacjentów – z zarządzaniem wizytami, bezpieczną komunikacją i sesjami wideo."
+    },
+    "cta": {
+      "start": "Rozpocznij",
+      "hasAccount": "Mam już konto"
+    },
+    "features": {
+      "encryption": "Szyfrowanie i ochrona prywatności w projekcie",
+      "video": "Sesje wideo i audio (WebRTC)",
+      "questionnaires": "Ankiety, materiały, dokumenty",
+      "pwa": "Instalowalne jako PWA do testów"
+    },
+    "quickTest": {
+      "title": "Szybki test",
+      "description": "Do testów możesz zalogować się bezpośrednio lub utworzyć nowe konto.",
+      "login": "Logowanie",
+      "register": "Rejestracja",
+      "note": "Uwaga: W produkcji wymagane są stopka redakcyjna/polityka prywatności. Jest to celowo minimalne do testów."
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Strona nie znaleziona",
+    "backToDashboard": "Powrót do panelu"
+  },
+  "share": {
+    "title": "Udostępnij dokument",
+    "loading": "Ładowanie dokumentu...",
+    "error": "Dokument nie znaleziony lub wygasł"
+  },
+  "dashboard": {
+    "therapist": {
+      "title": "Panel terapeuty",
+      "welcome": "Witaj ponownie",
+      "patients": "Moi pacjenci",
+      "appointments": "Nadchodzące wizyty",
+      "noAppointments": "Brak nadchodzących wizyt",
+      "quickActions": "Szybkie akcje"
+    },
+    "patient": {
+      "title": "Panel pacjenta",
+      "welcome": "Witaj ponownie",
+      "nextAppointment": "Następna wizyta",
+      "noAppointment": "Brak zaplanowanej wizyty",
+      "myTherapist": "Mój terapeuta",
+      "bookAppointment": "Umów wizytę"
+    }
+  },
+  "videoCall": {
+    "title": "Rozmowa wideo",
+    "connecting": "Łączenie...",
+    "waiting": "Oczekiwanie na drugiego uczestnika",
+    "controls": {
+      "mute": "Wycisz",
+      "unmute": "Włącz dźwięk",
+      "videoOff": "Wyłącz wideo",
+      "videoOn": "Włącz wideo",
+      "shareScreen": "Udostępnij ekran",
+      "stopSharing": "Zatrzymaj udostępnianie",
+      "endCall": "Zakończ rozmowę"
+    },
+    "error": {
+      "connection": "Błąd połączenia",
+      "camera": "Kamera niedostępna",
+      "microphone": "Mikrofon niedostępny"
+    }
+  },
+  "materials": {
+    "title": "Materiały",
+    "description": "Tutaj znajdziesz wszystkie materiały udostępnione przez twojego terapeutę.",
+    "noMaterials": "Brak dostępnych materiałów",
+    "download": "Pobierz",
+    "categories": {
+      "all": "Wszystkie",
+      "documents": "Dokumenty",
+      "exercises": "Ćwiczenia",
+      "audio": "Audio",
+      "video": "Wideo"
+    }
+  },
+  "questionnaires": {
+    "builder": {
+      "title": "Kreator ankiet",
+      "newQuestion": "Nowe pytanie",
+      "questionTypes": {
+        "text": "Tekst swobodny",
+        "multipleChoice": "Wielokrotny wybór",
+        "scale": "Skala",
+        "yesNo": "Tak/Nie"
+      },
+      "save": "Zapisz ankietę",
+      "preview": "Podgląd"
+    },
+    "patient": {
+      "title": "Ankiety",
+      "pending": "Oczekujące",
+      "completed": "Ukończone",
+      "noPending": "Brak oczekujących ankiet",
+      "submit": "Wyślij"
+    }
+  },
+  "documents": {
+    "title": "Prośby o dokumenty",
+    "request": "Poproś o dokument",
+    "upload": "Prześlij dokument",
+    "pending": "Oczekujące",
+    "approved": "Zatwierdzone",
+    "rejected": "Odrzucone"
+  },
+  "diary": {
+    "title": "Dziennik objawów",
+    "newEntry": "Nowy wpis",
+    "mood": "Nastrój",
+    "symptoms": "Objawy",
+    "notes": "Notatki",
+    "date": "Data",
+    "noEntries": "Brak wpisów"
+  },
+  "therapyNotes": {
+    "title": "Notatki z terapii",
+    "newNote": "Nowa notatka",
+    "patient": "Pacjent",
+    "session": "Sesja",
+    "progress": "Postęp",
+    "nextSteps": "Następne kroki"
+  },
+  "screenings": {
+    "title": "Badania psychologiczne",
+    "available": "Dostępne badania",
+    "completed": "Ukończone badania",
+    "start": "Rozpocznij badanie",
+    "results": "Wyniki"
+  },
+  "crisisPlan": {
+    "title": "Plan kryzysowy",
+    "emergencyContacts": "Kontakty alarmowe",
+    "warningSigns": "Znaki ostrzegawcze",
+    "copingStrategies": "Strategie radzenia sobie",
+    "professionalHelp": "Pomoc profesjonalna",
+    "edit": "Edytuj plan kryzysowy"
+  },
+  "medications": {
+    "title": "Śledzenie leków",
+    "addMedication": "Dodaj lek",
+    "name": "Nazwa leku",
+    "dosage": "Dawka",
+    "frequency": "Częstotliwość",
+    "reminders": "Przypomnienia",
+    "taken": "Przyjęty",
+    "missed": "Pominięty"
+  },
+  "exercises": {
+    "title": "Ćwiczenia i zadania domowe",
+    "assigned": "Przydzielone",
+    "completed": "Ukończone",
+    "instructions": "Instrukcje",
+    "markComplete": "Oznacz jako ukończone"
+  },
+  "reminders": {
+    "title": "Ustawienia przypomnień",
+    "appointments": "Przypomnienia o wizytach",
+    "medications": "Przypomnienia o lekach",
+    "exercises": "Przypomnienia o ćwiczeniach",
+    "email": "E-mail",
+    "push": "Powiadomienia push",
+    "sms": "SMS"
+  },
+  "reports": {
+    "title": "Raporty leczenia",
+    "generate": "Generuj raport",
+    "dateRange": "Zakres dat",
+    "patient": "Pacjent",
+    "export": "Eksportuj"
+  },
+  "waitingRoom": {
+    "title": "Poczekalnia",
+    "yourTurn": "Twoja kolej",
+    "position": "Pozycja w kolejce",
+    "estimatedWait": "Szacowany czas oczekiwania",
+    "therapistReady": "Twój terapeuta jest gotowy"
+  },
+  "queue": {
+    "title": "Kolejka",
+    "nextPatient": "Następny pacjent",
+    "waitingPatients": "Oczekujący pacjenci",
+    "callNext": "Wezwij następnego",
+    "empty": "Kolejka jest pusta"
+  },
+  "billing": {
+    "title": "Rozliczenia",
+    "invoices": "Faktury",
+    "payments": "Płatności",
+    "pending": "Oczekujące",
+    "paid": "Opłacone",
+    "createInvoice": "Utwórz fakturę"
+  }
+}

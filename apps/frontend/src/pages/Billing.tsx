@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAuthStore } from '../store/authStore';
 import { api } from '../api/client';
 import toast from 'react-hot-toast';
@@ -38,6 +39,7 @@ interface BillingSettings {
 }
 
 const Billing = () => {
+  const { t: _t } = useTranslation('pages');
   const { user } = useAuthStore();
   const [activeTab, setActiveTab] = useState<'invoices' | 'create' | 'settings'>('invoices');
   const [invoices, setInvoices] = useState<Invoice[]>([]);

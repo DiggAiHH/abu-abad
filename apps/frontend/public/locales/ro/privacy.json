@@ -1,0 +1,47 @@
+{
+  "title": "Politica de confidențialitate",
+  "lastUpdated": "Actualizat: ianuarie 2026",
+  "backToHome": "Înapoi la pagina principală",
+  "sections": {
+    "responsible": {
+      "title": "1. Operatorul de date",
+      "content": "Responsabil pentru prelucrarea datelor în conformitate cu GDPR este:\n\nAbu-Abbad Teleterapie\nStrada Exemplu 123\n12345 Oraș Exemplu\nGermania\n\nE-mail: datenschutz@abu-abbad.de\nTelefon: +49 (0) 123 456789"
+    },
+    "dataCollection": {
+      "title": "2. Ce date colectăm",
+      "content": "Colectăm și prelucrăm următoarele date cu caracter personal:\n\n• **Date de bază:** Nume, adresă de e-mail, număr de telefon\n• **Date de sănătate:** Jurnale de simptome, note terapeutice, rezultate screening (categorie specială conform art. 9 GDPR)\n• **Date de utilizare:** Timpul de conectare, durata sesiunii (anonimizate)\n• **Date de comunicare:** Date video/audio în timpul sesiunilor terapeutice (nu sunt stocate)"
+    },
+    "purpose": {
+      "title": "3. Scopul prelucrării datelor",
+      "content": "Prelucrăm datele dumneavoastră exclusiv în următoarele scopuri:\n\n• Desfășurarea sesiunilor de teleterapie\n• Gestionarea contului de pacient\n• Documentarea evoluției terapiei\n• Comunicarea între pacient și terapeut\n• Memento-uri pentru programări și medicamente\n\nTemei legal: art. 6 alin. (1) lit. b GDPR (executarea contractului) și art. 9 alin. (2) lit. h GDPR (asistență medicală)"
+    },
+    "storage": {
+      "title": "4. Stocare și securitate",
+      "content": "Datele dumneavoastră sunt stocate conform celor mai înalte standarde de securitate:\n\n• **Criptare:** AES-256-GCM pentru toate datele stocate\n• **Transmisie:** TLS 1.3 pentru toate conexiunile\n• **Locația stocării:** Servere în Uniunea Europeană\n• **Control acces:** Doar terapeuții autorizați au acces la datele dumneavoastră\n• **Backup:** Copii de siguranță criptate zilnice"
+    },
+    "retention": {
+      "title": "5. Perioada de stocare",
+      "content": "Stocăm datele dumneavoastră doar atât timp cât este necesar pentru scopul prelucrării:\n\n• **Date de bază:** Până la ștergerea contului\n• **Documentația terapiei:** 10 ani după încheierea tratamentului (obligație legală de păstrare)\n• **Date de comunicare:** Nu sunt stocate"
+    },
+    "rights": {
+      "title": "6. Drepturile dumneavoastră",
+      "content": "Aveți următoarele drepturi cu privire la datele dumneavoastră personale:\n\n• **Acces (art. 15):** Puteți solicita oricând informații despre datele stocate\n• **Rectificare (art. 16):** Puteți corecta datele inexacte\n• **Ștergere (art. 17):** Puteți solicita ștergerea datelor (cu respectarea termenelor legale de păstrare)\n• **Restricționare (art. 18):** Puteți restricționa prelucrarea\n• **Portabilitatea datelor (art. 20):** Puteți primi datele într-un format comun\n• **Opoziție (art. 21):** Vă puteți opune prelucrării"
+    },
+    "thirdParties": {
+      "title": "7. Transferul către terți",
+      "content": "Transferăm datele dumneavoastră către terți doar în următoarele cazuri:\n\n• Cu consimțământul dumneavoastră explicit\n• Pentru îndeplinirea obligațiilor legale\n• Către persoane împuternicite (de ex. furnizori de hosting) în conformitate cu art. 28 GDPR\n\nNu are loc niciun transfer către țări terțe din afara UE."
+    },
+    "cookies": {
+      "title": "8. Cookie-uri și urmărire",
+      "content": "Folosim doar cookie-uri tehnic necesare:\n\n• **Cookie de sesiune:** Pentru autentificare\n• **Setări de limbă:** Pentru limba preferată\n\nNu folosim cookie-uri de urmărire sau instrumente de analiză de la terți."
+    },
+    "changes": {
+      "title": "9. Modificări ale acestei politici de confidențialitate",
+      "content": "Ne rezervăm dreptul de a modifica această politică de confidențialitate după caz. Versiunea actuală este întotdeauna disponibilă pe site-ul nostru. Veți fi informat prin e-mail despre modificările semnificative."
+    },
+    "contact": {
+      "title": "10. Contact și dreptul de a depune plângere",
+      "content": "Pentru întrebări privind protecția datelor sau pentru exercitarea drepturilor dumneavoastră, contactați-ne la:\n\ndatenschutz@abu-abbad.de\n\nDe asemenea, aveți dreptul de a depune o plângere la o autoritate de supraveghere, cum ar fi Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP)."
+    }
+  }
+}

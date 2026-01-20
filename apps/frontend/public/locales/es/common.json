@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "dashboard": "Panel de control",
+    "logout": "Cerrar sesión",
+    "settings": "Configuración",
+    "profile": "Perfil",
+    "help": "Ayuda"
+  },
+  "buttons": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "submit": "Enviar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "close": "Cerrar",
+    "confirm": "Confirmar"
+  },
+  "errors": {
+    "required": "Campo obligatorio",
+    "invalidEmail": "Dirección de correo electrónico inválida",
+    "serverError": "Error del servidor. Por favor, inténtelo de nuevo.",
+    "networkError": "Sin conexión al servidor",
+    "unauthorized": "No autorizado",
+    "notFound": "No encontrado"
+  },
+  "messages": {
+    "loading": "Cargando...",
+    "saving": "Guardando...",
+    "success": "Guardado con éxito",
+    "confirmDelete": "¿Está seguro de que desea eliminar?"
+  },
+  "language": {
+    "selector": "Idioma",
+    "current": "Español"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "title": "Política de Privacidade",
+  "lastUpdated": "Última atualização: Janeiro de 2026",
+  "backToHome": "Voltar ao início",
+  "sections": {
+    "responsible": {
+      "title": "1. Responsável pelo Tratamento",
+      "content": "O responsável pelo tratamento de dados nos termos do RGPD é:\n\nAbu-Abbad Teleterapia\nRua Exemplo 123\n1000-001 Lisboa\nPortugal\n\nE-mail: privacidade@abu-abbad.pt\nTelefone: +351 21 123 4567"
+    },
+    "dataCollection": {
+      "title": "2. Dados que Recolhemos",
+      "content": "Recolhemos e processamos os seguintes dados pessoais:\n\n• **Dados de identificação:** Nome, endereço de e-mail, número de telefone\n• **Dados de saúde:** Diários de sintomas, notas de terapia, resultados de rastreios (categoria especial ao abrigo do Art. 9.º do RGPD)\n• **Dados de utilização:** Horários de início de sessão, duração da sessão (anonimizados)\n• **Dados de comunicação:** Dados de vídeo/áudio durante as sessões de terapia (não são armazenados)"
+    },
+    "purpose": {
+      "title": "3. Finalidade do Tratamento de Dados",
+      "content": "Processamos os seus dados exclusivamente para as seguintes finalidades:\n\n• Realização de sessões de teleterapia\n• Gestão da sua conta de paciente\n• Documentação do progresso terapêutico\n• Comunicação entre paciente e terapeuta\n• Lembretes de consultas e medicação\n\nBase legal: Art. 6.º, n.º 1, alínea b) do RGPD (execução de contrato) e Art. 9.º, n.º 2, alínea h) do RGPD (prestação de cuidados de saúde)"
+    },
+    "storage": {
+      "title": "4. Armazenamento e Segurança",
+      "content": "Os seus dados são armazenados de acordo com os mais elevados padrões de segurança:\n\n• **Encriptação:** AES-256-GCM para todos os dados armazenados\n• **Transmissão:** TLS 1.3 para todas as ligações\n• **Localização dos servidores:** Servidores na União Europeia\n• **Controlo de acesso:** Apenas terapeutas autorizados têm acesso aos seus dados\n• **Cópias de segurança:** Cópias de segurança encriptadas diárias"
+    },
+    "retention": {
+      "title": "5. Período de Conservação",
+      "content": "Conservamos os seus dados apenas durante o tempo necessário para a finalidade do tratamento:\n\n• **Dados de identificação:** Até à eliminação da sua conta\n• **Documentação terapêutica:** 10 anos após o término do tratamento (obrigação legal de conservação)\n• **Dados de comunicação:** Não são armazenados"
+    },
+    "rights": {
+      "title": "6. Os Seus Direitos",
+      "content": "Tem os seguintes direitos relativamente aos seus dados pessoais:\n\n• **Acesso (Art. 15.º):** Pode solicitar informações sobre os seus dados armazenados a qualquer momento\n• **Retificação (Art. 16.º):** Pode solicitar a correção de dados incorretos\n• **Apagamento (Art. 17.º):** Pode solicitar a eliminação dos seus dados (sujeito a períodos de conservação legais)\n• **Limitação (Art. 18.º):** Pode solicitar a limitação do tratamento\n• **Portabilidade (Art. 20.º):** Pode receber os seus dados num formato comum\n• **Oposição (Art. 21.º):** Pode opor-se ao tratamento"
+    },
+    "thirdParties": {
+      "title": "7. Partilha com Terceiros",
+      "content": "Apenas partilhamos os seus dados com terceiros nos seguintes casos:\n\n• Com o seu consentimento expresso\n• Para cumprimento de obrigações legais\n• Com subcontratantes (por exemplo, fornecedores de alojamento) em conformidade com o Art. 28.º do RGPD\n\nNão há transferência de dados para países terceiros fora da UE."
+    },
+    "cookies": {
+      "title": "8. Cookies e Rastreamento",
+      "content": "Utilizamos apenas cookies tecnicamente necessários:\n\n• **Cookie de sessão:** Para autenticação\n• **Preferência de idioma:** Para o seu idioma preferido\n\nNão utilizamos cookies de rastreamento nem ferramentas de análise de terceiros."
+    },
+    "changes": {
+      "title": "9. Alterações a esta Política de Privacidade",
+      "content": "Reservamo-nos o direito de atualizar esta Política de Privacidade conforme necessário. A versão atual está sempre disponível no nosso website. Em caso de alterações significativas, será notificado por e-mail."
+    },
+    "contact": {
+      "title": "10. Contacto e Direito de Reclamação",
+      "content": "Para questões sobre proteção de dados ou para exercer os seus direitos, contacte:\n\nprivacidade@abu-abbad.pt\n\nTem também o direito de apresentar uma reclamação junto de uma autoridade de controlo, como a Comissão Nacional de Proteção de Dados (CNPD)."
+    }
+  }
+}

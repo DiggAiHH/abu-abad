@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { api } from '../api/client';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -79,6 +80,7 @@ const FREQUENCY_LABELS: Record<string, string> = {
 };
 
 export default function Exercises() {
+  const { t: _t } = useTranslation('pages');
   const navigate = useNavigate();
 
   const [exercises, setExercises] = useState<Exercise[]>([]);

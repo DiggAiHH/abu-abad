@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "dashboard": "Nadzorna ploča",
+    "logout": "Odjava",
+    "settings": "Postavke",
+    "home": "Početna",
+    "back": "Natrag"
+  },
+  "buttons": {
+    "save": "Spremi",
+    "cancel": "Odustani",
+    "submit": "Pošalji",
+    "delete": "Obriši",
+    "edit": "Uredi",
+    "close": "Zatvori",
+    "confirm": "Potvrdi",
+    "next": "Dalje",
+    "previous": "Natrag",
+    "loading": "Učitavanje..."
+  },
+  "errors": {
+    "required": "Obavezno polje",
+    "invalidEmail": "Nevažeća e-mail adresa",
+    "serverError": "Greška poslužitelja. Molimo pokušajte kasnije.",
+    "networkError": "Nije moguće povezati se s poslužiteljem",
+    "timeout": "Isteklo vrijeme. Molimo pokušajte ponovno.",
+    "unknown": "Došlo je do nepoznate greške"
+  },
+  "validation": {
+    "minLength": "Potrebno je najmanje {{min}} znakova",
+    "maxLength": "Dozvoljeno je najviše {{max}} znakova",
+    "passwordMismatch": "Lozinke se ne podudaraju",
+    "passwordTooShort": "Lozinka mora imati najmanje 8 znakova"
+  },
+  "common": {
+    "yes": "Da",
+    "no": "Ne",
+    "or": "ili",
+    "and": "i",
+    "all": "Sve",
+    "none": "Ništa",
+    "search": "Pretraživanje",
+    "filter": "Filter",
+    "sort": "Sortiraj",
+    "date": "Datum",
+    "time": "Vrijeme",
+    "name": "Ime",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "address": "Adresa",
+    "notes": "Bilješke"
+  },
+  "roles": {
+    "therapist": "Terapeut",
+    "patient": "Pacijent"
+  },
+  "gdpr": {
+    "dataProtection": "Zaštita podataka",
+    "privacyPolicy": "Pravila privatnosti",
+    "consent": "Suglasnost",
+    "secureStorage": "Svi podaci se pohranjuju šifrirano."
+  }
+}

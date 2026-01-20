@@ -1,0 +1,206 @@
+{
+  "landing": {
+    "title": "أبو عبّاد – علاج عن بُعد متوافق مع اللائحة العامة لحماية البيانات",
+    "header": {
+      "login": "تسجيل الدخول",
+      "tryFree": "جرّب مجاناً"
+    },
+    "hero": {
+      "headline": "علاج عن بُعد يشعرك بالأمان.",
+      "description": "منصة متوافقة مع اللائحة العامة لحماية البيانات للمعالجين والمرضى – مع إدارة المواعيد والتواصل الآمن وجلسات الفيديو."
+    },
+    "cta": {
+      "start": "ابدأ الآن",
+      "hasAccount": "لديّ حساب بالفعل"
+    },
+    "features": {
+      "encryption": "التشفير والخصوصية حسب التصميم",
+      "video": "جلسات فيديو وصوت (WebRTC)",
+      "questionnaires": "استبيانات ومواد ووثائق",
+      "pwa": "قابل للتثبيت كتطبيق ويب تقدمي للاختبار"
+    },
+    "quickTest": {
+      "title": "اختبار سريع",
+      "description": "للاختبار، يمكنك تسجيل الدخول مباشرة أو إنشاء حساب جديد.",
+      "login": "تسجيل الدخول",
+      "register": "التسجيل",
+      "note": "ملاحظة: في الإنتاج، مطلوب بيان الطباعة/سياسة الخصوصية. هذا مختصر عمداً للاختبار."
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "الصفحة غير موجودة",
+    "backToDashboard": "العودة إلى لوحة التحكم"
+  },
+  "share": {
+    "title": "مشاركة المستند",
+    "loading": "جارٍ تحميل المستند...",
+    "error": "المستند غير موجود أو منتهي الصلاحية"
+  },
+  "dashboard": {
+    "therapist": {
+      "title": "لوحة تحكم المعالج",
+      "welcome": "مرحباً بعودتك",
+      "patients": "مرضاي",
+      "appointments": "المواعيد القادمة",
+      "noAppointments": "لا توجد مواعيد قادمة",
+      "quickActions": "إجراءات سريعة"
+    },
+    "patient": {
+      "title": "لوحة تحكم المريض",
+      "welcome": "مرحباً بعودتك",
+      "nextAppointment": "الموعد القادم",
+      "noAppointment": "لا يوجد موعد مجدول",
+      "myTherapist": "معالجي",
+      "bookAppointment": "حجز موعد"
+    }
+  },
+  "videoCall": {
+    "title": "مكالمة فيديو",
+    "connecting": "جارٍ الاتصال...",
+    "waiting": "في انتظار المشارك الآخر",
+    "controls": {
+      "mute": "كتم الصوت",
+      "unmute": "إلغاء كتم الصوت",
+      "videoOff": "إيقاف الفيديو",
+      "videoOn": "تشغيل الفيديو",
+      "shareScreen": "مشاركة الشاشة",
+      "stopSharing": "إيقاف المشاركة",
+      "endCall": "إنهاء المكالمة"
+    },
+    "error": {
+      "connection": "خطأ في الاتصال",
+      "camera": "الكاميرا غير متاحة",
+      "microphone": "الميكروفون غير متاح"
+    }
+  },
+  "materials": {
+    "title": "المواد",
+    "description": "هنا ستجد جميع المواد التي قدمها معالجك.",
+    "noMaterials": "لا تتوفر مواد",
+    "download": "تحميل",
+    "categories": {
+      "all": "الكل",
+      "documents": "وثائق",
+      "exercises": "تمارين",
+      "audio": "صوت",
+      "video": "فيديو"
+    }
+  },
+  "questionnaires": {
+    "builder": {
+      "title": "منشئ الاستبيانات",
+      "newQuestion": "سؤال جديد",
+      "questionTypes": {
+        "text": "نص حر",
+        "multipleChoice": "اختيار متعدد",
+        "scale": "مقياس",
+        "yesNo": "نعم/لا"
+      },
+      "save": "حفظ الاستبيان",
+      "preview": "معاينة"
+    },
+    "patient": {
+      "title": "الاستبيانات",
+      "pending": "قيد الانتظار",
+      "completed": "مكتمل",
+      "noPending": "لا توجد استبيانات معلقة",
+      "submit": "إرسال"
+    }
+  },
+  "documents": {
+    "title": "طلبات المستندات",
+    "request": "طلب مستند",
+    "upload": "رفع مستند",
+    "pending": "قيد الانتظار",
+    "approved": "موافق عليه",
+    "rejected": "مرفوض"
+  },
+  "diary": {
+    "title": "يوميات الأعراض",
+    "newEntry": "إدخال جديد",
+    "mood": "المزاج",
+    "symptoms": "الأعراض",
+    "notes": "ملاحظات",
+    "date": "التاريخ",
+    "noEntries": "لا توجد إدخالات بعد"
+  },
+  "therapyNotes": {
+    "title": "ملاحظات العلاج",
+    "newNote": "ملاحظة جديدة",
+    "patient": "المريض",
+    "session": "الجلسة",
+    "progress": "التقدم",
+    "nextSteps": "الخطوات التالية"
+  },
+  "screenings": {
+    "title": "الفحوصات النفسية",
+    "available": "الفحوصات المتاحة",
+    "completed": "الفحوصات المكتملة",
+    "start": "بدء الفحص",
+    "results": "النتائج"
+  },
+  "crisisPlan": {
+    "title": "خطة الأزمات",
+    "emergencyContacts": "جهات اتصال الطوارئ",
+    "warningSigns": "علامات التحذير",
+    "copingStrategies": "استراتيجيات المواجهة",
+    "professionalHelp": "المساعدة المهنية",
+    "edit": "تعديل خطة الأزمات"
+  },
+  "medications": {
+    "title": "متتبع الأدوية",
+    "addMedication": "إضافة دواء",
+    "name": "اسم الدواء",
+    "dosage": "الجرعة",
+    "frequency": "التكرار",
+    "reminders": "التذكيرات",
+    "taken": "تم تناوله",
+    "missed": "فائت"
+  },
+  "exercises": {
+    "title": "التمارين والواجبات",
+    "assigned": "معيّن",
+    "completed": "مكتمل",
+    "instructions": "التعليمات",
+    "markComplete": "وضع علامة مكتمل"
+  },
+  "reminders": {
+    "title": "إعدادات التذكير",
+    "appointments": "تذكيرات المواعيد",
+    "medications": "تذكيرات الأدوية",
+    "exercises": "تذكيرات التمارين",
+    "email": "البريد الإلكتروني",
+    "push": "إشعارات الدفع",
+    "sms": "رسالة نصية"
+  },
+  "reports": {
+    "title": "تقارير العلاج",
+    "generate": "إنشاء تقرير",
+    "dateRange": "نطاق التاريخ",
+    "patient": "المريض",
+    "export": "تصدير"
+  },
+  "waitingRoom": {
+    "title": "غرفة الانتظار",
+    "yourTurn": "حان دورك",
+    "position": "موقعك في الطابور",
+    "estimatedWait": "وقت الانتظار المتوقع",
+    "therapistReady": "معالجك جاهز"
+  },
+  "queue": {
+    "title": "الطابور",
+    "nextPatient": "المريض التالي",
+    "waitingPatients": "المرضى المنتظرون",
+    "callNext": "استدعاء التالي",
+    "empty": "الطابور فارغ"
+  },
+  "billing": {
+    "title": "الفواتير",
+    "invoices": "الفواتير",
+    "payments": "المدفوعات",
+    "pending": "قيد الانتظار",
+    "paid": "مدفوع",
+    "createInvoice": "إنشاء فاتورة"
+  }
+}

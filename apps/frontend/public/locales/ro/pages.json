@@ -1,0 +1,206 @@
+{
+  "landing": {
+    "title": "Abu-Abbad – Teleterapia conformă cu GDPR",
+    "header": {
+      "login": "Autentificare",
+      "tryFree": "Încearcă gratuit"
+    },
+    "hero": {
+      "headline": "Teleterapie care te face să te simți în siguranță.",
+      "description": "Platformă conformă cu GDPR pentru terapeuți și pacienți – cu gestionarea programărilor, comunicare securizată și sesiuni video."
+    },
+    "cta": {
+      "start": "Începe",
+      "hasAccount": "Am deja un cont"
+    },
+    "features": {
+      "encryption": "Criptare și confidențialitate prin design",
+      "video": "Sesiuni video și audio (WebRTC)",
+      "questionnaires": "Chestionare, materiale, documente",
+      "pwa": "Instalabil ca PWA pentru testare"
+    },
+    "quickTest": {
+      "title": "Test rapid",
+      "description": "Pentru testare, te poți autentifica direct sau poți crea un cont nou.",
+      "login": "Autentificare",
+      "register": "Înregistrare",
+      "note": "Notă: În producție, sunt necesare imprimat/politica de confidențialitate. Aceasta este intenționat minimă pentru testare."
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Pagină negăsită",
+    "backToDashboard": "Înapoi la panou"
+  },
+  "share": {
+    "title": "Partajează documentul",
+    "loading": "Se încarcă documentul...",
+    "error": "Document negăsit sau expirat"
+  },
+  "dashboard": {
+    "therapist": {
+      "title": "Panoul terapeutului",
+      "welcome": "Bine ai revenit",
+      "patients": "Pacienții mei",
+      "appointments": "Programări viitoare",
+      "noAppointments": "Fără programări viitoare",
+      "quickActions": "Acțiuni rapide"
+    },
+    "patient": {
+      "title": "Panoul pacientului",
+      "welcome": "Bine ai revenit",
+      "nextAppointment": "Următoarea programare",
+      "noAppointment": "Nicio programare planificată",
+      "myTherapist": "Terapeutul meu",
+      "bookAppointment": "Programează"
+    }
+  },
+  "videoCall": {
+    "title": "Apel video",
+    "connecting": "Se conectează...",
+    "waiting": "Se așteaptă celălalt participant",
+    "controls": {
+      "mute": "Dezactivează sunetul",
+      "unmute": "Activează sunetul",
+      "videoOff": "Oprește video",
+      "videoOn": "Pornește video",
+      "shareScreen": "Partajează ecranul",
+      "stopSharing": "Oprește partajarea",
+      "endCall": "Închide apelul"
+    },
+    "error": {
+      "connection": "Eroare de conexiune",
+      "camera": "Camera nu este disponibilă",
+      "microphone": "Microfonul nu este disponibil"
+    }
+  },
+  "materials": {
+    "title": "Materiale",
+    "description": "Aici vei găsi toate materialele furnizate de terapeutul tău.",
+    "noMaterials": "Niciun material disponibil",
+    "download": "Descarcă",
+    "categories": {
+      "all": "Toate",
+      "documents": "Documente",
+      "exercises": "Exerciții",
+      "audio": "Audio",
+      "video": "Video"
+    }
+  },
+  "questionnaires": {
+    "builder": {
+      "title": "Constructor de chestionare",
+      "newQuestion": "Întrebare nouă",
+      "questionTypes": {
+        "text": "Text liber",
+        "multipleChoice": "Alegere multiplă",
+        "scale": "Scală",
+        "yesNo": "Da/Nu"
+      },
+      "save": "Salvează chestionarul",
+      "preview": "Previzualizare"
+    },
+    "patient": {
+      "title": "Chestionare",
+      "pending": "În așteptare",
+      "completed": "Completate",
+      "noPending": "Niciun chestionar în așteptare",
+      "submit": "Trimite"
+    }
+  },
+  "documents": {
+    "title": "Cereri de documente",
+    "request": "Solicită document",
+    "upload": "Încarcă document",
+    "pending": "În așteptare",
+    "approved": "Aprobat",
+    "rejected": "Respins"
+  },
+  "diary": {
+    "title": "Jurnal de simptome",
+    "newEntry": "Intrare nouă",
+    "mood": "Dispoziție",
+    "symptoms": "Simptome",
+    "notes": "Note",
+    "date": "Data",
+    "noEntries": "Nicio intrare încă"
+  },
+  "therapyNotes": {
+    "title": "Note de terapie",
+    "newNote": "Notă nouă",
+    "patient": "Pacient",
+    "session": "Sesiune",
+    "progress": "Progres",
+    "nextSteps": "Pașii următori"
+  },
+  "screenings": {
+    "title": "Screening-uri psihologice",
+    "available": "Screening-uri disponibile",
+    "completed": "Screening-uri completate",
+    "start": "Începe screening-ul",
+    "results": "Rezultate"
+  },
+  "crisisPlan": {
+    "title": "Plan de criză",
+    "emergencyContacts": "Contacte de urgență",
+    "warningSigns": "Semne de avertizare",
+    "copingStrategies": "Strategii de adaptare",
+    "professionalHelp": "Ajutor profesional",
+    "edit": "Editează planul de criză"
+  },
+  "medications": {
+    "title": "Urmărirea medicamentelor",
+    "addMedication": "Adaugă medicament",
+    "name": "Numele medicamentului",
+    "dosage": "Dozaj",
+    "frequency": "Frecvență",
+    "reminders": "Memento-uri",
+    "taken": "Luat",
+    "missed": "Ratat"
+  },
+  "exercises": {
+    "title": "Exerciții și teme",
+    "assigned": "Atribuit",
+    "completed": "Completat",
+    "instructions": "Instrucțiuni",
+    "markComplete": "Marchează ca finalizat"
+  },
+  "reminders": {
+    "title": "Setări memento-uri",
+    "appointments": "Memento-uri pentru programări",
+    "medications": "Memento-uri pentru medicamente",
+    "exercises": "Memento-uri pentru exerciții",
+    "email": "E-mail",
+    "push": "Notificări push",
+    "sms": "SMS"
+  },
+  "reports": {
+    "title": "Rapoarte de tratament",
+    "generate": "Generează raport",
+    "dateRange": "Interval de date",
+    "patient": "Pacient",
+    "export": "Exportă"
+  },
+  "waitingRoom": {
+    "title": "Sala de așteptare",
+    "yourTurn": "Este rândul tău",
+    "position": "Poziția în coadă",
+    "estimatedWait": "Timp de așteptare estimat",
+    "therapistReady": "Terapeutul tău este pregătit"
+  },
+  "queue": {
+    "title": "Coadă",
+    "nextPatient": "Următorul pacient",
+    "waitingPatients": "Pacienți în așteptare",
+    "callNext": "Cheamă următorul",
+    "empty": "Coada este goală"
+  },
+  "billing": {
+    "title": "Facturare",
+    "invoices": "Facturi",
+    "payments": "Plăți",
+    "pending": "În așteptare",
+    "paid": "Plătit",
+    "createInvoice": "Creează factură"
+  }
+}

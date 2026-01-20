@@ -139,7 +139,7 @@ describe('Security & Penetration Tests', () => {
     test('should have CORS headers configured', async () => {
       const response = await request(app)
         .get('/health')
-        .set('Origin', 'http://localhost:3000')
+        .set('Origin', 'http://localhost:5175')
         .expect(200);
 
       // CORS middleware should add appropriate headers

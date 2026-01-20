@@ -1,0 +1,38 @@
+{
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "logout": "Déconnexion",
+    "settings": "Paramètres",
+    "profile": "Profil",
+    "help": "Aide"
+  },
+  "buttons": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "submit": "Soumettre",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "back": "Retour",
+    "next": "Suivant",
+    "close": "Fermer",
+    "confirm": "Confirmer"
+  },
+  "errors": {
+    "required": "Champ obligatoire",
+    "invalidEmail": "Adresse e-mail invalide",
+    "serverError": "Erreur du serveur. Veuillez réessayer.",
+    "networkError": "Pas de connexion au serveur",
+    "unauthorized": "Non autorisé",
+    "notFound": "Non trouvé"
+  },
+  "messages": {
+    "loading": "Chargement...",
+    "saving": "Enregistrement...",
+    "success": "Enregistré avec succès",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer ?"
+  },
+  "language": {
+    "selector": "Langue",
+    "current": "Français"
+  }
+}

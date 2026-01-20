@@ -1,0 +1,206 @@
+{
+  "landing": {
+    "title": "Abu-Abbad – Teleterapia conforme al RGPD",
+    "header": {
+      "login": "Iniciar sesión",
+      "tryFree": "Prueba gratis"
+    },
+    "hero": {
+      "headline": "Teleterapia que te hace sentir seguro.",
+      "description": "Plataforma conforme al RGPD para terapeutas y pacientes – con gestión de citas, comunicación segura y sesiones de video."
+    },
+    "cta": {
+      "start": "Comenzar",
+      "hasAccount": "Ya tengo una cuenta"
+    },
+    "features": {
+      "encryption": "Cifrado y privacidad por diseño",
+      "video": "Sesiones de video y audio (WebRTC)",
+      "questionnaires": "Cuestionarios, materiales, documentos",
+      "pwa": "Instalable como PWA para pruebas"
+    },
+    "quickTest": {
+      "title": "Prueba rápida",
+      "description": "Para probar, puedes iniciar sesión directamente o crear una nueva cuenta.",
+      "login": "Iniciar sesión",
+      "register": "Registrarse",
+      "note": "Nota: En producción, se requieren aviso legal/política de privacidad. Esto es intencionalmente mínimo para pruebas."
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Página no encontrada",
+    "backToDashboard": "Volver al panel"
+  },
+  "share": {
+    "title": "Compartir documento",
+    "loading": "Cargando documento...",
+    "error": "Documento no encontrado o expirado"
+  },
+  "dashboard": {
+    "therapist": {
+      "title": "Panel del terapeuta",
+      "welcome": "Bienvenido de nuevo",
+      "patients": "Mis pacientes",
+      "appointments": "Próximas citas",
+      "noAppointments": "Sin citas próximas",
+      "quickActions": "Acciones rápidas"
+    },
+    "patient": {
+      "title": "Panel del paciente",
+      "welcome": "Bienvenido de nuevo",
+      "nextAppointment": "Próxima cita",
+      "noAppointment": "Sin cita programada",
+      "myTherapist": "Mi terapeuta",
+      "bookAppointment": "Reservar cita"
+    }
+  },
+  "videoCall": {
+    "title": "Videollamada",
+    "connecting": "Conectando...",
+    "waiting": "Esperando al otro participante",
+    "controls": {
+      "mute": "Silenciar",
+      "unmute": "Activar sonido",
+      "videoOff": "Desactivar video",
+      "videoOn": "Activar video",
+      "shareScreen": "Compartir pantalla",
+      "stopSharing": "Dejar de compartir",
+      "endCall": "Finalizar llamada"
+    },
+    "error": {
+      "connection": "Error de conexión",
+      "camera": "Cámara no disponible",
+      "microphone": "Micrófono no disponible"
+    }
+  },
+  "materials": {
+    "title": "Materiales",
+    "description": "Aquí encontrarás todos los materiales proporcionados por tu terapeuta.",
+    "noMaterials": "No hay materiales disponibles",
+    "download": "Descargar",
+    "categories": {
+      "all": "Todos",
+      "documents": "Documentos",
+      "exercises": "Ejercicios",
+      "audio": "Audio",
+      "video": "Video"
+    }
+  },
+  "questionnaires": {
+    "builder": {
+      "title": "Constructor de cuestionarios",
+      "newQuestion": "Nueva pregunta",
+      "questionTypes": {
+        "text": "Texto libre",
+        "multipleChoice": "Opción múltiple",
+        "scale": "Escala",
+        "yesNo": "Sí/No"
+      },
+      "save": "Guardar cuestionario",
+      "preview": "Vista previa"
+    },
+    "patient": {
+      "title": "Cuestionarios",
+      "pending": "Pendientes",
+      "completed": "Completados",
+      "noPending": "Sin cuestionarios pendientes",
+      "submit": "Enviar"
+    }
+  },
+  "documents": {
+    "title": "Solicitudes de documentos",
+    "request": "Solicitar documento",
+    "upload": "Subir documento",
+    "pending": "Pendiente",
+    "approved": "Aprobado",
+    "rejected": "Rechazado"
+  },
+  "diary": {
+    "title": "Diario de síntomas",
+    "newEntry": "Nueva entrada",
+    "mood": "Estado de ánimo",
+    "symptoms": "Síntomas",
+    "notes": "Notas",
+    "date": "Fecha",
+    "noEntries": "Sin entradas todavía"
+  },
+  "therapyNotes": {
+    "title": "Notas de terapia",
+    "newNote": "Nueva nota",
+    "patient": "Paciente",
+    "session": "Sesión",
+    "progress": "Progreso",
+    "nextSteps": "Próximos pasos"
+  },
+  "screenings": {
+    "title": "Evaluaciones psicológicas",
+    "available": "Evaluaciones disponibles",
+    "completed": "Evaluaciones completadas",
+    "start": "Iniciar evaluación",
+    "results": "Resultados"
+  },
+  "crisisPlan": {
+    "title": "Plan de crisis",
+    "emergencyContacts": "Contactos de emergencia",
+    "warningSigns": "Señales de alerta",
+    "copingStrategies": "Estrategias de afrontamiento",
+    "professionalHelp": "Ayuda profesional",
+    "edit": "Editar plan de crisis"
+  },
+  "medications": {
+    "title": "Seguimiento de medicamentos",
+    "addMedication": "Añadir medicamento",
+    "name": "Nombre del medicamento",
+    "dosage": "Dosis",
+    "frequency": "Frecuencia",
+    "reminders": "Recordatorios",
+    "taken": "Tomado",
+    "missed": "Olvidado"
+  },
+  "exercises": {
+    "title": "Ejercicios y tareas",
+    "assigned": "Asignado",
+    "completed": "Completado",
+    "instructions": "Instrucciones",
+    "markComplete": "Marcar como completado"
+  },
+  "reminders": {
+    "title": "Configuración de recordatorios",
+    "appointments": "Recordatorios de citas",
+    "medications": "Recordatorios de medicamentos",
+    "exercises": "Recordatorios de ejercicios",
+    "email": "Correo electrónico",
+    "push": "Notificaciones push",
+    "sms": "SMS"
+  },
+  "reports": {
+    "title": "Informes de tratamiento",
+    "generate": "Generar informe",
+    "dateRange": "Período",
+    "patient": "Paciente",
+    "export": "Exportar"
+  },
+  "waitingRoom": {
+    "title": "Sala de espera",
+    "yourTurn": "Es tu turno",
+    "position": "Posición en la cola",
+    "estimatedWait": "Tiempo de espera estimado",
+    "therapistReady": "Tu terapeuta está listo"
+  },
+  "queue": {
+    "title": "Cola",
+    "nextPatient": "Siguiente paciente",
+    "waitingPatients": "Pacientes en espera",
+    "callNext": "Llamar al siguiente",
+    "empty": "La cola está vacía"
+  },
+  "billing": {
+    "title": "Facturación",
+    "invoices": "Facturas",
+    "payments": "Pagos",
+    "pending": "Pendiente",
+    "paid": "Pagado",
+    "createInvoice": "Crear factura"
+  }
+}

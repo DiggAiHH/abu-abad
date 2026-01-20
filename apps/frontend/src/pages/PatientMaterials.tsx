@@ -5,6 +5,7 @@
  */
 
 import { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Upload, FileText, Image, Mic, Video, Trash2, Share2, Check } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { apiClient } from '../api/client';
@@ -22,6 +23,7 @@ interface PatientMaterial {
 }
 
 export default function PatientMaterials() {
+  const { t: _t } = useTranslation('pages');
   const [materials, setMaterials] = useState<PatientMaterial[]>([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);

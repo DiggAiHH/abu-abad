@@ -26,15 +26,15 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:8080',
+    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:5175',
 
     // Supports Nginx Basic Auth (doctor stack).
     // If env vars are not set, default to the repo's doctor-stack credentials when
     // targeting the local doctor entrypoint.
     ...(() => {
-      const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:8080';
+      const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:5175';
       const isDoctorLocal =
-        baseURL.includes('://localhost:8080') || baseURL.includes('://127.0.0.1:8080');
+        baseURL.includes('://localhost:5175') || baseURL.includes('://127.0.0.1:5175');
 
       const username =
         process.env.BASIC_AUTH_USER || (isDoctorLocal ? 'Abu-Abbad-Psyjo-App-Test' : undefined);
@@ -116,7 +116,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
+  //   url: 'http://localhost:5175',
   //   reuseExistingServer: !process.env.CI,
   // },
 });

@@ -1,0 +1,47 @@
+{
+  "title": "Política de Privacidad",
+  "lastUpdated": "Última actualización: Enero 2026",
+  "intro": "Nos tomamos muy en serio la protección de sus datos personales. A continuación, le informamos de forma transparente sobre cómo tratamos sus datos.",
+  "sections": {
+    "controller": {
+      "title": "1. Responsable del tratamiento",
+      "content": "El responsable del tratamiento de datos en el sentido del Reglamento General de Protección de Datos (RGPD) es Abu-Abbad Teletherapy GmbH. Para cuestiones de protección de datos, puede contactarnos en cualquier momento a través de nuestra dirección de correo electrónico de protección de datos."
+    },
+    "dataCollection": {
+      "title": "2. Qué datos recopilamos",
+      "content": "Recopilamos los siguientes datos personales: datos maestros (nombre, apellido, correo electrónico), datos de comunicación (número de teléfono), datos de salud (notas de terapia, diagnósticos, progreso del tratamiento) y datos técnicos (dirección IP, tipo de navegador, marcas de tiempo). Los datos de salud son especialmente sensibles y se tratan con la máxima confidencialidad."
+    },
+    "purpose": {
+      "title": "3. Finalidades del tratamiento",
+      "content": "Tratamos sus datos exclusivamente para: realizar sesiones de terapia, documentar el progreso del tratamiento, fines de facturación, cumplir obligaciones legales (por ejemplo, períodos de retención) y garantizar la seguridad técnica de nuestra plataforma."
+    },
+    "legalBasis": {
+      "title": "4. Base jurídica",
+      "content": "El tratamiento se realiza sobre la base de: su consentimiento explícito (Art. 9 párr. 2 lit. a RGPD) para datos de salud, cumplimiento de un contrato (Art. 6 párr. 1 lit. b RGPD) para el contrato de terapia, y obligaciones legales (Art. 6 párr. 1 lit. c RGPD) para datos contables y fiscales."
+    },
+    "encryption": {
+      "title": "5. Cifrado y seguridad",
+      "content": "Todos los datos se transmiten cifrados con TLS 1.3 y se almacenan cifrados con AES-256-GCM. Utilizamos arquitectura de conocimiento cero para los datos de terapia sensibles: solo usted y su terapeuta pueden descifrar el contenido. Nuestros servidores están ubicados exclusivamente en la UE (Alemania)."
+    },
+    "rights": {
+      "title": "6. Sus derechos",
+      "content": "Según el RGPD, usted tiene los siguientes derechos: Derecho de acceso (Art. 15 RGPD), Derecho de rectificación (Art. 16 RGPD), Derecho de supresión (Art. 17 RGPD), Derecho a la limitación del tratamiento (Art. 18 RGPD), Derecho a la portabilidad de los datos (Art. 20 RGPD) y Derecho de oposición (Art. 21 RGPD)."
+    },
+    "retention": {
+      "title": "7. Períodos de conservación",
+      "content": "Los datos de terapia se conservan durante 10 años después del último tratamiento (obligación legal). Los datos de la cuenta pueden eliminarse previa solicitud, excepto los datos sujetos a obligaciones de conservación. Los datos de facturación deben conservarse durante 10 años por motivos fiscales."
+    },
+    "thirdParties": {
+      "title": "8. Transmisión de datos",
+      "content": "No transmitimos sus datos a terceros, excepto a procesadores técnicos (proveedores de hosting, proveedores de correo electrónico) que están contractualmente obligados a cumplir el RGPD. No se transfieren datos fuera de la UE."
+    },
+    "cookies": {
+      "title": "9. Cookies",
+      "content": "Utilizamos solo cookies técnicamente necesarias para el funcionamiento de la sesión. No utilizamos cookies de seguimiento ni de publicidad. Nuestro token de sesión se almacena como Cookie HttpOnly."
+    },
+    "contact": {
+      "title": "10. Contacto",
+      "content": "Si tiene preguntas sobre la protección de datos, puede contactarnos en cualquier momento. También tiene derecho a presentar una reclamación ante la autoridad de control competente."
+    }
+  }
+}

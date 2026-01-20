@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Clock,
@@ -40,6 +41,7 @@ interface PreSessionData {
 }
 
 const WaitingRoom: React.FC = () => {
+  const { t: _t } = useTranslation('pages');
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const appointmentId = searchParams.get('appointment');

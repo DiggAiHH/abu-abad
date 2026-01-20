@@ -31,3 +31,99 @@
     @apply opacity-50 cursor-not-allowed;
   }
 }
+
+/* RTL (Right-to-Left) Support for Arabic, Farsi, Kurdish Sorani */
+@layer utilities {
+  /* Text alignment flip for RTL */
+  [dir="rtl"] .text-left {
+    text-align: right;
+  }
+  [dir="rtl"] .text-right {
+    text-align: left;
+  }
+
+  /* Margin flip for RTL */
+  [dir="rtl"] .ml-2 {
+    margin-left: 0;
+    margin-right: 0.5rem;
+  }
+  [dir="rtl"] .mr-2 {
+    margin-right: 0;
+    margin-left: 0.5rem;
+  }
+  [dir="rtl"] .ml-3 {
+    margin-left: 0;
+    margin-right: 0.75rem;
+  }
+  [dir="rtl"] .mr-3 {
+    margin-right: 0;
+    margin-left: 0.75rem;
+  }
+  [dir="rtl"] .ml-4 {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+  [dir="rtl"] .mr-4 {
+    margin-right: 0;
+    margin-left: 1rem;
+  }
+
+  /* Padding flip for RTL */
+  [dir="rtl"] .pl-4 {
+    padding-left: 0;
+    padding-right: 1rem;
+  }
+  [dir="rtl"] .pr-4 {
+    padding-right: 0;
+    padding-left: 1rem;
+  }
+  [dir="rtl"] .pl-6 {
+    padding-left: 0;
+    padding-right: 1.5rem;
+  }
+  [dir="rtl"] .pr-6 {
+    padding-right: 0;
+    padding-left: 1.5rem;
+  }
+
+  /* Flex direction flip for RTL */
+  [dir="rtl"] .flex-row {
+    flex-direction: row-reverse;
+  }
+
+  /* Border radius flip for RTL */
+  [dir="rtl"] .rounded-l-lg {
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  [dir="rtl"] .rounded-r-lg {
+    border-radius: 0.5rem 0 0 0.5rem;
+  }
+
+  /* Space between flip for RTL */
+  [dir="rtl"] .space-x-2 > * + * {
+    margin-left: 0;
+    margin-right: 0.5rem;
+  }
+  [dir="rtl"] .space-x-4 > * + * {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+
+  /* Icon positioning for RTL */
+  [dir="rtl"] .left-0 {
+    left: auto;
+    right: 0;
+  }
+  [dir="rtl"] .right-0 {
+    right: auto;
+    left: 0;
+  }
+  [dir="rtl"] .left-4 {
+    left: auto;
+    right: 1rem;
+  }
+  [dir="rtl"] .right-4 {
+    right: auto;
+    left: 1rem;
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import {
   FileText,
@@ -43,6 +44,7 @@ interface Patient {
 }
 
 const Reports: React.FC = () => {
+  const { t: _t } = useTranslation('pages');
   const navigate = useNavigate();
   const [reports, setReports] = useState<Report[]>([]);
   const [templates, setTemplates] = useState<Template[]>([]);

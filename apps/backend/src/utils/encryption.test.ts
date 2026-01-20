@@ -10,7 +10,7 @@ describe('encryption (AES-256-GCM, versioned)', () => {
     process.env.REFRESH_TOKEN_SECRET = 'z'.repeat(64);
     process.env.DATABASE_URL = 'https://example.com/db';
     process.env.STRIPE_SECRET_KEY = 'sk_test_123';
-    process.env.ALLOWED_ORIGINS = 'http://localhost:3000';
+    process.env.ALLOWED_ORIGINS = 'http://localhost:5175';
 
     const mod = await import('./encryption.js');
     const plain = 'Hallo Welt – 1234';
@@ -28,7 +28,7 @@ describe('encryption (AES-256-GCM, versioned)', () => {
     process.env.REFRESH_TOKEN_SECRET = 'z'.repeat(64);
     process.env.DATABASE_URL = 'https://example.com/db';
     process.env.STRIPE_SECRET_KEY = 'sk_test_123';
-    process.env.ALLOWED_ORIGINS = 'http://localhost:3000';
+    process.env.ALLOWED_ORIGINS = 'http://localhost:5175';
 
     vi.resetModules();
     const CryptoJS = await import('crypto-js');

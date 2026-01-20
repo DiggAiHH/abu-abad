@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "dashboard": "Panou de control",
+    "logout": "Deconectare",
+    "settings": "Setări",
+    "home": "Acasă",
+    "back": "Înapoi"
+  },
+  "buttons": {
+    "save": "Salvează",
+    "cancel": "Anulează",
+    "submit": "Trimite",
+    "delete": "Șterge",
+    "edit": "Editează",
+    "close": "Închide",
+    "confirm": "Confirmă",
+    "next": "Următorul",
+    "previous": "Anterior",
+    "loading": "Se încarcă..."
+  },
+  "errors": {
+    "required": "Câmp obligatoriu",
+    "invalidEmail": "Adresă de e-mail invalidă",
+    "serverError": "Eroare de server. Vă rugăm încercați din nou mai târziu.",
+    "networkError": "Nu se poate conecta la server",
+    "timeout": "Timp expirat. Vă rugăm încercați din nou.",
+    "unknown": "A apărut o eroare necunoscută"
+  },
+  "validation": {
+    "minLength": "Minim {{min}} caractere necesare",
+    "maxLength": "Maximum {{max}} caractere permise",
+    "passwordMismatch": "Parolele nu se potrivesc",
+    "passwordTooShort": "Parola trebuie să aibă cel puțin 8 caractere"
+  },
+  "common": {
+    "yes": "Da",
+    "no": "Nu",
+    "or": "sau",
+    "and": "și",
+    "all": "Toate",
+    "none": "Niciunul",
+    "search": "Căutare",
+    "filter": "Filtrare",
+    "sort": "Sortare",
+    "date": "Dată",
+    "time": "Oră",
+    "name": "Nume",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "address": "Adresă",
+    "notes": "Note"
+  },
+  "roles": {
+    "therapist": "Terapeut",
+    "patient": "Pacient"
+  },
+  "gdpr": {
+    "dataProtection": "Protecția datelor",
+    "privacyPolicy": "Politica de confidențialitate",
+    "consent": "Consimțământ",
+    "secureStorage": "Toate datele sunt stocate criptat."
+  }
+}

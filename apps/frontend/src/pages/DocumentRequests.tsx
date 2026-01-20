@@ -5,6 +5,7 @@
  */
 
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FileText, Upload, Check, X, Clock } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { apiClient } from '../api/client';
@@ -25,6 +26,7 @@ interface DocumentRequest {
 }
 
 export default function DocumentRequests() {
+  const { t: _t } = useTranslation('pages');
   const { user } = useAuthStore();
   const [requests, setRequests] = useState<DocumentRequest[]>([]);
   const [loading, setLoading] = useState(true);

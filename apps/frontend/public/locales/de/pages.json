@@ -1,0 +1,206 @@
+{
+  "landing": {
+    "title": "Abu-Abbad – DSGVO-konforme Teletherapie",
+    "header": {
+      "login": "Anmelden",
+      "tryFree": "Kostenlos testen"
+    },
+    "hero": {
+      "headline": "Teletherapie, die sich sicher anfühlt.",
+      "description": "DSGVO-konforme Plattform für Therapeut:innen und Patient:innen – mit Terminverwaltung, sicherer Kommunikation und Videosprechstunde."
+    },
+    "cta": {
+      "start": "Jetzt starten",
+      "hasAccount": "Ich habe schon einen Zugang"
+    },
+    "features": {
+      "encryption": "Verschlüsselung & Privacy by Design",
+      "video": "Video- & Audio-Termine (WebRTC)",
+      "questionnaires": "Fragebögen, Materialien, Dokumente",
+      "pwa": "Für Tests als PWA installierbar"
+    },
+    "quickTest": {
+      "title": "Schnell testen",
+      "description": "Für den Testbetrieb kannst du dich direkt anmelden oder ein neues Konto erstellen.",
+      "login": "Login",
+      "register": "Registrierung",
+      "note": "Hinweis: Im Produktivbetrieb gehören Impressum/Datenschutz dazu. Für Testing ist das bewusst schlank gehalten."
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Seite nicht gefunden",
+    "backToDashboard": "Zurück zum Dashboard"
+  },
+  "share": {
+    "title": "Dokument teilen",
+    "loading": "Dokument wird geladen...",
+    "error": "Dokument nicht gefunden oder abgelaufen"
+  },
+  "dashboard": {
+    "therapist": {
+      "title": "Therapeuten-Dashboard",
+      "welcome": "Willkommen zurück",
+      "patients": "Meine Patienten",
+      "appointments": "Anstehende Termine",
+      "noAppointments": "Keine anstehenden Termine",
+      "quickActions": "Schnellaktionen"
+    },
+    "patient": {
+      "title": "Patienten-Dashboard",
+      "welcome": "Willkommen zurück",
+      "nextAppointment": "Nächster Termin",
+      "noAppointment": "Kein Termin geplant",
+      "myTherapist": "Mein Therapeut",
+      "bookAppointment": "Termin buchen"
+    }
+  },
+  "videoCall": {
+    "title": "Videoanruf",
+    "connecting": "Verbindung wird hergestellt...",
+    "waiting": "Warte auf anderen Teilnehmer",
+    "controls": {
+      "mute": "Stummschalten",
+      "unmute": "Ton aktivieren",
+      "videoOff": "Video ausschalten",
+      "videoOn": "Video einschalten",
+      "shareScreen": "Bildschirm teilen",
+      "stopSharing": "Teilen beenden",
+      "endCall": "Anruf beenden"
+    },
+    "error": {
+      "connection": "Verbindungsfehler",
+      "camera": "Kamera nicht verfügbar",
+      "microphone": "Mikrofon nicht verfügbar"
+    }
+  },
+  "materials": {
+    "title": "Materialien",
+    "description": "Hier finden Sie alle Materialien, die Ihr Therapeut für Sie bereitgestellt hat.",
+    "noMaterials": "Keine Materialien vorhanden",
+    "download": "Herunterladen",
+    "categories": {
+      "all": "Alle",
+      "documents": "Dokumente",
+      "exercises": "Übungen",
+      "audio": "Audio",
+      "video": "Video"
+    }
+  },
+  "questionnaires": {
+    "builder": {
+      "title": "Fragebogen-Editor",
+      "newQuestion": "Neue Frage",
+      "questionTypes": {
+        "text": "Freitext",
+        "multipleChoice": "Multiple Choice",
+        "scale": "Skala",
+        "yesNo": "Ja/Nein"
+      },
+      "save": "Fragebogen speichern",
+      "preview": "Vorschau"
+    },
+    "patient": {
+      "title": "Fragebögen",
+      "pending": "Ausstehend",
+      "completed": "Abgeschlossen",
+      "noPending": "Keine ausstehenden Fragebögen",
+      "submit": "Absenden"
+    }
+  },
+  "documents": {
+    "title": "Dokumentenanfragen",
+    "request": "Dokument anfordern",
+    "upload": "Dokument hochladen",
+    "pending": "Ausstehend",
+    "approved": "Genehmigt",
+    "rejected": "Abgelehnt"
+  },
+  "diary": {
+    "title": "Symptomtagebuch",
+    "newEntry": "Neuer Eintrag",
+    "mood": "Stimmung",
+    "symptoms": "Symptome",
+    "notes": "Notizen",
+    "date": "Datum",
+    "noEntries": "Keine Einträge vorhanden"
+  },
+  "therapyNotes": {
+    "title": "Therapienotizen",
+    "newNote": "Neue Notiz",
+    "patient": "Patient",
+    "session": "Sitzung",
+    "progress": "Fortschritt",
+    "nextSteps": "Nächste Schritte"
+  },
+  "screenings": {
+    "title": "Psychologische Screenings",
+    "available": "Verfügbare Screenings",
+    "completed": "Abgeschlossene Screenings",
+    "start": "Screening starten",
+    "results": "Ergebnisse"
+  },
+  "crisisPlan": {
+    "title": "Krisenplan",
+    "emergencyContacts": "Notfallkontakte",
+    "warningSigns": "Warnzeichen",
+    "copingStrategies": "Bewältigungsstrategien",
+    "professionalHelp": "Professionelle Hilfe",
+    "edit": "Krisenplan bearbeiten"
+  },
+  "medications": {
+    "title": "Medikamenten-Tracker",
+    "addMedication": "Medikament hinzufügen",
+    "name": "Medikamentenname",
+    "dosage": "Dosierung",
+    "frequency": "Häufigkeit",
+    "reminders": "Erinnerungen",
+    "taken": "Eingenommen",
+    "missed": "Verpasst"
+  },
+  "exercises": {
+    "title": "Übungen & Hausaufgaben",
+    "assigned": "Zugewiesen",
+    "completed": "Abgeschlossen",
+    "instructions": "Anleitung",
+    "markComplete": "Als erledigt markieren"
+  },
+  "reminders": {
+    "title": "Erinnerungseinstellungen",
+    "appointments": "Terminerinnerungen",
+    "medications": "Medikamentenerinnerungen",
+    "exercises": "Übungserinnerungen",
+    "email": "E-Mail",
+    "push": "Push-Benachrichtigungen",
+    "sms": "SMS"
+  },
+  "reports": {
+    "title": "Behandlungsberichte",
+    "generate": "Bericht erstellen",
+    "dateRange": "Zeitraum",
+    "patient": "Patient",
+    "export": "Exportieren"
+  },
+  "waitingRoom": {
+    "title": "Warteraum",
+    "yourTurn": "Sie sind an der Reihe",
+    "position": "Position in der Warteschlange",
+    "estimatedWait": "Geschätzte Wartezeit",
+    "therapistReady": "Ihr Therapeut ist bereit"
+  },
+  "queue": {
+    "title": "Warteschlange",
+    "nextPatient": "Nächster Patient",
+    "waitingPatients": "Wartende Patienten",
+    "callNext": "Nächsten aufrufen",
+    "empty": "Warteschlange ist leer"
+  },
+  "billing": {
+    "title": "Abrechnung",
+    "invoices": "Rechnungen",
+    "payments": "Zahlungen",
+    "pending": "Ausstehend",
+    "paid": "Bezahlt",
+    "createInvoice": "Rechnung erstellen"
+  }
+}

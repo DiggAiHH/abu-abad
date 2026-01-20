@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { api } from '../api/client';
 import toast from 'react-hot-toast';
 import { format, parseISO } from 'date-fns';
@@ -129,6 +130,7 @@ function ScoreBar({ value, max, color }: { value: number; max: number; color: st
 
 // ===== MAIN COMPONENT =====
 export default function SymptomDiary() {
+  const { t: _t } = useTranslation('pages');
   const navigate = useNavigate();
 
   const [entries, setEntries] = useState<MoodEntry[]>([]);

@@ -1,8 +1,10 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 import { useAuthStore } from './store/authStore';
 import ErrorBoundary from './components/ErrorBoundary';
+import { applyDirection } from './i18n/rtlLanguages';
 
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -10,6 +12,7 @@ import NotFound from './pages/NotFound';
 
 const Landing = lazy(() => import('./pages/Landing'));
 const Share = lazy(() => import('./pages/Share'));
+const Privacy = lazy(() => import('./pages/Privacy'));
 
 const TherapistDashboard = lazy(() => import('./pages/TherapistDashboard'));
 const PatientDashboard = lazy(() => import('./pages/PatientDashboard'));
@@ -32,10 +35,16 @@ const Billing = lazy(() => import('./pages/Billing'));
 
 function App() {
   const { user, loading, checkAuth } = useAuthStore();
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
+
+  // Apply RTL direction when language changes
+  useEffect(() => {
+    applyDirection(i18n.language);
+  }, [i18n.language]);
 
   const spinner = (
     <div className="flex items-center justify-center min-h-screen">
@@ -55,6 +64,7 @@ function App() {
 
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
           <Route path="/register" element={!user ? <Register /> : <Navigate to="/dashboard" />} />
+          <Route path="/privacy" element={withSuspense(<Privacy />)} />
           
           <Route
             path="/dashboard"

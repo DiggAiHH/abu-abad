@@ -5,6 +5,7 @@
  */
 
 import { useMemo, useRef, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Plus, Trash2, GripVertical, Save, Eye, Copy, Upload } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -32,6 +33,7 @@ interface QuestionnaireTemplate {
 }
 
 export default function QuestionnaireBuilder() {
+  const { t: _t } = useTranslation('pages');
   const [templates, setTemplates] = useState<QuestionnaireTemplate[]>([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();

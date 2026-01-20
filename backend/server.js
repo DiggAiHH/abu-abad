@@ -11,7 +11,7 @@ const server = http.createServer(app);
 // Configure CORS for Socket.IO
 const allowedOrigins = process.env.ALLOWED_ORIGINS 
   ? process.env.ALLOWED_ORIGINS.split(',') 
-  : ['http://localhost:3000', 'http://localhost:19006'];
+  : ['http://localhost:5175', 'http://localhost:19006'];
 
 const io = socketIo(server, {
   cors: {
