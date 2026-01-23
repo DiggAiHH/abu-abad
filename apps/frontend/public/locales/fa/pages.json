@@ -1,0 +1,206 @@
+{
+  "landing": {
+    "title": "ابو عباد – تله‌درمانی مطابق با GDPR",
+    "header": {
+      "login": "ورود",
+      "tryFree": "امتحان رایگان"
+    },
+    "hero": {
+      "headline": "تله‌درمانی که احساس امنیت می‌دهد.",
+      "description": "پلتفرم مطابق با GDPR برای درمانگران و بیماران – با مدیریت قرار ملاقات، ارتباط امن و مشاوره ویدیویی."
+    },
+    "cta": {
+      "start": "شروع کنید",
+      "hasAccount": "من قبلاً حساب دارم"
+    },
+    "features": {
+      "encryption": "رمزنگاری و حریم خصوصی از طراحی",
+      "video": "جلسات ویدیو و صوتی (WebRTC)",
+      "questionnaires": "پرسشنامه‌ها، مواد و اسناد",
+      "pwa": "قابل نصب به عنوان PWA برای تست"
+    },
+    "quickTest": {
+      "title": "تست سریع",
+      "description": "برای تست می‌توانید مستقیماً وارد شوید یا حساب جدید ایجاد کنید.",
+      "login": "ورود",
+      "register": "ثبت‌نام",
+      "note": "توجه: در تولید، اطلاعات حقوقی/سیاست حریم خصوصی لازم است. این عمداً برای تست ساده شده."
+    }
+  },
+  "notFound": {
+    "title": "۴۰۴",
+    "message": "صفحه یافت نشد",
+    "backToDashboard": "بازگشت به داشبورد"
+  },
+  "share": {
+    "title": "اشتراک سند",
+    "loading": "در حال بارگذاری سند...",
+    "error": "سند یافت نشد یا منقضی شده"
+  },
+  "dashboard": {
+    "therapist": {
+      "title": "داشبورد درمانگر",
+      "welcome": "خوش آمدید",
+      "patients": "بیماران من",
+      "appointments": "قرار ملاقات‌های آینده",
+      "noAppointments": "قرار ملاقاتی وجود ندارد",
+      "quickActions": "اقدامات سریع"
+    },
+    "patient": {
+      "title": "داشبورد بیمار",
+      "welcome": "خوش آمدید",
+      "nextAppointment": "قرار ملاقات بعدی",
+      "noAppointment": "قرار ملاقاتی برنامه‌ریزی نشده",
+      "myTherapist": "درمانگر من",
+      "bookAppointment": "رزرو قرار ملاقات"
+    }
+  },
+  "videoCall": {
+    "title": "تماس ویدیویی",
+    "connecting": "در حال اتصال...",
+    "waiting": "در انتظار شرکت‌کننده دیگر",
+    "controls": {
+      "mute": "بی‌صدا",
+      "unmute": "فعال کردن صدا",
+      "videoOff": "خاموش کردن دوربین",
+      "videoOn": "روشن کردن دوربین",
+      "shareScreen": "اشتراک صفحه",
+      "stopSharing": "توقف اشتراک",
+      "endCall": "پایان تماس"
+    },
+    "error": {
+      "connection": "خطای اتصال",
+      "camera": "دوربین در دسترس نیست",
+      "microphone": "میکروفون در دسترس نیست"
+    }
+  },
+  "materials": {
+    "title": "مواد",
+    "description": "در اینجا همه موادی که درمانگر شما ارائه کرده را پیدا می‌کنید.",
+    "noMaterials": "موادی موجود نیست",
+    "download": "دانلود",
+    "categories": {
+      "all": "همه",
+      "documents": "اسناد",
+      "exercises": "تمرین‌ها",
+      "audio": "صوتی",
+      "video": "ویدیو"
+    }
+  },
+  "questionnaires": {
+    "builder": {
+      "title": "ویرایشگر پرسشنامه",
+      "newQuestion": "سؤال جدید",
+      "questionTypes": {
+        "text": "متن آزاد",
+        "multipleChoice": "چند گزینه‌ای",
+        "scale": "مقیاس",
+        "yesNo": "بله/خیر"
+      },
+      "save": "ذخیره پرسشنامه",
+      "preview": "پیش‌نمایش"
+    },
+    "patient": {
+      "title": "پرسشنامه‌ها",
+      "pending": "در انتظار",
+      "completed": "تکمیل شده",
+      "noPending": "پرسشنامه در انتظاری نیست",
+      "submit": "ارسال"
+    }
+  },
+  "documents": {
+    "title": "درخواست اسناد",
+    "request": "درخواست سند",
+    "upload": "آپلود سند",
+    "pending": "در انتظار",
+    "approved": "تأیید شده",
+    "rejected": "رد شده"
+  },
+  "diary": {
+    "title": "دفتر علائم",
+    "newEntry": "ورودی جدید",
+    "mood": "خلق و خو",
+    "symptoms": "علائم",
+    "notes": "یادداشت‌ها",
+    "date": "تاریخ",
+    "noEntries": "ورودی موجود نیست"
+  },
+  "therapyNotes": {
+    "title": "یادداشت‌های درمان",
+    "newNote": "یادداشت جدید",
+    "patient": "بیمار",
+    "session": "جلسه",
+    "progress": "پیشرفت",
+    "nextSteps": "مراحل بعدی"
+  },
+  "screenings": {
+    "title": "غربالگری روانشناختی",
+    "available": "غربالگری‌های موجود",
+    "completed": "غربالگری‌های تکمیل شده",
+    "start": "شروع غربالگری",
+    "results": "نتایج"
+  },
+  "crisisPlan": {
+    "title": "برنامه بحران",
+    "emergencyContacts": "تماس‌های اضطراری",
+    "warningSigns": "علائم هشدار",
+    "copingStrategies": "استراتژی‌های مقابله",
+    "professionalHelp": "کمک حرفه‌ای",
+    "edit": "ویرایش برنامه بحران"
+  },
+  "medications": {
+    "title": "ردیاب دارو",
+    "addMedication": "افزودن دارو",
+    "name": "نام دارو",
+    "dosage": "دوز",
+    "frequency": "تکرار",
+    "reminders": "یادآوری‌ها",
+    "taken": "مصرف شده",
+    "missed": "فراموش شده"
+  },
+  "exercises": {
+    "title": "تمرین‌ها و تکالیف",
+    "assigned": "تخصیص داده شده",
+    "completed": "تکمیل شده",
+    "instructions": "دستورالعمل‌ها",
+    "markComplete": "علامت‌گذاری به عنوان انجام شده"
+  },
+  "reminders": {
+    "title": "تنظیمات یادآوری",
+    "appointments": "یادآوری قرار ملاقات",
+    "medications": "یادآوری دارو",
+    "exercises": "یادآوری تمرین",
+    "email": "ایمیل",
+    "push": "اعلان‌های پوش",
+    "sms": "پیامک"
+  },
+  "reports": {
+    "title": "گزارش‌های درمان",
+    "generate": "ایجاد گزارش",
+    "dateRange": "بازه زمانی",
+    "patient": "بیمار",
+    "export": "صادر کردن"
+  },
+  "waitingRoom": {
+    "title": "اتاق انتظار",
+    "yourTurn": "نوبت شماست",
+    "position": "موقعیت در صف",
+    "estimatedWait": "زمان انتظار تخمینی",
+    "therapistReady": "درمانگر شما آماده است"
+  },
+  "queue": {
+    "title": "صف",
+    "nextPatient": "بیمار بعدی",
+    "waitingPatients": "بیماران در انتظار",
+    "callNext": "فراخواندن بعدی",
+    "empty": "صف خالی است"
+  },
+  "billing": {
+    "title": "صورتحساب",
+    "invoices": "فاکتورها",
+    "payments": "پرداخت‌ها",
+    "pending": "در انتظار",
+    "paid": "پرداخت شده",
+    "createInvoice": "ایجاد فاکتور"
+  }
+}

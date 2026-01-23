@@ -49,17 +49,21 @@ export default function Register() {
     setLoading(true);
 
     try {
-      const { confirmPassword, ...registerData } = formData;
+      const { confirmPassword: _confirmPassword, ...registerData } = formData;
       await register(registerData);
       toast.success(t('register.success'));
       navigate('/dashboard');
     } catch (error: any) {
       logger.error('Register: error', error);
-      
+
       if (error?.response?.status === 409) {
         toast.error(t('register.errors.emailExists'));
       } else if (error?.response?.status === 400) {
-        const errorMessage = error.response?.data?.error || t('register.errors.invalidData');
+        const errorData = error.response?.data;
+        const errorMessage =
+          (typeof errorData?.error === 'string' && errorData.error) ||
+          (typeof errorData?.message === 'string' && errorData.message) ||
+          t('register.errors.invalidData');
         toast.error(errorMessage);
       } else if (!error?.response) {
         toast.error(t('common:errors.networkError'));
@@ -132,6 +136,7 @@ export default function Register() {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               required
+              maxLength={254}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-600"
             />
           </div>

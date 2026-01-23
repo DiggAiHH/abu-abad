@@ -1,0 +1,206 @@
+{
+  "landing": {
+    "title": "Abu-Abbad – Teleterapiya bi GDPR re hevgirtî",
+    "header": {
+      "login": "Têketin",
+      "tryFree": "Belaş biceribîne"
+    },
+    "hero": {
+      "headline": "Teleterapiya ku ewle hîs dike.",
+      "description": "Platforma bi GDPR re hevgirtî ji bo terapîst û nexweşan – bi rêveberiya randevûyan, ragihandina ewledar û seanên vîdyoyê."
+    },
+    "cta": {
+      "start": "Niha dest pê bike",
+      "hasAccount": "Ez jixwe hesabek heye"
+    },
+    "features": {
+      "encryption": "Şîfrekirin û Parastina Nepenî",
+      "video": "Seanên vîdyo û deng (WebRTC)",
+      "questionnaires": "Pirsname, materyal û belge",
+      "pwa": "Ji bo ceribandinê wekî PWA tê saz kirin"
+    },
+    "quickTest": {
+      "title": "Ceribandina bilez",
+      "description": "Ji bo ceribandinê, tu dikarî rasterast têkevî an hesabek nû biafirînî.",
+      "login": "Têketin",
+      "register": "Qeydkirin",
+      "note": "Nîşe: Di hilberînê de, îmza/siyaseta nepeniyê hewce ne. Ev ji bo ceribandinê bi qestî hêsan e."
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Rûpel nehate dîtin",
+    "backToDashboard": "Vegere ser panelê"
+  },
+  "share": {
+    "title": "Belgeya parve bike",
+    "loading": "Belge tê barkirin...",
+    "error": "Belge nehate dîtin an qediya"
+  },
+  "dashboard": {
+    "therapist": {
+      "title": "Panela Terapîstê",
+      "welcome": "Bi xêr hatî",
+      "patients": "Nexweşên min",
+      "appointments": "Randevûyên pêşerojê",
+      "noAppointments": "Randevû tune",
+      "quickActions": "Kiryarên bilez"
+    },
+    "patient": {
+      "title": "Panela Nexweş",
+      "welcome": "Bi xêr hatî",
+      "nextAppointment": "Randevûya pêşîn",
+      "noAppointment": "Randevû nehatiye plankirin",
+      "myTherapist": "Terapîstê min",
+      "bookAppointment": "Randevû bistand"
+    }
+  },
+  "videoCall": {
+    "title": "Banga Vîdyoyê",
+    "connecting": "Girêdan tê çêkirin...",
+    "waiting": "Li benda beşdarê din",
+    "controls": {
+      "mute": "Bêdeng bike",
+      "unmute": "Deng veke",
+      "videoOff": "Vîdyoyê bigire",
+      "videoOn": "Vîdyoyê veke",
+      "shareScreen": "Ekranê parve bike",
+      "stopSharing": "Parvekirinê rawestîne",
+      "endCall": "Bangê biqedîne"
+    },
+    "error": {
+      "connection": "Xeletiya girêdanê",
+      "camera": "Kamera ne amade ye",
+      "microphone": "Mîkrofon ne amade ye"
+    }
+  },
+  "materials": {
+    "title": "Materyal",
+    "description": "Li vir tu dikarî hemû materyalên ku terapîstê te pêşkêş kiriye bibînî.",
+    "noMaterials": "Materyal tune",
+    "download": "Dakêşe",
+    "categories": {
+      "all": "Hemû",
+      "documents": "Belge",
+      "exercises": "Rahênan",
+      "audio": "Deng",
+      "video": "Vîdyo"
+    }
+  },
+  "questionnaires": {
+    "builder": {
+      "title": "Edîtorê Pirsnameyê",
+      "newQuestion": "Pirsa nû",
+      "questionTypes": {
+        "text": "Nivîsa azad",
+        "multipleChoice": "Hilbijartina pirjimar",
+        "scale": "Pîvan",
+        "yesNo": "Erê/Na"
+      },
+      "save": "Pirsnameyê tomar bike",
+      "preview": "Pêşdîtin"
+    },
+    "patient": {
+      "title": "Pirsname",
+      "pending": "Li benda",
+      "completed": "Qedandî",
+      "noPending": "Pirsnameyên li benda tune",
+      "submit": "Bişîne"
+    }
+  },
+  "documents": {
+    "title": "Daxwazên Belgeyan",
+    "request": "Belge bixwaze",
+    "upload": "Belge bar bike",
+    "pending": "Li benda",
+    "approved": "Pejirandî",
+    "rejected": "Redkirin"
+  },
+  "diary": {
+    "title": "Rojnameya Nîşanan",
+    "newEntry": "Ketina nû",
+    "mood": "Hest",
+    "symptoms": "Nîşan",
+    "notes": "Notên",
+    "date": "Dîrok",
+    "noEntries": "Ketin tune"
+  },
+  "therapyNotes": {
+    "title": "Notên Terapiyê",
+    "newNote": "Nota nû",
+    "patient": "Nexweş",
+    "session": "Seanse",
+    "progress": "Pêşketin",
+    "nextSteps": "Gavên pêşerojê"
+  },
+  "screenings": {
+    "title": "Screeningên Derûnî",
+    "available": "Screeningên berdest",
+    "completed": "Screeningên qedandî",
+    "start": "Screeningê dest pê bike",
+    "results": "Encam"
+  },
+  "crisisPlan": {
+    "title": "Plana Krîzê",
+    "emergencyContacts": "Pêwendiyên lezgîn",
+    "warningSigns": "Nîşanên hişyariyê",
+    "copingStrategies": "Stratejiyên berxwedanê",
+    "professionalHelp": "Alîkariya pispor",
+    "edit": "Plana krîzê biguherîne"
+  },
+  "medications": {
+    "title": "Şopandina Dermanan",
+    "addMedication": "Derman zêde bike",
+    "name": "Navê dermanê",
+    "dosage": "Doz",
+    "frequency": "Dubarekirin",
+    "reminders": "Bîranîn",
+    "taken": "Hatiye girtin",
+    "missed": "Ji bîr kirî"
+  },
+  "exercises": {
+    "title": "Rahênan & Karên Malê",
+    "assigned": "Hatiye tayînkirin",
+    "completed": "Qedandî",
+    "instructions": "Rêwerzî",
+    "markComplete": "Wekî qedandî nîşan bike"
+  },
+  "reminders": {
+    "title": "Mîhengên Bîranînê",
+    "appointments": "Bîranînên randevûyê",
+    "medications": "Bîranînên dermanan",
+    "exercises": "Bîranînên rahênanê",
+    "email": "E-mail",
+    "push": "Agahdariyên push",
+    "sms": "SMS"
+  },
+  "reports": {
+    "title": "Raporên Tedawiyê",
+    "generate": "Rapor çêbike",
+    "dateRange": "Demjimêra dîrokê",
+    "patient": "Nexweş",
+    "export": "Derxîne"
+  },
+  "waitingRoom": {
+    "title": "Odeya Bendê",
+    "yourTurn": "Dora te ye",
+    "position": "Pozîsyona di rêzê de",
+    "estimatedWait": "Dema bendê ya texmînkirî",
+    "therapistReady": "Terapîstê te amade ye"
+  },
+  "queue": {
+    "title": "Rêz",
+    "nextPatient": "Nexweşê din",
+    "waitingPatients": "Nexweşên li benda",
+    "callNext": "Yê din bang bike",
+    "empty": "Rêz vala ye"
+  },
+  "billing": {
+    "title": "Fatûrekirin",
+    "invoices": "Fatûre",
+    "payments": "Dayîn",
+    "pending": "Li benda",
+    "paid": "Dayîn",
+    "createInvoice": "Fatûreyê çêbike"
+  }
+}

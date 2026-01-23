@@ -30,8 +30,7 @@ router.post('/events', (req: Request, res: Response) => {
     event,
     ts,
     props,
-    ip: req.ip,
-    ua: req.headers['user-agent'],
+    // No PII in logs (GDPR Art. 9)
   });
 
   return res.status(204).send();

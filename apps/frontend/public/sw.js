@@ -10,6 +10,17 @@
 
 const CACHE_NAME = 'abu-abad-v1';
 const RUNTIME_CACHE = 'abu-abad-runtime-v1';
+const DEBUG = false;
+const swLog = (..._args) => {
+  if (DEBUG) {
+    // Intentionally no-op in production to avoid leaking data.
+  }
+};
+const swError = (..._args) => {
+  if (DEBUG) {
+    // Intentionally no-op in production to avoid leaking data.
+  }
+};
 
 // Kritische Offline-Ressourcen
 const CRITICAL_ASSETS = [
@@ -25,12 +36,12 @@ const CRITICAL_ASSETS = [
 // INSTALLATION
 // ══════════════════════════════════════════════════════════════
 self.addEventListener('install', (event) => {
-  console.log('[Service Worker] Installing...');
+  swLog('[Service Worker] Installing...');
   
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('[Service Worker] Caching critical assets');
+        swLog('[Service Worker] Caching critical assets');
         return cache.addAll(CRITICAL_ASSETS);
       })
       .then(() => self.skipWaiting()) // Aktiviere sofort
@@ -41,7 +52,7 @@ self.addEventListener('install', (event) => {
 // AKTIVIERUNG
 // ══════════════════════════════════════════════════════════════
 self.addEventListener('activate', (event) => {
-  console.log('[Service Worker] Activating...');
+  swLog('[Service Worker] Activating...');
   
   event.waitUntil(
     caches.keys()
@@ -51,7 +62,7 @@ self.addEventListener('activate', (event) => {
           cacheNames
             .filter((name) => name !== CACHE_NAME && name !== RUNTIME_CACHE)
             .map((name) => {
-              console.log('[Service Worker] Deleting old cache:', name);
+              swLog('[Service Worker] Deleting old cache:', name);
               return caches.delete(name);
             })
         );
@@ -112,7 +123,7 @@ async function networkFirstStrategy(request) {
     
     return networkResponse;
   } catch (error) {
-    console.log('[Service Worker] Network failed, using cache:', request.url);
+    swLog('[Service Worker] Network failed, using cache:', request.url);
     const cachedResponse = await cache.match(request);
     
     if (cachedResponse) {
@@ -152,7 +163,7 @@ async function cacheFirstStrategy(request) {
     
     return networkResponse;
   } catch (error) {
-    console.error('[Service Worker] Fetch failed:', error);
+    swError('[Service Worker] Fetch failed:', error);
     
     // Fallback für Images
     if (request.destination === 'image') {
@@ -167,7 +178,7 @@ async function cacheFirstStrategy(request) {
 // BACKGROUND SYNC (Nachrichten senden wenn offline)
 // ══════════════════════════════════════════════════════════════
 self.addEventListener('sync', (event) => {
-  console.log('[Service Worker] Background Sync:', event.tag);
+  swLog('[Service Worker] Background Sync:', event.tag);
   
   if (event.tag === 'sync-messages') {
     event.waitUntil(syncMessages());
@@ -190,7 +201,7 @@ async function syncMessages() {
       // Lösche nach erfolgreichem Senden
       await db.delete('pending', message.id);
     } catch (error) {
-      console.error('[Service Worker] Failed to sync message:', error);
+      swError('[Service Worker] Failed to sync message:', error);
     }
   }
 }
@@ -199,7 +210,7 @@ async function syncMessages() {
 // PUSH NOTIFICATIONS (Termin-Erinnerungen)
 // ══════════════════════════════════════════════════════════════
 self.addEventListener('push', (event) => {
-  console.log('[Service Worker] Push received');
+  swLog('[Service Worker] Push received');
   
   const data = event.data ? event.data.json() : {};
   
@@ -222,7 +233,7 @@ self.addEventListener('push', (event) => {
 // NOTIFICATION CLICK
 // ══════════════════════════════════════════════════════════════
 self.addEventListener('notificationclick', (event) => {
-  console.log('[Service Worker] Notification clicked');
+  swLog('[Service Worker] Notification clicked');
   event.notification.close();
   
   const urlToOpen = event.notification.data?.url || '/';

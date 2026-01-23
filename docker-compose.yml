@@ -56,7 +56,7 @@ services:
       REFRESH_TOKEN_SECRET: ${REFRESH_TOKEN_SECRET}
       ENCRYPTION_KEY: ${ENCRYPTION_KEY}
       STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
-      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:3000}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:5175}
       PEER_PORT: ${PEER_PORT:-9001}
       PEER_PATH: ${PEER_PATH:-/peerjs}
     depends_on:
@@ -75,7 +75,7 @@ services:
     container_name: therapist_frontend
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "5175:5175"
     environment:
       - VITE_API_URL=http://localhost:4000/api
     depends_on:

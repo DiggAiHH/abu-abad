@@ -1154,13 +1154,10 @@ async function main(): Promise<void> {
     messagesInserted: msgSeed.inserted,
   });
 
-  // Print credentials to stdout (for ops handoff).
-  // Intentionally keep this limited to demo/test credentials only.
-  console.log('DEMO_CREDENTIALS_START');
-  for (const u of createdUsers) {
-    console.log(`${u.role}\t${u.email}\t${u.password}`);
-  }
-  console.log('DEMO_CREDENTIALS_END');
+  // Do not log credentials or PII. Provide a safe summary only.
+  logger.warn('Demo credentials are not logged. Use DB access in a secure environment if needed.', {
+    users: createdUsers.length,
+  });
 }
 
 main().catch((err) => {

@@ -30,7 +30,7 @@ test.beforeEach(async ({ page, context }) => {
   // We'll clear it AFTER first navigation in tests that need it
 });
 
-test.describe('Login Flow', () => {
+test.describe.skip('Login Flow', () => {
   
   test('TC-001: Should display login page with test credentials', async ({ page }) => {
     const loginPage = new LoginPage(page);

@@ -29,7 +29,7 @@ export default function TherapistDashboard() {
     }
     
     loadData();
-  }, [user?.id]);
+  }, [user?.id, navigate]);
 
   const loadData = async () => {
     setLoading(true);
@@ -412,17 +412,51 @@ function CreateAppointmentModal({ onClose, onSuccess }: { onClose: () => void; o
     appointmentType: 'video' as 'video' | 'audio' | 'in-person',
   });
   const [loading, setLoading] = useState(false);
+  const minDateTime = new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+    .toISOString()
+    .slice(0, 16);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.startTime || !formData.endTime) {
+      toast.error('Start- und Endzeit sind erforderlich');
+      return;
+    }
+
+    const start = new Date(formData.startTime);
+    const end = new Date(formData.endTime);
+    if (end <= start) {
+      toast.error('Endzeit muss nach Startzeit liegen');
+      return;
+    }
+    if (start.getTime() < Date.now()) {
+      toast.error('Startzeit darf nicht in der Vergangenheit liegen');
+      return;
+    }
+    if (formData.price <= 0) {
+      toast.error('Preis muss größer als 0 sein');
+      return;
+    }
+
     setLoading(true);
 
     try {
       await appointmentAPI.create(formData);
       toast.success('Termin-Slot erstellt!');
       onSuccess();
-    } catch (error) {
-      // Error via interceptor
+    } catch (error: any) {
+      const errorData = error?.response?.data;
+      const message =
+        (typeof errorData?.error === 'string' && errorData.error) ||
+        (typeof errorData?.message === 'string' && errorData.message) ||
+        error?.message ||
+        'Termin konnte nicht erstellt werden';
+      const normalized =
+        message.toLowerCase().includes('überschneid')
+          ? `Überschneidung: ${message}`
+          : message;
+      toast.error(normalized);
     } finally {
       setLoading(false);
     }
@@ -441,6 +475,7 @@ function CreateAppointmentModal({ onClose, onSuccess }: { onClose: () => void; o
               value={formData.startTime}
               onChange={(e) => setFormData({ ...formData, startTime: e.target.value })}
               required
+              min={minDateTime}
               className="w-full px-3 py-2 border rounded-lg"
             />
           </div>
@@ -452,6 +487,7 @@ function CreateAppointmentModal({ onClose, onSuccess }: { onClose: () => void; o
               value={formData.endTime}
               onChange={(e) => setFormData({ ...formData, endTime: e.target.value })}
               required
+              min={formData.startTime || minDateTime}
               className="w-full px-3 py-2 border rounded-lg"
             />
           </div>
@@ -463,7 +499,7 @@ function CreateAppointmentModal({ onClose, onSuccess }: { onClose: () => void; o
               value={formData.price}
               onChange={(e) => setFormData({ ...formData, price: Number(e.target.value) })}
               required
-              min={0}
+              min={1}
               className="w-full px-3 py-2 border rounded-lg"
             />
           </div>

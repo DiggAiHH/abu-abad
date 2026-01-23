@@ -152,7 +152,7 @@
 # ══════════════════════════════════════════════════════════════
 
 [context.deploy-preview]
-  command = "cd apps/frontend && npm install && npm run build"
+  command = "npm ci && npm run build --workspace=apps/frontend"
   
   [context.deploy-preview.environment]
     NODE_ENV = "staging"
@@ -162,16 +162,16 @@
 # ══════════════════════════════════════════════════════════════
 
 [context.production]
-  command = "cd apps/frontend && npm install && npm run build"
+  command = "npm ci && npm run build --workspace=apps/frontend"
   
   [context.production.environment]
     NODE_ENV = "production"
 
 [context.main]
-  command = "cd apps/frontend && npm install && npm run build"
+  command = "npm ci && npm run build --workspace=apps/frontend"
 
 [context.v8-compliant-isolated]
-  command = "cd apps/frontend && npm install && npm run build"
+  command = "npm ci && npm run build --workspace=apps/frontend"
   
   [context.v8-compliant-isolated.environment]
     NODE_ENV = "development"

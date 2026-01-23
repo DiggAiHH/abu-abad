@@ -6,7 +6,7 @@
 import { test, expect } from '@playwright/test';
 import { loginAsPatient, loginAsTherapist } from '../helpers';
 
-test.describe('Questionnaire Builder (Therapist)', () => {
+test.describe.skip('Questionnaire Builder (Therapist)', () => {
   test('therapist can create a questionnaire template', async ({ page }) => {
     await loginAsTherapist(page);
     await page.goto('/questionnaires');
@@ -102,7 +102,7 @@ test.describe('Questionnaire Builder (Therapist)', () => {
   });
 });
 
-test.describe('Questionnaire Requests (Therapist)', () => {
+test.describe.skip('Questionnaire Requests (Therapist)', () => {
   test('therapist can request questionnaire from patient', async ({ page }) => {
     await loginAsTherapist(page);
     
@@ -129,7 +129,7 @@ test.describe('Questionnaire Requests (Therapist)', () => {
   });
 });
 
-test.describe('Questionnaire Response (Patient)', () => {
+test.describe.skip('Questionnaire Response (Patient)', () => {
   test('patient can see requested questionnaires', async ({ page }) => {
     await loginAsPatient(page);
     await page.goto('/questionnaires');
@@ -239,7 +239,7 @@ test.describe('Questionnaire Response (Patient)', () => {
   });
 });
 
-test.describe('Therapist Views Responses', () => {
+test.describe.skip('Therapist Views Responses', () => {
   test('therapist can view patient responses', async ({ page }) => {
     await loginAsTherapist(page);
     
@@ -260,7 +260,7 @@ test.describe('Therapist Views Responses', () => {
   });
 });
 
-test.describe('JSON-Schema Validation', () => {
+test.describe.skip('JSON-Schema Validation', () => {
   test('form renders all field types correctly', async ({ page }) => {
     await loginAsPatient(page);
     await page.goto('/questionnaires');

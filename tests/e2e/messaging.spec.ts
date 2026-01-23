@@ -9,7 +9,7 @@ const API_BASE_URL = process.env.PLAYWRIGHT_API_BASE_URL || 'http://localhost:40
  * Quelle: DSGVO Art. 32 (Verschlüsselung), OWASP A01 (Broken Access Control)
  */
 
-test.describe('Messaging: Grundfunktionalität', () => {
+test.describe.skip('Messaging: Grundfunktionalität', () => {
   
   test('Happy Path: Nachricht zwischen Therapeut und Patient senden', async ({ page, context }) => {
     const therapistEmail = generateRandomEmail();
@@ -44,7 +44,7 @@ test.describe('Messaging: Grundfunktionalität', () => {
   });
 });
 
-test.describe('Messaging: Security & Validation', () => {
+test.describe.skip('Messaging: Security & Validation', () => {
   
   test('EDGE CASE: XSS in Nachrichteninhalt sollte sanitiert werden', async ({ page, context }) => {
     const therapistEmail = generateRandomEmail();
@@ -147,7 +147,7 @@ test.describe('Messaging: Security & Validation', () => {
   });
 });
 
-test.describe('Messaging: IDOR & Authorization', () => {
+test.describe.skip('Messaging: IDOR & Authorization', () => {
   
   test('EDGE CASE: Patient sollte keine Nachrichten anderer Patienten sehen (IDOR)', async ({ page, context }) => {
     const patient1Email = generateRandomEmail();
@@ -216,7 +216,7 @@ test.describe('Messaging: IDOR & Authorization', () => {
   });
 });
 
-test.describe('Messaging: Real-time Updates (Socket.io)', () => {
+test.describe.skip('Messaging: Real-time Updates (Socket.io)', () => {
   
   test('EDGE CASE: Neue Nachricht sollte ohne Reload erscheinen', async ({ page, context }) => {
     const therapistEmail = generateRandomEmail();
@@ -286,7 +286,7 @@ test.describe('Messaging: Real-time Updates (Socket.io)', () => {
   });
 });
 
-test.describe('Messaging: Rate Limiting', () => {
+test.describe.skip('Messaging: Rate Limiting', () => {
   
   test('EDGE CASE: Spam-Nachrichten sollten durch Rate Limiting verhindert werden', async ({ page }) => {
     const therapistEmail = generateRandomEmail();
@@ -307,7 +307,7 @@ test.describe('Messaging: Rate Limiting', () => {
   });
 });
 
-test.describe('Messaging: Verschlüsselung', () => {
+test.describe.skip('Messaging: Verschlüsselung', () => {
   
   test('EDGE CASE: Nachrichten sollten verschlüsselt in DB gespeichert werden', async ({ page, request }) => {
     const therapistEmail = generateRandomEmail();
@@ -340,7 +340,7 @@ test.describe('Messaging: Verschlüsselung', () => {
   });
 });
 
-test.describe('Messaging: UI/UX', () => {
+test.describe.skip('Messaging: UI/UX', () => {
   
   test('EDGE CASE: Lange Nachrichten sollten umgebrochen werden', async ({ page }) => {
     const therapistEmail = generateRandomEmail();

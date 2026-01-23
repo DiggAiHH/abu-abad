@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
-import { redactPII } from './logger.js';
+import { describe, it, expect, vi } from 'vitest';
+import { redactPII, logger } from './logger.js';
 
 describe('logger redactPII', () => {
   it('redacts common PII/token fields recursively', () => {
@@ -21,5 +21,21 @@ describe('logger redactPII', () => {
     expect(out.nested.password).toBe('[redacted]');
     expect(out.nested.refreshToken).toBe('[redacted]');
     expect(out.nested.safe).toBe('ok');
+  });
+
+  it('redacts PII in info logs', () => {
+    const writeSpy = vi
+      .spyOn(process.stdout, 'write')
+      .mockImplementation(() => true);
+
+    logger.info('demo log', { email: 'user@example.com' });
+
+    expect(writeSpy).toHaveBeenCalled();
+    const output = String(writeSpy.mock.calls[0][0]);
+    expect(output).toContain('demo log');
+    expect(output).toContain('[redacted]');
+    expect(output).not.toContain('user@example.com');
+
+    writeSpy.mockRestore();
   });
 });

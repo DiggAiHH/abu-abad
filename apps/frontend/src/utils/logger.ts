@@ -128,20 +128,20 @@ function formatPrefix(level: string): string {
 export const logger = {
   debug(context: string, meta?: unknown) {
     if (!shouldLog('debug')) return;
-    // eslint-disable-next-line no-console
+     
     console.debug(formatPrefix('debug'), context, meta ?? '');
   },
 
   info(context: string, meta?: unknown) {
     if (!shouldLog('info')) return;
-    // eslint-disable-next-line no-console
+     
     console.info(formatPrefix('info'), context, meta ?? '');
   },
 
   warn(context: string, meta?: unknown) {
     if (!shouldLog('warn')) return;
     const safeMeta = isProd ? sanitizeError(meta) : meta;
-    // eslint-disable-next-line no-console
+     
     console.warn(formatPrefix('warn'), context, safeMeta ?? '');
   },
 
@@ -156,7 +156,7 @@ export const logger = {
       if (!allowErrorLog(signature)) return;
     }
 
-    // eslint-disable-next-line no-console
+     
     console.error(formatPrefix('error'), context, safeError ?? '', safeMeta ?? '');
   },
 };

@@ -109,7 +109,7 @@ fi
 
 # 8. Database Schema prüfen
 echo -e "${YELLOW}[8/10] Prüfe Database Schema...${NC}"
-if [ -f "apps/backend/db/schema.sql" ]; then
+if [ -f "apps/backend/src/db/schema.sql" ] || [ -f "apps/backend/src/database/schema.sql" ]; then
     echo -e "${GREEN}✅ Database Schema vorhanden${NC}"
 else
     echo -e "${RED}❌ Database Schema fehlt${NC}"

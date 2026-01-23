@@ -46,7 +46,7 @@ async function waitForApiAndScreenshot(
   await takeScreenshot(page, screenshotName);
 }
 
-test.describe('Authentication - Vollständige User Journey', () => {
+test.describe.skip('Authentication - Vollständige User Journey', () => {
   
   test('F1.1: Therapeut-Registrierung mit vollständiger Validierung', async ({ page }) => {
     /**

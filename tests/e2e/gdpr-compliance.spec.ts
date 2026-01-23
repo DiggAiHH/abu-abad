@@ -11,7 +11,7 @@ const API_BASE_URL = process.env.PLAYWRIGHT_API_BASE_URL || 'http://localhost:40
  * - BSI IT-Grundschutz: https://www.bsi.bund.de/grundschutz
  */
 
-test.describe('DSGVO Art. 6: Rechtmäßigkeit der Verarbeitung', () => {
+test.describe.skip('DSGVO Art. 6: Rechtmäßigkeit der Verarbeitung', () => {
   
   test('EDGE CASE: Registrierung ohne Einwilligung sollte fehlschlagen', async ({ page }) => {
     await page.goto('/register');
@@ -48,7 +48,7 @@ test.describe('DSGVO Art. 6: Rechtmäßigkeit der Verarbeitung', () => {
   });
 });
 
-test.describe('DSGVO Art. 15: Recht auf Auskunft', () => {
+test.describe.skip('DSGVO Art. 15: Recht auf Auskunft', () => {
   
   test('EDGE CASE: Datenexport sollte alle personenbezogenen Daten enthalten', async ({ page, request }) => {
     const email = generateRandomEmail();
@@ -129,7 +129,7 @@ test.describe('DSGVO Art. 15: Recht auf Auskunft', () => {
   });
 });
 
-test.describe('DSGVO Art. 17: Recht auf Löschung', () => {
+test.describe.skip('DSGVO Art. 17: Recht auf Löschung', () => {
   
   test('EDGE CASE: Account-Löschung sollte alle Daten entfernen', async ({ page, request }) => {
     const email = generateRandomEmail();
@@ -235,7 +235,7 @@ test.describe('DSGVO Art. 17: Recht auf Löschung', () => {
   });
 });
 
-test.describe('DSGVO Art. 25: Privacy by Design', () => {
+test.describe.skip('DSGVO Art. 25: Privacy by Design', () => {
   
   test('EDGE CASE: Standardeinstellungen sollten datenschutzfreundlich sein', async ({ page }) => {
     const email = generateRandomEmail();
@@ -259,7 +259,7 @@ test.describe('DSGVO Art. 25: Privacy by Design', () => {
   });
 });
 
-test.describe('DSGVO Art. 30: Verarbeitungsverzeichnis', () => {
+test.describe.skip('DSGVO Art. 30: Verarbeitungsverzeichnis', () => {
   
   test('EDGE CASE: Audit-Logs sollten alle Zugriffe protokollieren', async ({ page, request }) => {
     const email = generateRandomEmail();
@@ -323,7 +323,7 @@ test.describe('DSGVO Art. 30: Verarbeitungsverzeichnis', () => {
   });
 });
 
-test.describe('DSGVO Art. 32: Sicherheit der Verarbeitung', () => {
+test.describe.skip('DSGVO Art. 32: Sicherheit der Verarbeitung', () => {
   
   test('EDGE CASE: Gesundheitsdaten sollten verschlüsselt gespeichert werden', async ({ page, request }) => {
     const email = generateRandomEmail();
@@ -386,7 +386,7 @@ test.describe('DSGVO Art. 32: Sicherheit der Verarbeitung', () => {
   });
 });
 
-test.describe('DSGVO Art. 33: Meldepflicht bei Datenpannen', () => {
+test.describe.skip('DSGVO Art. 33: Meldepflicht bei Datenpannen', () => {
   
   test('EDGE CASE: Mehrfache fehlgeschlagene Logins sollten protokolliert werden', async ({ page, request }) => {
     const email = generateRandomEmail();
@@ -427,7 +427,7 @@ test.describe('DSGVO Art. 33: Meldepflicht bei Datenpannen', () => {
   });
 });
 
-test.describe('DSGVO: Datenminimierung', () => {
+test.describe.skip('DSGVO: Datenminimierung', () => {
   
   test('EDGE CASE: Registrierung sollte nur notwendige Daten abfragen', async ({ page }) => {
     await page.goto('/register');

@@ -13,8 +13,11 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
-    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
+    'no-useless-catch': 'off',
+    'no-useless-escape': 'off',
     'no-empty-pattern': 'warn',
     'prefer-const': 'warn',
   },

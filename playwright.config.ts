@@ -27,6 +27,7 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:5175',
+    locale: 'de-DE',
 
     // Supports Nginx Basic Auth (doctor stack).
     // If env vars are not set, default to the repo's doctor-stack credentials when

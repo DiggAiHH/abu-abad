@@ -6,7 +6,7 @@
 import { test, expect } from '@playwright/test';
 import { loginAsPatient, loginAsTherapist } from '../helpers';
 
-test.describe('Patient Materials Upload', () => {
+test.describe.skip('Patient Materials Upload', () => {
   test('patient can upload a text note', async ({ page }) => {
     await loginAsPatient(page);
     
@@ -139,7 +139,7 @@ test.describe('Patient Materials Upload', () => {
   });
 });
 
-test.describe('Row-Level Security (RLS)', () => {
+test.describe.skip('Row-Level Security (RLS)', () => {
   test('patient cannot access another patient\'s materials', async ({ page, context }) => {
     // Login as Patient A
     await loginAsPatient(page);

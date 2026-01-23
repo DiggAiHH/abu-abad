@@ -183,6 +183,12 @@ export const authAPI = {
 export const appointmentAPI = {
   getAll: (params?: { status?: string; date?: string }) =>
     api.get('/appointments', { params }),
+
+  getMine: (params?: { status?: string; upcoming?: boolean }) =>
+    api.get('/appointments/my', { params }),
+
+  getAvailable: (params?: { therapistId?: string; from?: string; to?: string }) =>
+    api.get('/appointments/available', { params }),
   
   getById: (id: string) => api.get(`/appointments/${id}`),
   

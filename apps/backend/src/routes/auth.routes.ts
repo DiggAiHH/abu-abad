@@ -46,9 +46,8 @@ function clearRefreshTokenCookie(res: Response): void {
 
 // SECURITY: Strengeres Rate-Limiting für Login (verhindert Brute-Force)
 // HISTORY-AWARE: E2E-Tests erwarten deterministisches Verhalten; daher secure-by-default.
-const loginRateLimitMax = Number(
-  process.env.LOGIN_RATE_LIMIT_MAX ?? (process.env.NODE_ENV === 'production' ? 5 : 100)
-);
+const loginRateLimitMaxEnv = Number(process.env.LOGIN_RATE_LIMIT_MAX);
+const loginRateLimitMax = Number.isFinite(loginRateLimitMaxEnv) ? loginRateLimitMaxEnv : 5;
 
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,

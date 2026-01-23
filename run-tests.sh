@@ -8,6 +8,20 @@ RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
+AUTO_START_SERVICES="${AUTO_START_SERVICES:-0}"
+PID_FILE="${PID_FILE:-/tmp/abu-abad-services.pids}"
+STARTED_SERVICES=0
+
+cleanup_services() {
+    if [ "$STARTED_SERVICES" = "1" ] && [ -f "$PID_FILE" ]; then
+        read -r BACKEND_PID FRONTEND_PID < "$PID_FILE" || true
+        kill "$BACKEND_PID" "$FRONTEND_PID" 2>/dev/null || true
+        rm -f "$PID_FILE" || true
+    fi
+}
+
+trap cleanup_services EXIT
+
 echo -e "${BLUE}╔════════════════════════════════════════════════════════╗${NC}"
 echo -e "${BLUE}║   🧪 Playwright Test Suite Executor                  ║${NC}"
 echo -e "${BLUE}║   106 Tests | 8 Test-Suites | Full Coverage          ║${NC}"
@@ -25,6 +39,34 @@ if [ ! -d "node_modules/@playwright/test" ]; then
     npm install
 fi
 
+# Preflight: Services muessen laufen, sonst brechen E2E-Tests ab
+if [ "${SKIP_HEALTHCHECKS:-}" != "1" ]; then
+    if ! command -v curl &> /dev/null; then
+        echo -e "${RED}❌ curl nicht gefunden. Bitte curl installieren oder SKIP_HEALTHCHECKS=1 setzen.${NC}"
+        exit 1
+    fi
+
+    frontend_url="http://localhost:5175/"
+    backend_url="http://localhost:4000/api/health"
+
+    if ! curl -fsS "$frontend_url" > /dev/null || ! curl -fsS "$backend_url" > /dev/null; then
+        if [ "$AUTO_START_SERVICES" = "1" ]; then
+            echo -e "${YELLOW}Services nicht erreichbar, starte automatisch...${NC}"
+            LOGIN_RATE_LIMIT_MAX="${LOGIN_RATE_LIMIT_MAX:-5}" DETACH=1 PID_FILE="$PID_FILE" ./start-local-test.sh
+            STARTED_SERVICES=1
+        else
+            echo -e "${RED}❌ Frontend/Backend nicht erreichbar.${NC}"
+            echo -e "${YELLOW}Starte die Services zuerst: ./start-local-test.sh${NC}"
+            exit 1
+        fi
+    fi
+
+    if ! curl -fsS "$frontend_url" > /dev/null || ! curl -fsS "$backend_url" > /dev/null; then
+        echo -e "${RED}❌ Services weiterhin nicht erreichbar.${NC}"
+        exit 1
+    fi
+fi
+
 # Menü
 echo -e "${YELLOW}Wähle Test-Modus:${NC}"
 echo -e "1) Alle Tests ausführen (106 Tests)"
@@ -33,7 +75,16 @@ echo -e "3) Interaktiver Modus (Playwright UI)"
 echo -e "4) Einzelne Test-Suite auswählen"
 echo -e "5) Tests mit Screenshots"
 echo -e "6) Debug-Modus (langsam, mit Browser)"
-read -p "Deine Wahl (1-6): " choice
+
+choice="${TEST_MODE:-}"
+if [ -z "$choice" ]; then
+    if [ -t 0 ]; then
+        read -p "Deine Wahl (1-6): " choice
+    else
+        choice="2"
+        echo -e "${YELLOW}Kein TTY erkannt, nutze Default TEST_MODE=2 (kritische Tests).${NC}"
+    fi
+fi
 
 case $choice in
     1)
@@ -58,7 +109,15 @@ case $choice in
         echo -e "6) DSGVO Compliance (15 Tests)"
         echo -e "7) Error Handling (20 Tests)"
         echo -e "8) Security (12 Tests)"
-        read -p "Test-Suite (1-8): " suite
+        suite="${TEST_SUITE:-}"
+        if [ -z "$suite" ]; then
+            if [ -t 0 ]; then
+                read -p "Test-Suite (1-8): " suite
+            else
+                echo -e "${RED}Kein TTY erkannt und TEST_SUITE fehlt.${NC}"
+                exit 1
+            fi
+        fi
         
         case $suite in
             1) npx playwright test tests/e2e/auth.spec.ts --reporter=list ;;

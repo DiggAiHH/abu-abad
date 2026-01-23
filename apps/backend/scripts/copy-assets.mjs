@@ -22,10 +22,10 @@ async function main() {
     await copyFile(full, path.join(outDir, entry));
   }
 
-  console.log('✓ Copied SQL assets to dist/database');
+  process.stdout.write('✓ Copied SQL assets to dist/database\n');
 }
 
 main().catch((err) => {
-  console.error('❌ Failed to copy assets:', err);
+  process.stderr.write(`❌ Failed to copy assets: ${err?.message || err}\n`);
   process.exit(1);
 });

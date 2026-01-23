@@ -32,7 +32,7 @@ export default function PatientDashboard() {
     }
     
     loadData();
-  }, [user?.id]);
+  }, [user?.id, navigate]);
 
   const loadData = async () => {
     setLoading(true);
@@ -44,14 +44,18 @@ export default function PatientDashboard() {
       }
       
       const [apptRes, availRes, msgRes] = await Promise.all([
-        appointmentAPI.getAll({ status: 'booked' }),
-        appointmentAPI.getAll({ status: 'available' }),
+        appointmentAPI.getMine({ status: 'booked' }),
+        appointmentAPI.getAvailable(),
         messageAPI.getAll(),
       ]);
       
       // Defensive checks - sicherstellen dass Arrays zurückkommen
-      const allAppointments = Array.isArray(apptRes.data) ? apptRes.data : [];
-      const available = Array.isArray(availRes.data) ? availRes.data : [];
+      const allAppointments = Array.isArray(apptRes.data?.appointments)
+        ? apptRes.data.appointments
+        : [];
+      const available = Array.isArray(availRes.data?.appointments)
+        ? availRes.data.appointments
+        : [];
       const msgs = Array.isArray(msgRes.data) ? msgRes.data : [];
       
       setAppointments(allAppointments.filter((a: Appointment) => a.patientId === user.id));

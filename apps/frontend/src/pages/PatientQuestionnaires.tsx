@@ -59,7 +59,7 @@ export default function PatientQuestionnaires() {
         clearTimeout(autoSaveTimer);
       }
     };
-  }, [responses]);
+  }, [responses, activeRequest]);
 
   const loadRequests = async () => {
     try {

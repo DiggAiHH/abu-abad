@@ -88,11 +88,12 @@ class Logger {
   }
 
   private formatMessage(level: LogLevel, message: string, meta?: any) {
+    const redactedMeta = meta ? redactPII(meta) : undefined;
     const logEntry = {
       timestamp: new Date().toISOString(),
       level,
       message,
-      ...(meta && { meta: redactPII(meta) }),
+      ...(redactedMeta ? { meta: redactedMeta } : {}),
       env: process.env.NODE_ENV || 'development'
     };
 
@@ -102,12 +103,14 @@ class Logger {
     
     // Development: Lesbareres Format
     const prefix = `[${logEntry.timestamp}] [${level.toUpperCase()}]`;
-    return meta ? `${prefix} ${message} ${JSON.stringify(meta)}` : `${prefix} ${message}`;
+    return redactedMeta
+      ? `${prefix} ${message} ${JSON.stringify(redactedMeta)}`
+      : `${prefix} ${message}`;
   }
 
   info(message: string, meta?: any) {
     if (this.shouldLog('info')) {
-      console.log(this.formatMessage('info', message, meta));
+      process.stdout.write(`${this.formatMessage('info', message, meta)}\n`);
     }
   }
 

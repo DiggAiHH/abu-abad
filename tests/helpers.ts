@@ -63,10 +63,10 @@ export async function registerUser(page: Page, user: typeof TEST_USERS.therapist
 
   const { token } = await response.json();
 
-  // Token in LocalStorage injizieren (simuliert Login)
+  // Token in SessionStorage injizieren (entspricht App-Token-Handling)
   await page.goto('/'); // Context muss geladen sein
   await page.evaluate((t) => {
-    localStorage.setItem('token', t);
+    sessionStorage.setItem('accessToken', t);
   }, token);
 
   // Direkt zum Dashboard springen
@@ -107,12 +107,15 @@ export async function loginUser(page: Page, credentials: { email: string; passwo
   });
 
   let response = await makeRequest();
+  let attempts = 0;
 
-  // Retry on Rate Limit (429)
-  if (response.status() === 429) {
-    console.log('⚠️ Rate limit hit during login, waiting 2s...');
-    await page.waitForTimeout(2000);
+  // Retry on Rate Limit (429) with backoff
+  while (response.status() === 429 && attempts < 3) {
+    const waitMs = 2000 * (attempts + 1);
+    console.log(`⚠️ Rate limit hit during login, waiting ${waitMs / 1000}s...`);
+    await page.waitForTimeout(waitMs);
     response = await makeRequest();
+    attempts += 1;
   }
 
   if (!response.ok()) {
@@ -122,10 +125,10 @@ export async function loginUser(page: Page, credentials: { email: string; passwo
 
   const { token } = await response.json();
 
-  // Token in LocalStorage injizieren
+  // Token in SessionStorage injizieren
   await page.goto('/'); 
   await page.evaluate((t) => {
-    localStorage.setItem('token', t);
+    sessionStorage.setItem('accessToken', t);
   }, token);
 
   // Zum Dashboard navigieren
@@ -174,6 +177,7 @@ export async function takeScreenshot(page: Page, name: string): Promise<void> {
 
 export async function createAppointment(page: Page, startTime: string, endTime: string, price: number = 120) {
   await page.click('button:has-text("Slot erstellen")');
+  await page.waitForSelector('input[type="datetime-local"]');
   
   await page.fill('input[type="datetime-local"]:first-of-type', startTime);
   await page.fill('input[type="datetime-local"]:last-of-type', endTime);

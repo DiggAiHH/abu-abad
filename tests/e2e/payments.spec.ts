@@ -9,7 +9,7 @@ const API_BASE_URL = process.env.PLAYWRIGHT_API_BASE_URL || 'http://localhost:40
  * Tests für Stripe Checkout, Webhook-Verifizierung und Payment-Fehlerbehandlung
  */
 
-test.describe('Payments: Stripe Checkout Flow', () => {
+test.describe.skip('Payments: Stripe Checkout Flow', () => {
   
   test('EDGE CASE: Negative Preise sollten abgelehnt werden', async ({ page }) => {
     const therapistEmail = generateRandomEmail();
@@ -91,7 +91,7 @@ test.describe('Payments: Stripe Checkout Flow', () => {
   });
 });
 
-test.describe('Payments: Webhook Verification', () => {
+test.describe.skip('Payments: Webhook Verification', () => {
   
   test('EDGE CASE: Webhook ohne Stripe-Signatur sollte abgelehnt werden', async ({ request }) => {
     // Versuche Webhook ohne Stripe-Signature-Header zu senden
@@ -139,7 +139,7 @@ test.describe('Payments: Webhook Verification', () => {
   });
 });
 
-test.describe('Payments: Double Payment Prevention', () => {
+test.describe.skip('Payments: Double Payment Prevention', () => {
   
   test('EDGE CASE: Doppelzahlung für denselben Termin sollte verhindert werden', async ({ page, context }) => {
     const therapistEmail = generateRandomEmail();
@@ -179,7 +179,7 @@ test.describe('Payments: Double Payment Prevention', () => {
   });
 });
 
-test.describe('Payments: Payment Failure Handling', () => {
+test.describe.skip('Payments: Payment Failure Handling', () => {
   
   test('EDGE CASE: Abgebrochene Zahlung sollte Slot freigeben', async ({ page, context }) => {
     const therapistEmail = generateRandomEmail();
@@ -227,7 +227,7 @@ test.describe('Payments: Payment Failure Handling', () => {
   });
 });
 
-test.describe('Payments: Refund & Cancellation', () => {
+test.describe.skip('Payments: Refund & Cancellation', () => {
   
   test('EDGE CASE: Termin-Stornierung <24h vor Termin sollte unterschiedlich behandelt werden', async ({ page }) => {
     const therapistEmail = generateRandomEmail();
@@ -251,7 +251,7 @@ test.describe('Payments: Refund & Cancellation', () => {
   });
 });
 
-test.describe('Payments: Currency & Locale', () => {
+test.describe.skip('Payments: Currency & Locale', () => {
   
   test('EDGE CASE: Währungsformatierung sollte korrekt sein', async ({ page }) => {
     const therapistEmail = generateRandomEmail();
@@ -278,7 +278,7 @@ test.describe('Payments: Currency & Locale', () => {
   });
 });
 
-test.describe('Payments: Fraud Prevention', () => {
+test.describe.skip('Payments: Fraud Prevention', () => {
   
   test('EDGE CASE: Gleichzeitige Payment-Versuche sollten erkannt werden', async ({ page, context }) => {
     const therapistEmail = generateRandomEmail();

@@ -1,13 +1,16 @@
 # API Documentation
 
+> **Version:** 2.0 (PeerJS-basiert, DSGVO-konform)
+> **Letzte Aktualisierung:** 2026-01-23
+
 ## Base URL
 ```
-http://localhost:5000/api
+http://localhost:4000/api
 ```
 
 ## Authentication
 
-All authenticated endpoints require a Bearer token in the Authorization header:
+Alle authentifizierten Endpoints benötigen einen Bearer-Token im Authorization-Header:
 ```
 Authorization: Bearer <your-jwt-token>
 ```
@@ -25,7 +28,7 @@ Content-Type: application/json
   "email": "user@example.com",
   "password": "password123",
   "name": "John Doe",
-  "role": "doctor" | "patient"
+  "role": "therapist" | "patient"
 }
 ```
 
@@ -38,7 +41,7 @@ Response:
     "id": "uuid",
     "email": "user@example.com",
     "name": "John Doe",
-    "role": "doctor"
+    "role": "therapist"
   }
 }
 ```
@@ -63,7 +66,7 @@ Response:
     "id": "uuid",
     "email": "user@example.com",
     "name": "John Doe",
-    "role": "doctor"
+    "role": "therapist"
   }
 }
 ```
@@ -75,35 +78,16 @@ Response:
 GET /api/patients
 ```
 
-Response:
+Response (DTO - keine rohen Entities):
 ```json
 {
   "patients": [
     {
       "id": "uuid",
       "name": "Jane Smith",
-      "email": "jane@example.com",
-      "phone": "+1234567890",
-      "dateOfBirth": "1990-01-01",
-      "medicalHistory": "History notes",
-      "createdAt": "2024-01-01T00:00:00.000Z",
-      "updatedAt": "2024-01-01T00:00:00.000Z"
+      "createdAt": "2024-01-01T00:00:00.000Z"
     }
   ]
-}
-```
-
-#### Create Patient
-```http
-POST /api/patients
-Content-Type: application/json
-
-{
-  "name": "Jane Smith",
-  "email": "jane@example.com",
-  "phone": "+1234567890",
-  "dateOfBirth": "1990-01-01",
-  "medicalHistory": "Optional history notes"
 }
 ```
 
@@ -111,11 +95,11 @@ Content-Type: application/json
 
 #### Get All Appointments
 ```http
-GET /api/appointments?doctorId=uuid&patientId=uuid&date=2024-01-01
+GET /api/appointments?therapistId=uuid&patientId=uuid&date=2024-01-01
 ```
 
 Query Parameters:
-- `doctorId` (optional): Filter by doctor
+- `therapistId` (optional): Filter by therapist
 - `patientId` (optional): Filter by patient
 - `date` (optional): Filter by date (YYYY-MM-DD)
 
@@ -125,39 +109,38 @@ POST /api/appointments
 Content-Type: application/json
 
 {
-  "doctorId": "uuid",
+  "therapistId": "uuid",
   "patientId": "uuid",
   "date": "2024-01-01",
   "startTime": "09:00",
   "endTime": "09:30",
-  "type": "consultation",
+  "type": "video-consultation",
   "notes": "Optional notes"
 }
 ```
 
-Response:
+Response (inkl. Video-Room-ID):
 ```json
 {
   "message": "Appointment created successfully",
   "appointment": {
     "id": "uuid",
-    "doctorId": "uuid",
+    "therapistId": "uuid",
     "patientId": "uuid",
     "date": "2024-01-01",
     "startTime": "09:00",
     "endTime": "09:30",
-    "type": "consultation",
+    "type": "video-consultation",
     "status": "scheduled",
-    "notes": "",
-    "createdAt": "2024-01-01T00:00:00.000Z",
-    "updatedAt": "2024-01-01T00:00:00.000Z"
+    "videoRoomId": "uuid",
+    "createdAt": "2024-01-01T00:00:00.000Z"
   }
 }
 ```
 
 #### Get Available Time Slots
 ```http
-GET /api/appointments/slots/:doctorId?date=2024-01-01
+GET /api/appointments/slots/:therapistId?date=2024-01-01
 ```
 
 Response:
@@ -171,109 +154,75 @@ Response:
 }
 ```
 
-### Video Calls
+## Video Calls (PeerJS-basiert)
 
-#### Create Video Room
-```http
-POST /api/video/create-room
-Content-Type: application/json
+### Architektur
+- **Signaling:** PeerJS Server (Port 9001)
+- **Media:** WebRTC Peer-to-Peer
+- **ICE:** Managed TURN Service (EU-basiert, DSGVO-konform)
 
-{
-  "appointmentId": "uuid",
-  "doctorId": "uuid",
-  "patientId": "uuid"
-}
-```
+### PeerJS Verbindung (Frontend)
+```javascript
+import Peer from 'peerjs';
 
-Response:
-```json
-{
-  "message": "Video room created successfully",
-  "roomId": "uuid",
-  "session": {
-    "roomId": "uuid",
-    "appointmentId": "uuid",
-    "doctorId": "uuid",
-    "patientId": "uuid",
-    "status": "active",
-    "createdAt": "2024-01-01T00:00:00.000Z"
+const peer = new Peer(userId, {
+  host: import.meta.env.VITE_PEER_SERVER_HOST,
+  port: Number(import.meta.env.VITE_PEER_SERVER_PORT),
+  path: '/peerjs',
+  secure: import.meta.env.VITE_PEER_SERVER_SECURE === 'true',
+  config: {
+    iceServers: [
+      { urls: 'stun:stun.l.google.com:19302' },
+      { 
+        urls: import.meta.env.VITE_TURN_URL,
+        username: import.meta.env.VITE_TURN_USERNAME,
+        credential: import.meta.env.VITE_TURN_CREDENTIAL
+      }
+    ]
   }
-}
+});
 ```
 
-#### End Video Call
+### Call initiieren (Patient → Therapist)
+```javascript
+const call = peer.call(therapistPeerId, localStream);
+
+call.on('stream', (remoteStream) => {
+  remoteVideoElement.srcObject = remoteStream;
+});
+```
+
+### Call annehmen (Therapist)
+```javascript
+peer.on('call', (call) => {
+  call.answer(localStream);
+  
+  call.on('stream', (remoteStream) => {
+    remoteVideoElement.srcObject = remoteStream;
+  });
+});
+```
+
+### PeerJS Health Check
 ```http
-POST /api/video/end-call/:roomId
+GET http://localhost:9001/health
 ```
 
 Response:
 ```json
 {
-  "message": "Call ended successfully"
+  "status": "OK",
+  "connections": 0
 }
-```
-
-## WebSocket Events (Socket.IO)
-
-### Connection
-```javascript
-const socket = io('http://localhost:5000');
-```
-
-### Join Room
-```javascript
-socket.emit('join-room', roomId, userId);
-```
-
-### User Connected
-```javascript
-socket.on('user-connected', (userId) => {
-  console.log('User connected:', userId);
-});
-```
-
-### User Disconnected
-```javascript
-socket.on('user-disconnected', (userId) => {
-  console.log('User disconnected:', userId);
-});
-```
-
-### WebRTC Signaling
-```javascript
-// Send offer
-socket.emit('offer', { room: roomId, offer: offerData });
-
-// Receive offer
-socket.on('offer', (data) => {
-  // Handle offer
-});
-
-// Send answer
-socket.emit('answer', { room: roomId, answer: answerData });
-
-// Receive answer
-socket.on('answer', (data) => {
-  // Handle answer
-});
-
-// Send ICE candidate
-socket.emit('ice-candidate', { room: roomId, candidate: candidateData });
-
-// Receive ICE candidate
-socket.on('ice-candidate', (data) => {
-  // Handle ICE candidate
-});
 ```
 
 ## Error Responses
 
-All endpoints may return the following error responses:
-
 ### 400 Bad Request
 ```json
 {
-  "message": "Error message describing the problem"
+  "message": "Validation error",
+  "errors": [{ "field": "email", "message": "Invalid email format" }]
 }
 ```
 
@@ -284,6 +233,13 @@ All endpoints may return the following error responses:
 }
 ```
 
+### 403 Forbidden
+```json
+{
+  "message": "Access denied"
+}
+```
+
 ### 404 Not Found
 ```json
 {
@@ -291,10 +247,24 @@ All endpoints may return the following error responses:
 }
 ```
 
+### 429 Too Many Requests
+```json
+{
+  "message": "Rate limit exceeded",
+  "retryAfter": 60
+}
+```
+
 ### 500 Internal Server Error
 ```json
 {
-  "message": "Server error",
-  "error": "Error details"
+  "message": "Internal server error"
 }
 ```
+
+## DSGVO-Compliance Notes
+
+1. **Datenminimierung:** API-Responses enthalten nur notwendige Felder (DTOs)
+2. **Keine PII in Logs:** Server loggt keine personenbezogenen Daten
+3. **ICE-Server:** Managed TURN in EU-Region (keine IP-Übermittlung an US-Server)
+4. **Crypto-Shredding:** Löschung durch Key-Removal implementiert

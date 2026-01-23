@@ -218,42 +218,14 @@ services:
           cpus: '0.5'
           memory: 256M
 
-  # ════════════════════════════════════════════════════════════
-  # COTURN (STUN/TURN Server for WebRTC - DSGVO-Compliant)
-  # ════════════════════════════════════════════════════════════
-  coturn:
-    image: coturn/coturn:4.6-alpine
-    container_name: abu-abad-coturn
-    restart: always
-    
-    command: >
-      -n
-      --listening-ip=0.0.0.0
-      --external-ip=${EXTERNAL_IP:-$(curl -s ifconfig.me)}
-      --realm=your-domain.de
-      --server-name=your-domain.de
-      --lt-cred-mech
-      --user=turnuser:${TURN_PASSWORD:-CHANGE_ME}
-      --min-port=49152
-      --max-port=65535
-      --no-cli
-      --no-tls
-      --no-dtls
-      --verbose
-      
-    ports:
-      - "3478:3478/tcp"
-      - "3478:3478/udp"
-      - "49152-65535:49152-65535/udp"
-      
-    networks:
-      - abu-abad-network
-      
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 512M
+# ══════════════════════════════════════════════════════════════
+# TURN SERVER: ENTFERNT (Managed TURN Service empfohlen)
+# ══════════════════════════════════════════════════════════════
+# Self-hosted Coturn wurde entfernt zugunsten von Managed TURN:
+# - Empfohlen: metered.ca (EU-Region, Free Tier verfügbar)
+# - Alternative: Twilio TURN, Xirsys
+# - Konfiguration via VITE_TURN_URL, VITE_TURN_USERNAME, VITE_TURN_CREDENTIAL
+# ══════════════════════════════════════════════════════════════
 
 # ══════════════════════════════════════════════════════════════
 # NETWORKS

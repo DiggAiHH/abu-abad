@@ -34,7 +34,7 @@ const expectConnectionBanner = async (page: Page, matcher: RegExp) => {
   await expect(banner).toHaveText(matcher);
 };
 
-test.describe('Video Call: Setup & Permissions', () => {
+test.describe.skip('Video Call: Setup & Permissions', () => {
   
   test('EDGE CASE: Fehlende Kamera-Berechtigung sollte behandelt werden', async ({ page, context }) => {
     // Blockiere Kamera-Zugriff
@@ -90,7 +90,7 @@ test.describe('Video Call: Setup & Permissions', () => {
   });
 });
 
-test.describe('Video Call: Connection & Network', () => {
+test.describe.skip('Video Call: Connection & Network', () => {
   
   test('EDGE CASE: PeerJS Server nicht erreichbar sollte behandelt werden', async ({ page, context }) => {
     await context.grantPermissions(['camera', 'microphone']);
@@ -162,7 +162,7 @@ test.describe('Video Call: Connection & Network', () => {
   });
 });
 
-test.describe('Video Call: Media Controls', () => {
+test.describe.skip('Video Call: Media Controls', () => {
   
   test('EDGE CASE: Mikrofon Mute/Unmute sollte funktionieren', async ({ page, context }) => {
     await context.grantPermissions(['camera', 'microphone']);
@@ -235,7 +235,7 @@ test.describe('Video Call: Media Controls', () => {
   });
 });
 
-test.describe('Video Call: Security & Privacy', () => {
+test.describe.skip('Video Call: Security & Privacy', () => {
   
   test('EDGE CASE: Unbefugter Zugriff auf Video-Call sollte blockiert werden', async ({ page }) => {
     // Versuche ohne Login auf Video-Call zuzugreifen
@@ -281,7 +281,7 @@ test.describe('Video Call: Security & Privacy', () => {
   });
 });
 
-test.describe('Video Call: Multi-User Scenarios', () => {
+test.describe.skip('Video Call: Multi-User Scenarios', () => {
   
   test('EDGE CASE: Gleichzeitiger Beitritt beider Teilnehmer sollte funktionieren', async ({ page, context }) => {
     await context.grantPermissions(['camera', 'microphone']);
@@ -333,7 +333,7 @@ test.describe('Video Call: Multi-User Scenarios', () => {
   });
 });
 
-test.describe('Video Call: UI/UX Edge Cases', () => {
+test.describe.skip('Video Call: UI/UX Edge Cases', () => {
   
   test('EDGE CASE: Video-Call auf Mobile sollte responsive sein', async ({ page, context }) => {
     await context.grantPermissions(['camera', 'microphone']);

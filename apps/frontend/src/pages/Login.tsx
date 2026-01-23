@@ -40,6 +40,13 @@ export default function Login() {
       // Spezifische Error-Messages basierend auf Status
       if (error?.response?.status === 401) {
         toast.error('Ungültige E-Mail oder Passwort');
+      } else if (error?.response?.status === 429) {
+        const errorData = error.response?.data;
+        const errorMessage =
+          (typeof errorData?.error === 'string' && errorData.error) ||
+          (typeof errorData?.message === 'string' && errorData.message) ||
+          'Zu viele Anmeldeversuche. Bitte später erneut versuchen.';
+        toast.error(errorMessage);
       } else if (error?.response?.status === 403) {
         toast.error('Account deaktiviert. Bitte kontaktieren Sie den Support.');
       } else if (!error?.response) {
