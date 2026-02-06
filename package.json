@@ -4,6 +4,7 @@
   "description": "DSGVO-konforme Therapeuten-Patienten-Plattform mit Video-Calls, Terminbuchung und Stripe-Zahlungen",
   "type": "module",
   "private": true,
+  "packageManager": "npm@10.2.4",
   "workspaces": [
     "apps/*",
     "packages/*"

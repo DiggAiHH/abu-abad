@@ -27,6 +27,10 @@ npx playwright test
 ```
 
 **📚 Dokumentation:**
+- [ARCHITECTURE_IMPROVEMENTS.md](ARCHITECTURE_IMPROVEMENTS.md) - **NEU:** Turborepo, KMS Encryption, Performance
+- [SECURITY_IMPROVEMENTS.md](SECURITY_IMPROVEMENTS.md) - **NEU:** Critical Security Actions
+- [DATABASE_RLS_GUIDE.md](DATABASE_RLS_GUIDE.md) - **NEU:** Row-Level Security Implementation
+- [TESTING_IMPROVEMENTS.md](TESTING_IMPROVEMENTS.md) - **NEU:** Contract & Chaos Testing
 - [FEHLER_BEHOBEN.md](FEHLER_BEHOBEN.md) - 636 → 0 TypeScript-Fehler
 - [TESTING.md](TESTING.md) - 64+ Edge Case Tests
 - [QUICKSTART.md](QUICKSTART.md) - Detaillierte Anleitung
@@ -39,9 +43,13 @@ npx playwright test
 - **JWT-basierte Authentifizierung** mit bcrypt-Passwort-Hashing
 - **Rollenbasierte Zugriffskontrolle** (Therapeut / Patient)
 - **DSGVO-konform**: Art. 32 (Verschlüsselung), Art. 30 (Audit-Logs)
-- **AES-256 Verschlüsselung** für Gesundheitsdaten
+- **AES-256 Verschlüsselung** für Gesundheitsdaten (KMS-ready für Production)
+- **Envelope Encryption** mit Data Key / Master Key Trennung
+- **GDPR Audit Logging** mit automatischer Retention
 - **Rate Limiting** gegen DoS-Angriffe
 - **Input Validation** mit Zod (SQL-Injection & XSS Prevention)
+- **Database Row-Level Security** (Defense in Depth)
+- **Health Check Endpoints** (Kubernetes-ready)
 
 ### 📅 Terminbuchungssystem
 - **Therapeuten** können:

@@ -9,7 +9,7 @@
  * @security Trennung von Data Keys (DEK) und Key Encryption Keys (KEK)
  */
 
-import crypto from 'crypto';
+import * as crypto from 'crypto';
 import { logger } from '../utils/logger.js';
 import { 
   IKeyManagementService, 

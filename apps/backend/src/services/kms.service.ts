@@ -101,7 +101,7 @@ export class LocalKMS implements IKeyManagementService {
       throw new Error('Invalid encrypted key format');
     }
     
-    const [version, ivB64, tagB64, cipherB64] = parts;
+    const [_version, ivB64, tagB64, cipherB64] = parts;
     const iv = Buffer.from(ivB64, 'base64');
     const tag = Buffer.from(tagB64, 'base64');
     const ciphertext = Buffer.from(cipherB64, 'base64');
@@ -127,13 +127,13 @@ export class AWSKMS implements IKeyManagementService {
   // private kmsClient: KMSClient;
   // private keyId: string;
 
-  constructor(keyId: string, region: string = 'eu-central-1') {
+  constructor(_keyId: string, _region: string = 'eu-central-1') {
     // this.kmsClient = new KMSClient({ region });
     // this.keyId = keyId;
     throw new Error('AWS KMS not implemented - install @aws-sdk/client-kms first');
   }
 
-  async generateDataKey(context: EncryptionContext): Promise<DataKey> {
+  async generateDataKey(_context: EncryptionContext): Promise<DataKey> {
     // Implementation with AWS SDK
     // const command = new GenerateDataKeyCommand({
     //   KeyId: this.keyId,
@@ -144,7 +144,7 @@ export class AWSKMS implements IKeyManagementService {
     throw new Error('Not implemented');
   }
 
-  async decryptDataKey(encryptedKey: string, context: EncryptionContext): Promise<Buffer> {
+  async decryptDataKey(_encryptedKey: string, _context: EncryptionContext): Promise<Buffer> {
     throw new Error('Not implemented');
   }
 }

@@ -20,7 +20,7 @@ const router = Router();
  * Basic Health Check
  * Returns 200 OK if service is up
  */
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', async (_req: Request, res: Response) => {
   res.status(200).json({
     status: 'ok',
     timestamp: new Date().toISOString(),
@@ -34,7 +34,7 @@ router.get('/', async (req: Request, res: Response) => {
  * Checks if all dependencies are available
  * Used by Kubernetes/Load Balancer to route traffic
  */
-router.get('/ready', async (req: Request, res: Response) => {
+router.get('/ready', async (_req: Request, res: Response) => {
   const checks: any = {
     database: { healthy: false },
     memory: { healthy: false },
@@ -96,7 +96,7 @@ router.get('/ready', async (req: Request, res: Response) => {
  * Simple check if process is running
  * Used by Kubernetes to restart crashed containers
  */
-router.get('/live', (req: Request, res: Response) => {
+router.get('/live', (_req: Request, res: Response) => {
   // If this endpoint responds, the process is alive
   res.status(200).json({
     status: 'alive',
@@ -110,7 +110,7 @@ router.get('/live', (req: Request, res: Response) => {
  * Detailed Metrics (Optional - für Monitoring Dashboards)
  * Should be protected in production (Auth required)
  */
-router.get('/metrics', async (req: Request, res: Response) => {
+router.get('/metrics', async (_req: Request, res: Response) => {
   try {
     const db = getDatabaseService();
     

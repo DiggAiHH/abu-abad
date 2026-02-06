@@ -57,7 +57,7 @@ export class DatabaseService {
    */
   private setupEventHandlers(): void {
     // Connection acquired from pool
-    this.pool.on('acquire', (client: PoolClient) => {
+    this.pool.on('acquire', (_client: PoolClient) => {
       logger.debug('Connection acquired from pool', {
         totalCount: this.pool.totalCount,
         idleCount: this.pool.idleCount,

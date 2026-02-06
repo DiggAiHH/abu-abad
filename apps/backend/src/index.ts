@@ -26,6 +26,7 @@ import patientMaterialsRoutes from './routes/patient-materials.routes.js';
 import questionnaireRoutes from './routes/questionnaire.routes.js';
 import documentRequestsRoutes from './routes/document-requests.routes.js';
 import errorRoutes from './routes/error.routes.js';
+import healthRoutes from './routes/health.routes.js';
 import { initDatabase, getPool } from './database/init.js';
 import { startPeerServer } from './services/peerServer.js';
 import env from './config/env.js'; // Validiert alle ENV beim Import (nach dotenv.config())
@@ -119,7 +120,10 @@ app.get('/', (_req: Request, res: Response): void => {
     version: '8.0.0',
     status: 'running',
     endpoints: {
-      health: '/api/health',
+      health: '/health',
+      healthReady: '/health/ready',
+      healthLive: '/health/live',
+      healthMetrics: '/health/metrics',
       auth: '/api/auth',
       docs: '/api/docs'
     },
@@ -127,15 +131,10 @@ app.get('/', (_req: Request, res: Response): void => {
   });
 });
 
-app.get('/health', (_req: Request, res: Response): void => {
-  res.status(200).json({
-    status: 'OK',
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime()
-  });
-});
+// Enhanced health check routes (Kubernetes-ready)
+app.use('/health', healthRoutes);
 
-// HISTORY-AWARE: Add /api/health for consistency
+// Legacy health check (backward compatibility)
 app.get('/api/health', (_req: Request, res: Response): void => {
   res.status(200).json({
     status: 'OK',
