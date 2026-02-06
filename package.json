@@ -9,14 +9,16 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev": "turbo run dev",
     "dev:backend": "npm run dev --workspace=backend",
     "dev:frontend": "npm run dev --workspace=frontend",
-    "build": "npm run build --workspaces",
+    "build": "turbo run build",
     "db:migrate": "npm run migrate --workspace=backend",
     "db:seed": "npm run seed --workspace=backend",
-    "test": "npm run test --workspaces",
-    "lint": "npm run lint --workspaces"
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean"
   },
   "repository": {
     "type": "git",
@@ -40,6 +42,7 @@
     "@playwright/test": "^1.57.0",
     "@types/node": "^25.0.3",
     "@types/pg": "^8.16.0",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "turbo": "^2.8.3"
   }
 }
