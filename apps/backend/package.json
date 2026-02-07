@@ -12,7 +12,8 @@
     "seed": "tsx --env-file=../../.env src/database/seed.ts",
     "retention:run": "tsx --env-file=../../.env src/scripts/retention.ts",
     "test": "vitest",
-    "lint": "eslint src --ext .ts"
+    "lint": "eslint src --ext .ts",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@types/multer": "^2.0.0",
